@@ -1,0 +1,100 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myConsumerProfileLabel">Create or edit a Consumer Profile</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!consumerProfile.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="consumerProfile.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="consumerProfile.name" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_gender">Gender</label>
+            <select class="form-control" name="gender" [(ngModel)]="consumerProfile.gender" id="field_gender"  required>
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.gender?.dirty && editForm.controls.gender?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.gender?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_age">Age</label>
+            <select class="form-control" name="age" [(ngModel)]="consumerProfile.age" id="field_age"  required>
+                <option value="KIDS">KIDS</option>
+                <option value="TEEN">TEEN</option>
+                <option value="YOUTH">YOUTH</option>
+                <option value="ELDER">ELDER</option>
+            </select>
+            <div [hidden]="!(editForm.controls.age?.dirty && editForm.controls.age?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.age?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_inputTraits">Input Traits</label>
+            <input type="text" class="form-control" name="inputTraits" id="field_inputTraits"
+                [(ngModel)]="consumerProfile.inputTraits" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_traitStructure">Trait Structure</label>
+            <input type="text" class="form-control" name="traitStructure" id="field_traitStructure"
+                [(ngModel)]="consumerProfile.traitStructure" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_activityStructure">Activity Structure</label>
+            <input type="text" class="form-control" name="activityStructure" id="field_activityStructure"
+                [(ngModel)]="consumerProfile.activityStructure" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_hobbyStructure">Hobby Structure</label>
+            <input type="text" class="form-control" name="hobbyStructure" id="field_hobbyStructure"
+                [(ngModel)]="consumerProfile.hobbyStructure" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_inputReletionship">Input Reletionship</label>
+            <input type="text" class="form-control" name="inputReletionship" id="field_inputReletionship"
+                [(ngModel)]="consumerProfile.inputReletionship" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_inputHobbies">Input Hobbies</label>
+            <input type="text" class="form-control" name="inputHobbies" id="field_inputHobbies"
+                [(ngModel)]="consumerProfile.inputHobbies" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_reccomendedProductTypes">Reccomended Product Types</label>
+            <input type="text" class="form-control" name="reccomendedProductTypes" id="field_reccomendedProductTypes"
+                [(ngModel)]="consumerProfile.reccomendedProductTypes" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_suchAzUser">Such Az User</label>
+            <select class="form-control" id="field_suchAzUser" name="suchAzUser" [(ngModel)]="consumerProfile.suchAzUserId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="suchAzUserOption.id" *ngFor="let suchAzUserOption of suchazusers; trackBy: trackSuchAzUserById">{{suchAzUserOption.email}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

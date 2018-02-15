@@ -1,0 +1,92 @@
+<div>
+    <h2>
+        <span>Vendors</span>
+        <button class="btn btn-primary float-right jh-create-entity create-vendor-suchaz" [routerLink]="['/', { outlets: { popup: ['vendor-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Vendor
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="vendors">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Vendor Name</span></th>
+            <th><span>Rate Limit</span></th>
+            <th><span>Start Date</span></th>
+            <th><span>End Date</span></th>
+            <th><span>Access Key</span></th>
+            <th><span>Secret Key</span></th>
+            <th><span>Associate Key</span></th>
+            <th><span>Affilite Id</span></th>
+            <th><span>Access Key Exp Date</span></th>
+            <th><span>Scret Key Exp Date</span></th>
+            <th><span>Status</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th><span>Country</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let vendor of vendors ;trackBy: trackId">
+                <td><a [routerLink]="['../vendor-suchaz', vendor.id ]">{{vendor.id}}</a></td>
+                <td>{{vendor.vendorName}}</td>
+                <td>{{vendor.rateLimit}}</td>
+                <td>{{vendor.startDate}}</td>
+                <td>{{vendor.endDate}}</td>
+                <td>{{vendor.accessKey}}</td>
+                <td>{{vendor.secretKey}}</td>
+                <td>{{vendor.associateKey}}</td>
+                <td>{{vendor.affiliteId}}</td>
+                <td>{{vendor.accessKeyExpDate}}</td>
+                <td>{{vendor.scretKeyExpDate}}</td>
+                <td>{{vendor.status}}</td>
+                <td>{{vendor.createdDate}}</td>
+                <td>{{vendor.lastUpdatedDate}}</td>
+                <td>{{vendor.createdBy}}</td>
+                <td>{{vendor.lastUpdatedBy}}</td>
+                <td>
+                    <div *ngIf="vendor.countryId">
+                        <a [routerLink]="['../country-suchaz', vendor.countryId  ]" >{{vendor.countryCountryName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../vendor-suchaz', vendor.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'vendor-suchaz/'+ vendor.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'vendor-suchaz/'+ vendor.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

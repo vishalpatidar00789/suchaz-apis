@@ -1,0 +1,73 @@
+
+<div *ngIf="hobbyImage">
+    <h2><span>Hobby Image</span> {{hobbyImage.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Hobby Image Name</span></dt>
+        <dd>
+            <span>{{hobbyImage.hobbyImageName}}</span>
+        </dd>
+        <dt><span>Hobby Image Desc</span></dt>
+        <dd>
+            <span>{{hobbyImage.hobbyImageDesc}}</span>
+        </dd>
+        <dt><span>Hobby Image Size</span></dt>
+        <dd>
+            <span>{{hobbyImage.hobbyImageSize}}</span>
+        </dd>
+        <dt><span>Hobby Image</span></dt>
+        <dd>
+            <div *ngIf="hobbyImage.hobbyImage">
+                <a (click)="openFile(hobbyImage.hobbyImageContentType, hobbyImage.hobbyImage)">
+                    <img [src]="'data:' + hobbyImage.hobbyImageContentType + ';base64,' + hobbyImage.hobbyImage" style="max-width: 100%;" alt="hobbyImage image"/>
+                </a>
+                {{hobbyImage.hobbyImageContentType}}, {{byteSize(hobbyImage.hobbyImage)}}
+            </div>
+        </dd>
+        <dt><span>Hobby Image Type</span></dt>
+        <dd>
+            <span>{{hobbyImage.hobbyImageType}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{hobbyImage.status}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{hobbyImage.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{hobbyImage.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{hobbyImage.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{hobbyImage.lastUpdatedBy}}</span>
+        </dd>
+        <dt><span>Hobby</span></dt>
+        <dd>
+            <div *ngIf="hobbyImage.hobbyId">
+                <a [routerLink]="['/hobby-suchaz', hobbyImage.hobbyId]">{{hobbyImage.hobbyName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'hobby-image-suchaz/'+ hobbyImage.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

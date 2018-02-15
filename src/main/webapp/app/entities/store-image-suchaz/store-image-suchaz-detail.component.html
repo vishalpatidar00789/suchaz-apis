@@ -1,0 +1,73 @@
+
+<div *ngIf="storeImage">
+    <h2><span>Store Image</span> {{storeImage.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Store Image Name</span></dt>
+        <dd>
+            <span>{{storeImage.storeImageName}}</span>
+        </dd>
+        <dt><span>Store Image Desc</span></dt>
+        <dd>
+            <span>{{storeImage.storeImageDesc}}</span>
+        </dd>
+        <dt><span>Store Image Size</span></dt>
+        <dd>
+            <span>{{storeImage.storeImageSize}}</span>
+        </dd>
+        <dt><span>Store Image</span></dt>
+        <dd>
+            <div *ngIf="storeImage.storeImage">
+                <a (click)="openFile(storeImage.storeImageContentType, storeImage.storeImage)">
+                    <img [src]="'data:' + storeImage.storeImageContentType + ';base64,' + storeImage.storeImage" style="max-width: 100%;" alt="storeImage image"/>
+                </a>
+                {{storeImage.storeImageContentType}}, {{byteSize(storeImage.storeImage)}}
+            </div>
+        </dd>
+        <dt><span>Store Image Type</span></dt>
+        <dd>
+            <span>{{storeImage.storeImageType}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{storeImage.status}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{storeImage.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{storeImage.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{storeImage.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{storeImage.lastUpdatedBy}}</span>
+        </dd>
+        <dt><span>Store</span></dt>
+        <dd>
+            <div *ngIf="storeImage.storeId">
+                <a [routerLink]="['/store-suchaz', storeImage.storeId]">{{storeImage.storeName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'store-image-suchaz/'+ storeImage.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

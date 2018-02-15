@@ -1,0 +1,54 @@
+
+<div *ngIf="buyLaterListItem">
+    <h2><span>Buy Later List Item</span> {{buyLaterListItem.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{buyLaterListItem.status}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{buyLaterListItem.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{buyLaterListItem.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{buyLaterListItem.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{buyLaterListItem.lastUpdatedBy}}</span>
+        </dd>
+        <dt><span>Buy Later List</span></dt>
+        <dd>
+            <div *ngIf="buyLaterListItem.buyLaterListId">
+                <a [routerLink]="['/buy-later-list-suchaz', buyLaterListItem.buyLaterListId]">{{buyLaterListItem.buyLaterListId}}</a>
+            </div>
+        </dd>
+        <dt><span>Item</span></dt>
+        <dd>
+            <div *ngIf="buyLaterListItem.itemId">
+                <a [routerLink]="['/item-suchaz', buyLaterListItem.itemId]">{{buyLaterListItem.itemTitle}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'buy-later-list-item-suchaz/'+ buyLaterListItem.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

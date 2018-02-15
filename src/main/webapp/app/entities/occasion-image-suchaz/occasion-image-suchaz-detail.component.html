@@ -1,0 +1,73 @@
+
+<div *ngIf="occasionImage">
+    <h2><span>Occasion Image</span> {{occasionImage.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Occasion Image Name</span></dt>
+        <dd>
+            <span>{{occasionImage.occasionImageName}}</span>
+        </dd>
+        <dt><span>Occasion Image Desc</span></dt>
+        <dd>
+            <span>{{occasionImage.occasionImageDesc}}</span>
+        </dd>
+        <dt><span>Occasion Image Size</span></dt>
+        <dd>
+            <span>{{occasionImage.occasionImageSize}}</span>
+        </dd>
+        <dt><span>Occasion Image</span></dt>
+        <dd>
+            <div *ngIf="occasionImage.occasionImage">
+                <a (click)="openFile(occasionImage.occasionImageContentType, occasionImage.occasionImage)">
+                    <img [src]="'data:' + occasionImage.occasionImageContentType + ';base64,' + occasionImage.occasionImage" style="max-width: 100%;" alt="occasionImage image"/>
+                </a>
+                {{occasionImage.occasionImageContentType}}, {{byteSize(occasionImage.occasionImage)}}
+            </div>
+        </dd>
+        <dt><span>Occasion Image Type</span></dt>
+        <dd>
+            <span>{{occasionImage.occasionImageType}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{occasionImage.status}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{occasionImage.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{occasionImage.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{occasionImage.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{occasionImage.lastUpdatedBy}}</span>
+        </dd>
+        <dt><span>Occasion</span></dt>
+        <dd>
+            <div *ngIf="occasionImage.occasionId">
+                <a [routerLink]="['/occassion-suchaz', occasionImage.occasionId]">{{occasionImage.occasionName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'occasion-image-suchaz/'+ occasionImage.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,105 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "item",
+            "otherEntityName": "item",
+            "otherEntityRelationshipName": "vendor"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "vendorImage",
+            "otherEntityName": "vendorImage",
+            "otherEntityRelationshipName": "vendor"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "country",
+            "otherEntityName": "country",
+            "otherEntityField": "countryName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "vendorName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "rateLimit",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "startDate",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "endDate",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "accessKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "secretKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "associateKey",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "affiliteId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "accessKeyExpDate",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "scretKeyExpDate",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "ACTIVE,INACTIVE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastUpdatedDate",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastUpdatedBy",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180207211027",
+    "entityTableName": "vendor",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "suchaz"
+}

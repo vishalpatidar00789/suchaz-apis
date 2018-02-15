@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Item.
+    -->
+    <changeSet id="20180207211039-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="items_id"
+                                 baseTableName="item_offer"
+                                 constraintName="fk_item_offer_items_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="item"/>
+        <addForeignKeyConstraint baseColumnNames="offers_id"
+                                 baseTableName="item_offer"
+                                 constraintName="fk_item_offer_offers_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="offer"/>
+        
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="item"
+                                 constraintName="fk_item_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="category"/>
+
+        <addForeignKeyConstraint baseColumnNames="vendor_id"
+                                 baseTableName="item"
+                                 constraintName="fk_item_vendor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="vendor"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,58 @@
+
+<div *ngIf="hobby">
+    <h2><span>Hobby</span> {{hobby.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{hobby.name}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{hobby.description}}</span>
+        </dd>
+        <dt><span>Hobby Code</span></dt>
+        <dd>
+            <span>{{hobby.hobbyCode}}</span>
+        </dd>
+        <dt><span>Is Exposed To Menu</span></dt>
+        <dd>
+            <span>{{hobby.isExposedToMenu}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{hobby.status}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{hobby.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{hobby.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{hobby.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{hobby.lastUpdatedBy}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'hobby-suchaz/'+ hobby.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

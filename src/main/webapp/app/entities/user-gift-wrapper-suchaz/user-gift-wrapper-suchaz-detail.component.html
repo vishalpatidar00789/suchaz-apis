@@ -1,0 +1,69 @@
+
+<div *ngIf="userGiftWrapper">
+    <h2><span>User Gift Wrapper</span> {{userGiftWrapper.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Gift Wrapper Img</span></dt>
+        <dd>
+            <div *ngIf="userGiftWrapper.giftWrapperImg">
+                <a (click)="openFile(userGiftWrapper.giftWrapperImgContentType, userGiftWrapper.giftWrapperImg)">
+                    <img [src]="'data:' + userGiftWrapper.giftWrapperImgContentType + ';base64,' + userGiftWrapper.giftWrapperImg" style="max-width: 100%;" alt="userGiftWrapper image"/>
+                </a>
+                {{userGiftWrapper.giftWrapperImgContentType}}, {{byteSize(userGiftWrapper.giftWrapperImg)}}
+            </div>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{userGiftWrapper.status}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{userGiftWrapper.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{userGiftWrapper.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{userGiftWrapper.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{userGiftWrapper.lastUpdatedBy}}</span>
+        </dd>
+        <dt><span>Such Az User</span></dt>
+        <dd>
+            <div *ngIf="userGiftWrapper.suchAzUserId">
+                <a [routerLink]="['/such-az-user-suchaz', userGiftWrapper.suchAzUserId]">{{userGiftWrapper.suchAzUserEmail}}</a>
+            </div>
+        </dd>
+        <dt><span>Item</span></dt>
+        <dd>
+            <div *ngIf="userGiftWrapper.itemId">
+                <a [routerLink]="['/item-suchaz', userGiftWrapper.itemId]">{{userGiftWrapper.itemTitle}}</a>
+            </div>
+        </dd>
+        <dt><span>Gift Wrapper</span></dt>
+        <dd>
+            <div *ngIf="userGiftWrapper.giftWrapperId">
+                <a [routerLink]="['/gift-wrapper-suchaz', userGiftWrapper.giftWrapperId]">{{userGiftWrapper.giftWrapperName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'user-gift-wrapper-suchaz/'+ userGiftWrapper.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

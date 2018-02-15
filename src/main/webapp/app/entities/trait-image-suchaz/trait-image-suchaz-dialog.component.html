@@ -1,0 +1,134 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myTraitImageLabel">Create or edit a Trait Image</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!traitImage.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="traitImage.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_personalityImageName">Personality Image Name</label>
+            <input type="text" class="form-control" name="personalityImageName" id="field_personalityImageName"
+                [(ngModel)]="traitImage.personalityImageName" required/>
+            <div [hidden]="!(editForm.controls.personalityImageName?.dirty && editForm.controls.personalityImageName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.personalityImageName?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_personalityImageDesc">Personality Image Desc</label>
+            <input type="text" class="form-control" name="personalityImageDesc" id="field_personalityImageDesc"
+                [(ngModel)]="traitImage.personalityImageDesc" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_personalityImageSize">Personality Image Size</label>
+            <input type="number" class="form-control" name="personalityImageSize" id="field_personalityImageSize"
+                [(ngModel)]="traitImage.personalityImageSize" required/>
+            <div [hidden]="!(editForm.controls.personalityImageSize?.dirty && editForm.controls.personalityImageSize?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.personalityImageSize?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.personalityImageSize?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_personalityImage">Personality Image</label>
+            <div>
+                <img [src]="'data:' + traitImage.personalityImageContentType + ';base64,' + traitImage.personalityImage" style="max-height: 100px;" *ngIf="traitImage.personalityImage" alt="traitImage image"/>
+                <div *ngIf="traitImage.personalityImage" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{traitImage.personalityImageContentType}}, {{byteSize(traitImage.personalityImage)}}</span>
+                    <button type="button" (click)="clearInputImage('personalityImage', 'personalityImageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_personalityImage" (change)="setFileData($event, traitImage, 'personalityImage', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="personalityImage" id="field_personalityImage"
+                [(ngModel)]="traitImage.personalityImage" />
+            <input type="hidden" class="form-control" name="personalityImageContentType" id="field_personalityImageContentType"
+                [(ngModel)]="traitImage.personalityImageContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_personalityImageType">Personality Image Type</label>
+            <input type="text" class="form-control" name="personalityImageType" id="field_personalityImageType"
+                [(ngModel)]="traitImage.personalityImageType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="traitImage.status" id="field_status"  required>
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.status?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdDate">Created Date</label>
+            <input type="number" class="form-control" name="createdDate" id="field_createdDate"
+                [(ngModel)]="traitImage.createdDate" required/>
+            <div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.createdDate?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedDate">Last Updated Date</label>
+            <input type="number" class="form-control" name="lastUpdatedDate" id="field_lastUpdatedDate"
+                [(ngModel)]="traitImage.lastUpdatedDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdBy">Created By</label>
+            <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                [(ngModel)]="traitImage.createdBy" required/>
+            <div [hidden]="!(editForm.controls.createdBy?.dirty && editForm.controls.createdBy?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdBy?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedBy">Last Updated By</label>
+            <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                [(ngModel)]="traitImage.lastUpdatedBy" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_trait">Trait</label>
+            <select class="form-control" id="field_trait" name="trait" [(ngModel)]="traitImage.traitId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="traitOption.id" *ngFor="let traitOption of traits; trackBy: trackTraitById">{{traitOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

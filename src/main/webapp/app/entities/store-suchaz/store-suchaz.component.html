@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span>Stores</span>
+        <button class="btn btn-primary float-right jh-create-entity create-store-suchaz" [routerLink]="['/', { outlets: { popup: ['store-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Store
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="stores">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Description</span></th>
+            <th><span>Store Code</span></th>
+            <th><span>Status</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th><span>Item</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let store of stores ;trackBy: trackId">
+                <td><a [routerLink]="['../store-suchaz', store.id ]">{{store.id}}</a></td>
+                <td>{{store.name}}</td>
+                <td>{{store.description}}</td>
+                <td>{{store.storeCode}}</td>
+                <td>{{store.status}}</td>
+                <td>{{store.createdDate}}</td>
+                <td>{{store.lastUpdatedDate}}</td>
+                <td>{{store.createdBy}}</td>
+                <td>{{store.lastUpdatedBy}}</td>
+                <td>
+                    <span *ngFor="let item of store.items; let last = last">
+                            <a class="form-control-static" [routerLink]="['../item-suchaz', item?.id ]">{{item.title}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../store-suchaz', store.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'store-suchaz/'+ store.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'store-suchaz/'+ store.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+
+<div *ngIf="itemReview">
+    <h2><span>Item Review</span> {{itemReview.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Rating Value</span></dt>
+        <dd>
+            <span>{{itemReview.ratingValue}}</span>
+        </dd>
+        <dt><span>Rating Comment</span></dt>
+        <dd>
+            <span>{{itemReview.ratingComment}}</span>
+        </dd>
+        <dt><span>Item</span></dt>
+        <dd>
+            <div *ngIf="itemReview.itemId">
+                <a [routerLink]="['/item-suchaz', itemReview.itemId]">{{itemReview.itemTitle}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'item-review-suchaz/'+ itemReview.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

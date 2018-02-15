@@ -1,0 +1,119 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myUserProfileLabel">Create or edit a User Profile</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!userProfile.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="userProfile.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_fullName">Full Name</label>
+            <input type="text" class="form-control" name="fullName" id="field_fullName"
+                [(ngModel)]="userProfile.fullName" required/>
+            <div [hidden]="!(editForm.controls.fullName?.dirty && editForm.controls.fullName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.fullName?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_dob">Dob</label>
+            <input type="number" class="form-control" name="dob" id="field_dob"
+                [(ngModel)]="userProfile.dob" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_aboutMe">About Me</label>
+            <input type="text" class="form-control" name="aboutMe" id="field_aboutMe"
+                [(ngModel)]="userProfile.aboutMe" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_relationshipStatus">Relationship Status</label>
+            <select class="form-control" name="relationshipStatus" [(ngModel)]="userProfile.relationshipStatus" id="field_relationshipStatus" >
+                <option value="SINGLE">SINGLE</option>
+                <option value="COMMITTED">COMMITTED</option>
+                <option value="MARRIED">MARRIED</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_geoLocation">Geo Location</label>
+            <input type="text" class="form-control" name="geoLocation" id="field_geoLocation"
+                [(ngModel)]="userProfile.geoLocation" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_prifilePic">Prifile Pic</label>
+            <div>
+                <img [src]="'data:' + userProfile.prifilePicContentType + ';base64,' + userProfile.prifilePic" style="max-height: 100px;" *ngIf="userProfile.prifilePic" alt="userProfile image"/>
+                <div *ngIf="userProfile.prifilePic" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{userProfile.prifilePicContentType}}, {{byteSize(userProfile.prifilePic)}}</span>
+                    <button type="button" (click)="clearInputImage('prifilePic', 'prifilePicContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_prifilePic" (change)="setFileData($event, userProfile, 'prifilePic', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="prifilePic" id="field_prifilePic"
+                [(ngModel)]="userProfile.prifilePic" />
+            <input type="hidden" class="form-control" name="prifilePicContentType" id="field_prifilePicContentType"
+                [(ngModel)]="userProfile.prifilePicContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdDate">Created Date</label>
+            <input type="number" class="form-control" name="createdDate" id="field_createdDate"
+                [(ngModel)]="userProfile.createdDate" required/>
+            <div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.createdDate?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedDate">Last Updated Date</label>
+            <input type="number" class="form-control" name="lastUpdatedDate" id="field_lastUpdatedDate"
+                [(ngModel)]="userProfile.lastUpdatedDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdBy">Created By</label>
+            <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                [(ngModel)]="userProfile.createdBy" required/>
+            <div [hidden]="!(editForm.controls.createdBy?.dirty && editForm.controls.createdBy?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdBy?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedBy">Last Updated By</label>
+            <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                [(ngModel)]="userProfile.lastUpdatedBy" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_suchAzUser">Such Az User</label>
+            <select class="form-control" id="field_suchAzUser" name="suchAzUser" [(ngModel)]="userProfile.suchAzUserId">
+                <option [ngValue]="null"></option>
+                <option [ngValue]="suchAzUserOption.id" *ngFor="let suchAzUserOption of suchazusers; trackBy: trackSuchAzUserById">{{suchAzUserOption.email}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

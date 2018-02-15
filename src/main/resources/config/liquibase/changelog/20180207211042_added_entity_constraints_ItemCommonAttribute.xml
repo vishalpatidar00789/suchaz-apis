@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity ItemCommonAttribute.
+    -->
+    <changeSet id="20180207211042-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="item_id"
+                                 baseTableName="item_common_attribute"
+                                 constraintName="fk_item_common_attribute_item_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="item"/>
+
+        <addForeignKeyConstraint baseColumnNames="item_attribute_type_id"
+                                 baseTableName="item_common_attribute"
+                                 constraintName="fk_item_common_attribute_item_attribute_type_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="item_attribute_type"/>
+
+    </changeSet>
+</databaseChangeLog>

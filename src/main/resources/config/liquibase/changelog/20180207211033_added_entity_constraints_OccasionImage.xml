@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity OccasionImage.
+    -->
+    <changeSet id="20180207211033-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="occasion_id"
+                                 baseTableName="occasion_image"
+                                 constraintName="fk_occasion_image_occasion_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="occassion"/>
+
+    </changeSet>
+</databaseChangeLog>

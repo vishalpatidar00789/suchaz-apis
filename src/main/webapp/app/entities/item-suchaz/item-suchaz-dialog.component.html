@@ -1,0 +1,221 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myItemLabel">Create or edit a Item</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!item.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="item.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_itemId">Item Id</label>
+            <input type="text" class="form-control" name="itemId" id="field_itemId"
+                [(ngModel)]="item.itemId" required/>
+            <div [hidden]="!(editForm.controls.itemId?.dirty && editForm.controls.itemId?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.itemId?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                [(ngModel)]="item.title" required/>
+            <div [hidden]="!(editForm.controls.title?.dirty && editForm.controls.title?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.title?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_vendorItemType">Vendor Item Type</label>
+            <input type="text" class="form-control" name="vendorItemType" id="field_vendorItemType"
+                [(ngModel)]="item.vendorItemType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_description">Description</label>
+            <input type="text" class="form-control" name="description" id="field_description"
+                [(ngModel)]="item.description" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_vendorItemCode">Vendor Item Code</label>
+            <input type="text" class="form-control" name="vendorItemCode" id="field_vendorItemCode"
+                [(ngModel)]="item.vendorItemCode" required/>
+            <div [hidden]="!(editForm.controls.vendorItemCode?.dirty && editForm.controls.vendorItemCode?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.vendorItemCode?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_bestPrice">Best Price</label>
+            <input type="number" class="form-control" name="bestPrice" id="field_bestPrice"
+                [(ngModel)]="item.bestPrice" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_sellingPrice">Selling Price</label>
+            <input type="number" class="form-control" name="sellingPrice" id="field_sellingPrice"
+                [(ngModel)]="item.sellingPrice" required/>
+            <div [hidden]="!(editForm.controls.sellingPrice?.dirty && editForm.controls.sellingPrice?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.sellingPrice?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.sellingPrice?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_customerAvgRating">Customer Avg Rating</label>
+            <input type="text" class="form-control" name="customerAvgRating" id="field_customerAvgRating"
+                [(ngModel)]="item.customerAvgRating" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_suchazAvgRating">Suchaz Avg Rating</label>
+            <input type="text" class="form-control" name="suchazAvgRating" id="field_suchazAvgRating"
+                [(ngModel)]="item.suchazAvgRating" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="item.status" id="field_status"  required>
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.status?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_itemURL">Item URL</label>
+            <input type="text" class="form-control" name="itemURL" id="field_itemURL"
+                [(ngModel)]="item.itemURL" required/>
+            <div [hidden]="!(editForm.controls.itemURL?.dirty && editForm.controls.itemURL?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.itemURL?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_brand">Brand</label>
+            <input type="text" class="form-control" name="brand" id="field_brand"
+                [(ngModel)]="item.brand" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_colors">Colors</label>
+            <input type="text" class="form-control" name="colors" id="field_colors"
+                [(ngModel)]="item.colors" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_availibity">Availibity</label>
+            <select class="form-control" name="availibity" [(ngModel)]="item.availibity" id="field_availibity"  required>
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.availibity?.dirty && editForm.controls.availibity?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.availibity?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastRefreshed">Last Refreshed</label>
+            <input type="number" class="form-control" name="lastRefreshed" id="field_lastRefreshed"
+                [(ngModel)]="item.lastRefreshed" required/>
+            <div [hidden]="!(editForm.controls.lastRefreshed?.dirty && editForm.controls.lastRefreshed?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.lastRefreshed?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.lastRefreshed?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_searchKeywords">Search Keywords</label>
+            <input type="text" class="form-control" name="searchKeywords" id="field_searchKeywords"
+                [(ngModel)]="item.searchKeywords" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdDate">Created Date</label>
+            <input type="number" class="form-control" name="createdDate" id="field_createdDate"
+                [(ngModel)]="item.createdDate" required/>
+            <div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.createdDate?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedDate">Last Updated Date</label>
+            <input type="number" class="form-control" name="lastUpdatedDate" id="field_lastUpdatedDate"
+                [(ngModel)]="item.lastUpdatedDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdBy">Created By</label>
+            <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                [(ngModel)]="item.createdBy" required/>
+            <div [hidden]="!(editForm.controls.createdBy?.dirty && editForm.controls.createdBy?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdBy?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedBy">Last Updated By</label>
+            <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                [(ngModel)]="item.lastUpdatedBy" />
+        </div>
+
+        <div class="form-group">
+            <label for="field_offer">Offer</label>
+            <select class="form-control" id="field_offer" multiple name="offer" [(ngModel)]="item.offers">
+                <option [ngValue]="getSelected(item.offers, offerOption)" *ngFor="let offerOption of offers; trackBy: trackOfferById">{{offerOption.offerName}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_category">Category</label>
+            <select class="form-control" id="field_category" name="category" [(ngModel)]="item.categoryId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="categoryOption.id" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.name}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_vendor">Vendor</label>
+            <select class="form-control" id="field_vendor" name="vendor" [(ngModel)]="item.vendorId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="vendorOption.id" *ngFor="let vendorOption of vendors; trackBy: trackVendorById">{{vendorOption.vendorName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

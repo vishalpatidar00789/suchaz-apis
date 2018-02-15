@@ -1,0 +1,57 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myOfferLabel">Create or edit a Offer</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!offer.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="offer.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_offerName">Offer Name</label>
+            <input type="text" class="form-control" name="offerName" id="field_offerName"
+                [(ngModel)]="offer.offerName" required/>
+            <div [hidden]="!(editForm.controls.offerName?.dirty && editForm.controls.offerName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.offerName?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_offerDesc">Offer Desc</label>
+            <input type="text" class="form-control" name="offerDesc" id="field_offerDesc"
+                [(ngModel)]="offer.offerDesc" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_offerCode">Offer Code</label>
+            <input type="text" class="form-control" name="offerCode" id="field_offerCode"
+                [(ngModel)]="offer.offerCode" required/>
+            <div [hidden]="!(editForm.controls.offerCode?.dirty && editForm.controls.offerCode?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.offerCode?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_offerTC">Offer TC</label>
+            <textarea class="form-control" name="offerTC" id="field_offerTC"
+                [(ngModel)]="offer.offerTC" ></textarea>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

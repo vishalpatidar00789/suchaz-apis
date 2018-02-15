@@ -1,0 +1,54 @@
+
+<div *ngIf="wishListItem">
+    <h2><span>Wish List Item</span> {{wishListItem.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{wishListItem.status}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{wishListItem.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{wishListItem.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{wishListItem.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{wishListItem.lastUpdatedBy}}</span>
+        </dd>
+        <dt><span>Wish List</span></dt>
+        <dd>
+            <div *ngIf="wishListItem.wishListId">
+                <a [routerLink]="['/wish-list-suchaz', wishListItem.wishListId]">{{wishListItem.wishListId}}</a>
+            </div>
+        </dd>
+        <dt><span>Item</span></dt>
+        <dd>
+            <div *ngIf="wishListItem.itemId">
+                <a [routerLink]="['/item-suchaz', wishListItem.itemId]">{{wishListItem.itemTitle}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'wish-list-item-suchaz/'+ wishListItem.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

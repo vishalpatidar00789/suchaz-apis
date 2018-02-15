@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span>Categories</span>
+        <button class="btn btn-primary float-right jh-create-entity create-category-suchaz" [routerLink]="['/', { outlets: { popup: ['category-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Category
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="categories">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Description</span></th>
+            <th><span>Category Code</span></th>
+            <th><span>Status</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th><span>Parent</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let category of categories ;trackBy: trackId">
+                <td><a [routerLink]="['../category-suchaz', category.id ]">{{category.id}}</a></td>
+                <td>{{category.name}}</td>
+                <td>{{category.description}}</td>
+                <td>{{category.categoryCode}}</td>
+                <td>{{category.status}}</td>
+                <td>{{category.createdDate}}</td>
+                <td>{{category.lastUpdatedDate}}</td>
+                <td>{{category.createdBy}}</td>
+                <td>{{category.lastUpdatedBy}}</td>
+                <td>
+                    <div *ngIf="category.parentId">
+                        <a [routerLink]="['../category-suchaz', category.parentId  ]" >{{category.parentName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../category-suchaz', category.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'category-suchaz/'+ category.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'category-suchaz/'+ category.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

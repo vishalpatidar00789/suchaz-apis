@@ -1,0 +1,70 @@
+<div>
+    <h2>
+        <span>Countries</span>
+        <button class="btn btn-primary float-right jh-create-entity create-country-suchaz" [routerLink]="['/', { outlets: { popup: ['country-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Country
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="countries">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Country Name</span></th>
+            <th><span>Country Code</span></th>
+            <th><span>Status</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let country of countries ;trackBy: trackId">
+                <td><a [routerLink]="['../country-suchaz', country.id ]">{{country.id}}</a></td>
+                <td>{{country.countryName}}</td>
+                <td>{{country.countryCode}}</td>
+                <td>{{country.status}}</td>
+                <td>{{country.createdDate}}</td>
+                <td>{{country.lastUpdatedDate}}</td>
+                <td>{{country.createdBy}}</td>
+                <td>{{country.lastUpdatedBy}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../country-suchaz', country.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'country-suchaz/'+ country.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'country-suchaz/'+ country.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

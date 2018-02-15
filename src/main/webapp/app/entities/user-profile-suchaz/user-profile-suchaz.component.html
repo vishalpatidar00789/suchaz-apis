@@ -1,0 +1,87 @@
+<div>
+    <h2>
+        <span>User Profiles</span>
+        <button class="btn btn-primary float-right jh-create-entity create-user-profile-suchaz" [routerLink]="['/', { outlets: { popup: ['user-profile-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new User Profile
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="userProfiles">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="fullName"><span>Full Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="dob"><span>Dob</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="aboutMe"><span>About Me</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="relationshipStatus"><span>Relationship Status</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="geoLocation"><span>Geo Location</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="prifilePic"><span>Prifile Pic</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="createdDate"><span>Created Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lastUpdatedDate"><span>Last Updated Date</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="createdBy"><span>Created By</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="lastUpdatedBy"><span>Last Updated By</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="suchAzUserEmail"><span>Such Az User</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let userProfile of userProfiles ;trackBy: trackId">
+                <td><a [routerLink]="['../user-profile-suchaz', userProfile.id ]">{{userProfile.id}}</a></td>
+                <td>{{userProfile.fullName}}</td>
+                <td>{{userProfile.dob}}</td>
+                <td>{{userProfile.aboutMe}}</td>
+                <td>{{userProfile.relationshipStatus}}</td>
+                <td>{{userProfile.geoLocation}}</td>
+                <td>
+                    <a *ngIf="userProfile.prifilePic" (click)="openFile(userProfile.prifilePicContentType, userProfile.prifilePic)">
+                        <img [src]="'data:' + userProfile.prifilePicContentType + ';base64,' + userProfile.prifilePic" style="max-height: 30px;" alt="userProfile image"/>
+                    </a>
+                    <span *ngIf="userProfile.prifilePic">{{userProfile.prifilePicContentType}}, {{byteSize(userProfile.prifilePic)}}</span>
+                </td>
+                <td>{{userProfile.createdDate}}</td>
+                <td>{{userProfile.lastUpdatedDate}}</td>
+                <td>{{userProfile.createdBy}}</td>
+                <td>{{userProfile.lastUpdatedBy}}</td>
+                <td>
+                    <div *ngIf="userProfile.suchAzUserId">
+                        <a [routerLink]="['../such-az-user-suchaz', userProfile.suchAzUserId  ]" >{{userProfile.suchAzUserEmail}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../user-profile-suchaz', userProfile.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-profile-suchaz/'+ userProfile.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-profile-suchaz/'+ userProfile.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity SuchAzUser.
+    -->
+    <changeSet id="20180207211018-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="such_az_users_id"
+                                 baseTableName="such_az_user_trait"
+                                 constraintName="fk_such_az_user_trait_such_az_users_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="such_az_user"/>
+        <addForeignKeyConstraint baseColumnNames="traits_id"
+                                 baseTableName="such_az_user_trait"
+                                 constraintName="fk_such_az_user_trait_traits_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="trait"/>
+        
+    </changeSet>
+</databaseChangeLog>

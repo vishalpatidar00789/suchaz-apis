@@ -1,0 +1,72 @@
+<div>
+    <h2>
+        <span>Item Common Attributes</span>
+        <button class="btn btn-primary float-right jh-create-entity create-item-common-attribute-suchaz" [routerLink]="['/', { outlets: { popup: ['item-common-attribute-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Item Common Attribute
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="itemCommonAttributes">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Value</span></th>
+            <th><span>Item</span></th>
+            <th><span>Item Attribute Type</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let itemCommonAttribute of itemCommonAttributes ;trackBy: trackId">
+                <td><a [routerLink]="['../item-common-attribute-suchaz', itemCommonAttribute.id ]">{{itemCommonAttribute.id}}</a></td>
+                <td>{{itemCommonAttribute.name}}</td>
+                <td>{{itemCommonAttribute.value}}</td>
+                <td>
+                    <div *ngIf="itemCommonAttribute.itemId">
+                        <a [routerLink]="['../item-suchaz', itemCommonAttribute.itemId  ]" >{{itemCommonAttribute.itemTitle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="itemCommonAttribute.itemAttributeTypeId">
+                        <a [routerLink]="['../item-attribute-type-suchaz', itemCommonAttribute.itemAttributeTypeId  ]" >{{itemCommonAttribute.itemAttributeTypeAttributeTypeName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../item-common-attribute-suchaz', itemCommonAttribute.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'item-common-attribute-suchaz/'+ itemCommonAttribute.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'item-common-attribute-suchaz/'+ itemCommonAttribute.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

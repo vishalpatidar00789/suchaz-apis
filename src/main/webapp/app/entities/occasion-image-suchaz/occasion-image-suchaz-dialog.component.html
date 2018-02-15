@@ -1,0 +1,134 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myOccasionImageLabel">Create or edit a Occasion Image</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!occasionImage.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="occasionImage.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_occasionImageName">Occasion Image Name</label>
+            <input type="text" class="form-control" name="occasionImageName" id="field_occasionImageName"
+                [(ngModel)]="occasionImage.occasionImageName" required/>
+            <div [hidden]="!(editForm.controls.occasionImageName?.dirty && editForm.controls.occasionImageName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.occasionImageName?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_occasionImageDesc">Occasion Image Desc</label>
+            <input type="text" class="form-control" name="occasionImageDesc" id="field_occasionImageDesc"
+                [(ngModel)]="occasionImage.occasionImageDesc" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_occasionImageSize">Occasion Image Size</label>
+            <input type="number" class="form-control" name="occasionImageSize" id="field_occasionImageSize"
+                [(ngModel)]="occasionImage.occasionImageSize" required/>
+            <div [hidden]="!(editForm.controls.occasionImageSize?.dirty && editForm.controls.occasionImageSize?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.occasionImageSize?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.occasionImageSize?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_occasionImage">Occasion Image</label>
+            <div>
+                <img [src]="'data:' + occasionImage.occasionImageContentType + ';base64,' + occasionImage.occasionImage" style="max-height: 100px;" *ngIf="occasionImage.occasionImage" alt="occasionImage image"/>
+                <div *ngIf="occasionImage.occasionImage" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{occasionImage.occasionImageContentType}}, {{byteSize(occasionImage.occasionImage)}}</span>
+                    <button type="button" (click)="clearInputImage('occasionImage', 'occasionImageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_occasionImage" (change)="setFileData($event, occasionImage, 'occasionImage', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="occasionImage" id="field_occasionImage"
+                [(ngModel)]="occasionImage.occasionImage" />
+            <input type="hidden" class="form-control" name="occasionImageContentType" id="field_occasionImageContentType"
+                [(ngModel)]="occasionImage.occasionImageContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_occasionImageType">Occasion Image Type</label>
+            <input type="text" class="form-control" name="occasionImageType" id="field_occasionImageType"
+                [(ngModel)]="occasionImage.occasionImageType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="occasionImage.status" id="field_status"  required>
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.status?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdDate">Created Date</label>
+            <input type="number" class="form-control" name="createdDate" id="field_createdDate"
+                [(ngModel)]="occasionImage.createdDate" required/>
+            <div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.createdDate?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedDate">Last Updated Date</label>
+            <input type="number" class="form-control" name="lastUpdatedDate" id="field_lastUpdatedDate"
+                [(ngModel)]="occasionImage.lastUpdatedDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdBy">Created By</label>
+            <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                [(ngModel)]="occasionImage.createdBy" required/>
+            <div [hidden]="!(editForm.controls.createdBy?.dirty && editForm.controls.createdBy?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdBy?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedBy">Last Updated By</label>
+            <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                [(ngModel)]="occasionImage.lastUpdatedBy" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_occasion">Occasion</label>
+            <select class="form-control" id="field_occasion" name="occasion" [(ngModel)]="occasionImage.occasionId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="occassionOption.id" *ngFor="let occassionOption of occassions; trackBy: trackOccassionById">{{occassionOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

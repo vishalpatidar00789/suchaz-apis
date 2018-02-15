@@ -1,0 +1,87 @@
+<div>
+    <h2>
+        <span>Hobby Images</span>
+        <button class="btn btn-primary float-right jh-create-entity create-hobby-image-suchaz" [routerLink]="['/', { outlets: { popup: ['hobby-image-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Hobby Image
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="hobbyImages">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Hobby Image Name</span></th>
+            <th><span>Hobby Image Desc</span></th>
+            <th><span>Hobby Image Size</span></th>
+            <th><span>Hobby Image</span></th>
+            <th><span>Hobby Image Type</span></th>
+            <th><span>Status</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th><span>Hobby</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let hobbyImage of hobbyImages ;trackBy: trackId">
+                <td><a [routerLink]="['../hobby-image-suchaz', hobbyImage.id ]">{{hobbyImage.id}}</a></td>
+                <td>{{hobbyImage.hobbyImageName}}</td>
+                <td>{{hobbyImage.hobbyImageDesc}}</td>
+                <td>{{hobbyImage.hobbyImageSize}}</td>
+                <td>
+                    <a *ngIf="hobbyImage.hobbyImage" (click)="openFile(hobbyImage.hobbyImageContentType, hobbyImage.hobbyImage)">
+                        <img [src]="'data:' + hobbyImage.hobbyImageContentType + ';base64,' + hobbyImage.hobbyImage" style="max-height: 30px;" alt="hobbyImage image"/>
+                    </a>
+                    <span *ngIf="hobbyImage.hobbyImage">{{hobbyImage.hobbyImageContentType}}, {{byteSize(hobbyImage.hobbyImage)}}</span>
+                </td>
+                <td>{{hobbyImage.hobbyImageType}}</td>
+                <td>{{hobbyImage.status}}</td>
+                <td>{{hobbyImage.createdDate}}</td>
+                <td>{{hobbyImage.lastUpdatedDate}}</td>
+                <td>{{hobbyImage.createdBy}}</td>
+                <td>{{hobbyImage.lastUpdatedBy}}</td>
+                <td>
+                    <div *ngIf="hobbyImage.hobbyId">
+                        <a [routerLink]="['../hobby-suchaz', hobbyImage.hobbyId  ]" >{{hobbyImage.hobbyName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../hobby-image-suchaz', hobbyImage.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'hobby-image-suchaz/'+ hobbyImage.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'hobby-image-suchaz/'+ hobbyImage.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

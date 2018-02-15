@@ -1,0 +1,82 @@
+<div>
+    <h2>
+        <span>Consumer Profiles</span>
+        <button class="btn btn-primary float-right jh-create-entity create-consumer-profile-suchaz" [routerLink]="['/', { outlets: { popup: ['consumer-profile-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Consumer Profile
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="consumerProfiles">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Gender</span></th>
+            <th><span>Age</span></th>
+            <th><span>Input Traits</span></th>
+            <th><span>Trait Structure</span></th>
+            <th><span>Activity Structure</span></th>
+            <th><span>Hobby Structure</span></th>
+            <th><span>Input Reletionship</span></th>
+            <th><span>Input Hobbies</span></th>
+            <th><span>Reccomended Product Types</span></th>
+            <th><span>Such Az User</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let consumerProfile of consumerProfiles ;trackBy: trackId">
+                <td><a [routerLink]="['../consumer-profile-suchaz', consumerProfile.id ]">{{consumerProfile.id}}</a></td>
+                <td>{{consumerProfile.name}}</td>
+                <td>{{consumerProfile.gender}}</td>
+                <td>{{consumerProfile.age}}</td>
+                <td>{{consumerProfile.inputTraits}}</td>
+                <td>{{consumerProfile.traitStructure}}</td>
+                <td>{{consumerProfile.activityStructure}}</td>
+                <td>{{consumerProfile.hobbyStructure}}</td>
+                <td>{{consumerProfile.inputReletionship}}</td>
+                <td>{{consumerProfile.inputHobbies}}</td>
+                <td>{{consumerProfile.reccomendedProductTypes}}</td>
+                <td>
+                    <div *ngIf="consumerProfile.suchAzUserId">
+                        <a [routerLink]="['../such-az-user-suchaz', consumerProfile.suchAzUserId  ]" >{{consumerProfile.suchAzUserEmail}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../consumer-profile-suchaz', consumerProfile.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'consumer-profile-suchaz/'+ consumerProfile.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'consumer-profile-suchaz/'+ consumerProfile.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

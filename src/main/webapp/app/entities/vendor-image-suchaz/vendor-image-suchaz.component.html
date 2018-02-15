@@ -1,0 +1,87 @@
+<div>
+    <h2>
+        <span>Vendor Images</span>
+        <button class="btn btn-primary float-right jh-create-entity create-vendor-image-suchaz" [routerLink]="['/', { outlets: { popup: ['vendor-image-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Vendor Image
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="vendorImages">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Vendor Image Name</span></th>
+            <th><span>Vendor Image Desc</span></th>
+            <th><span>Vendor Image Size</span></th>
+            <th><span>Vendor Image</span></th>
+            <th><span>Vendor Image Type</span></th>
+            <th><span>Status</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th><span>Vendor</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let vendorImage of vendorImages ;trackBy: trackId">
+                <td><a [routerLink]="['../vendor-image-suchaz', vendorImage.id ]">{{vendorImage.id}}</a></td>
+                <td>{{vendorImage.vendorImageName}}</td>
+                <td>{{vendorImage.vendorImageDesc}}</td>
+                <td>{{vendorImage.vendorImageSize}}</td>
+                <td>
+                    <a *ngIf="vendorImage.vendorImage" (click)="openFile(vendorImage.vendorImageContentType, vendorImage.vendorImage)">
+                        <img [src]="'data:' + vendorImage.vendorImageContentType + ';base64,' + vendorImage.vendorImage" style="max-height: 30px;" alt="vendorImage image"/>
+                    </a>
+                    <span *ngIf="vendorImage.vendorImage">{{vendorImage.vendorImageContentType}}, {{byteSize(vendorImage.vendorImage)}}</span>
+                </td>
+                <td>{{vendorImage.vendorImageType}}</td>
+                <td>{{vendorImage.status}}</td>
+                <td>{{vendorImage.createdDate}}</td>
+                <td>{{vendorImage.lastUpdatedDate}}</td>
+                <td>{{vendorImage.createdBy}}</td>
+                <td>{{vendorImage.lastUpdatedBy}}</td>
+                <td>
+                    <div *ngIf="vendorImage.vendorId">
+                        <a [routerLink]="['../vendor-suchaz', vendorImage.vendorId  ]" >{{vendorImage.vendorVendorName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../vendor-image-suchaz', vendorImage.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'vendor-image-suchaz/'+ vendorImage.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'vendor-image-suchaz/'+ vendorImage.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

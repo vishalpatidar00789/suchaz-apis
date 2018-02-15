@@ -1,0 +1,114 @@
+<div>
+    <h2>
+        <span>Items</span>
+        <button class="btn btn-primary float-right jh-create-entity create-item-suchaz" [routerLink]="['/', { outlets: { popup: ['item-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Item
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="items">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Item Id</span></th>
+            <th><span>Title</span></th>
+            <th><span>Vendor Item Type</span></th>
+            <th><span>Description</span></th>
+            <th><span>Vendor Item Code</span></th>
+            <th><span>Best Price</span></th>
+            <th><span>Selling Price</span></th>
+            <th><span>Customer Avg Rating</span></th>
+            <th><span>Suchaz Avg Rating</span></th>
+            <th><span>Status</span></th>
+            <th><span>Item URL</span></th>
+            <th><span>Brand</span></th>
+            <th><span>Colors</span></th>
+            <th><span>Availibity</span></th>
+            <th><span>Last Refreshed</span></th>
+            <th><span>Search Keywords</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th><span>Offer</span></th>
+            <th><span>Category</span></th>
+            <th><span>Vendor</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of items ;trackBy: trackId">
+                <td><a [routerLink]="['../item-suchaz', item.id ]">{{item.id}}</a></td>
+                <td>{{item.itemId}}</td>
+                <td>{{item.title}}</td>
+                <td>{{item.vendorItemType}}</td>
+                <td>{{item.description}}</td>
+                <td>{{item.vendorItemCode}}</td>
+                <td>{{item.bestPrice}}</td>
+                <td>{{item.sellingPrice}}</td>
+                <td>{{item.customerAvgRating}}</td>
+                <td>{{item.suchazAvgRating}}</td>
+                <td>{{item.status}}</td>
+                <td>{{item.itemURL}}</td>
+                <td>{{item.brand}}</td>
+                <td>{{item.colors}}</td>
+                <td>{{item.availibity}}</td>
+                <td>{{item.lastRefreshed}}</td>
+                <td>{{item.searchKeywords}}</td>
+                <td>{{item.createdDate}}</td>
+                <td>{{item.lastUpdatedDate}}</td>
+                <td>{{item.createdBy}}</td>
+                <td>{{item.lastUpdatedBy}}</td>
+                <td>
+                    <span *ngFor="let offer of item.offers; let last = last">
+                            <a class="form-control-static" [routerLink]="['../offer-suchaz', offer?.id ]">{{offer.offerName}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td>
+                    <div *ngIf="item.categoryId">
+                        <a [routerLink]="['../category-suchaz', item.categoryId  ]" >{{item.categoryName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="item.vendorId">
+                        <a [routerLink]="['../vendor-suchaz', item.vendorId  ]" >{{item.vendorVendorName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../item-suchaz', item.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'item-suchaz/'+ item.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'item-suchaz/'+ item.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

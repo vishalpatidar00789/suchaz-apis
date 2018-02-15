@@ -1,0 +1,154 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myItemImageLabel">Create or edit a Item Image</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!itemImage.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="itemImage.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_itemImageName">Item Image Name</label>
+            <input type="text" class="form-control" name="itemImageName" id="field_itemImageName"
+                [(ngModel)]="itemImage.itemImageName" required/>
+            <div [hidden]="!(editForm.controls.itemImageName?.dirty && editForm.controls.itemImageName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.itemImageName?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_itemImageDesc">Item Image Desc</label>
+            <input type="text" class="form-control" name="itemImageDesc" id="field_itemImageDesc"
+                [(ngModel)]="itemImage.itemImageDesc" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_itemImageSize">Item Image Size</label>
+            <input type="number" class="form-control" name="itemImageSize" id="field_itemImageSize"
+                [(ngModel)]="itemImage.itemImageSize" required/>
+            <div [hidden]="!(editForm.controls.itemImageSize?.dirty && editForm.controls.itemImageSize?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.itemImageSize?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.itemImageSize?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_itemImageURL">Item Image URL</label>
+            <input type="text" class="form-control" name="itemImageURL" id="field_itemImageURL"
+                [(ngModel)]="itemImage.itemImageURL" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_itemImage">Item Image</label>
+            <div>
+                <img [src]="'data:' + itemImage.itemImageContentType + ';base64,' + itemImage.itemImage" style="max-height: 100px;" *ngIf="itemImage.itemImage" alt="itemImage image"/>
+                <div *ngIf="itemImage.itemImage" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{itemImage.itemImageContentType}}, {{byteSize(itemImage.itemImage)}}</span>
+                    <button type="button" (click)="clearInputImage('itemImage', 'itemImageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_itemImage" (change)="setFileData($event, itemImage, 'itemImage', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="itemImage" id="field_itemImage"
+                [(ngModel)]="itemImage.itemImage" />
+            <input type="hidden" class="form-control" name="itemImageContentType" id="field_itemImageContentType"
+                [(ngModel)]="itemImage.itemImageContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_itemType">Item Type</label>
+            <input type="text" class="form-control" name="itemType" id="field_itemType"
+                [(ngModel)]="itemImage.itemType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastRefreshedDate">Last Refreshed Date</label>
+            <input type="number" class="form-control" name="lastRefreshedDate" id="field_lastRefreshedDate"
+                [(ngModel)]="itemImage.lastRefreshedDate" required/>
+            <div [hidden]="!(editForm.controls.lastRefreshedDate?.dirty && editForm.controls.lastRefreshedDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.lastRefreshedDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.lastRefreshedDate?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="itemImage.status" id="field_status"  required>
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.status?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdDate">Created Date</label>
+            <input type="number" class="form-control" name="createdDate" id="field_createdDate"
+                [(ngModel)]="itemImage.createdDate" required/>
+            <div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.createdDate?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedDate">Last Updated Date</label>
+            <input type="number" class="form-control" name="lastUpdatedDate" id="field_lastUpdatedDate"
+                [(ngModel)]="itemImage.lastUpdatedDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdBy">Created By</label>
+            <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                [(ngModel)]="itemImage.createdBy" required/>
+            <div [hidden]="!(editForm.controls.createdBy?.dirty && editForm.controls.createdBy?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdBy?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedBy">Last Updated By</label>
+            <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                [(ngModel)]="itemImage.lastUpdatedBy" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_item">Item</label>
+            <select class="form-control" id="field_item" name="item" [(ngModel)]="itemImage.itemId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="itemOption.id" *ngFor="let itemOption of items; trackBy: trackItemById">{{itemOption.title}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,73 @@
+
+<div *ngIf="userProfile">
+    <h2><span>User Profile</span> {{userProfile.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Full Name</span></dt>
+        <dd>
+            <span>{{userProfile.fullName}}</span>
+        </dd>
+        <dt><span>Dob</span></dt>
+        <dd>
+            <span>{{userProfile.dob}}</span>
+        </dd>
+        <dt><span>About Me</span></dt>
+        <dd>
+            <span>{{userProfile.aboutMe}}</span>
+        </dd>
+        <dt><span>Relationship Status</span></dt>
+        <dd>
+            <span>{{userProfile.relationshipStatus}}</span>
+        </dd>
+        <dt><span>Geo Location</span></dt>
+        <dd>
+            <span>{{userProfile.geoLocation}}</span>
+        </dd>
+        <dt><span>Prifile Pic</span></dt>
+        <dd>
+            <div *ngIf="userProfile.prifilePic">
+                <a (click)="openFile(userProfile.prifilePicContentType, userProfile.prifilePic)">
+                    <img [src]="'data:' + userProfile.prifilePicContentType + ';base64,' + userProfile.prifilePic" style="max-width: 100%;" alt="userProfile image"/>
+                </a>
+                {{userProfile.prifilePicContentType}}, {{byteSize(userProfile.prifilePic)}}
+            </div>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{userProfile.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{userProfile.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{userProfile.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{userProfile.lastUpdatedBy}}</span>
+        </dd>
+        <dt><span>Such Az User</span></dt>
+        <dd>
+            <div *ngIf="userProfile.suchAzUserId">
+                <a [routerLink]="['/such-az-user-suchaz', userProfile.suchAzUserId]">{{userProfile.suchAzUserEmail}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'user-profile-suchaz/'+ userProfile.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

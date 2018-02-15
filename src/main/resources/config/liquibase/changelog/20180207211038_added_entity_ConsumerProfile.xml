@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <property name="now" value="now()" dbms="h2"/>
+
+    <property name="now" value="now()" dbms="mysql"/>
+    <property name="autoIncrement" value="true"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+    <!--
+        Added the entity ConsumerProfile.
+    -->
+    <changeSet id="20180207211038-1" author="jhipster">
+        <createTable tableName="consumer_profile">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="gender" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="age" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="input_traits" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="trait_structure" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="activity_structure" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="hobby_structure" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="input_reletionship" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="input_hobbies" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="reccomended_product_types" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="such_az_user_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
+        </createTable>
+        
+    </changeSet>
+    <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->
+</databaseChangeLog>

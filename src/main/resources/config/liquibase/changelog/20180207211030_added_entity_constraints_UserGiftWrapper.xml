@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity UserGiftWrapper.
+    -->
+    <changeSet id="20180207211030-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="such_az_user_id"
+                                 baseTableName="user_gift_wrapper"
+                                 constraintName="fk_user_gift_wrapper_such_az_user_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="such_az_user"/>
+
+        <addForeignKeyConstraint baseColumnNames="item_id"
+                                 baseTableName="user_gift_wrapper"
+                                 constraintName="fk_user_gift_wrapper_item_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="item"/>
+
+        <addForeignKeyConstraint baseColumnNames="gift_wrapper_id"
+                                 baseTableName="user_gift_wrapper"
+                                 constraintName="fk_user_gift_wrapper_gift_wrapper_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="gift_wrapper"/>
+
+    </changeSet>
+</databaseChangeLog>

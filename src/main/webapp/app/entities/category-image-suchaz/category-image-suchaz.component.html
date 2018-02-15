@@ -1,0 +1,87 @@
+<div>
+    <h2>
+        <span>Category Images</span>
+        <button class="btn btn-primary float-right jh-create-entity create-category-image-suchaz" [routerLink]="['/', { outlets: { popup: ['category-image-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Category Image
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="categoryImages">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Category Image Name</span></th>
+            <th><span>Category Image Desc</span></th>
+            <th><span>Category Image Size</span></th>
+            <th><span>Category Image</span></th>
+            <th><span>Category Image Type</span></th>
+            <th><span>Status</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th><span>Category</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let categoryImage of categoryImages ;trackBy: trackId">
+                <td><a [routerLink]="['../category-image-suchaz', categoryImage.id ]">{{categoryImage.id}}</a></td>
+                <td>{{categoryImage.categoryImageName}}</td>
+                <td>{{categoryImage.categoryImageDesc}}</td>
+                <td>{{categoryImage.categoryImageSize}}</td>
+                <td>
+                    <a *ngIf="categoryImage.categoryImage" (click)="openFile(categoryImage.categoryImageContentType, categoryImage.categoryImage)">
+                        <img [src]="'data:' + categoryImage.categoryImageContentType + ';base64,' + categoryImage.categoryImage" style="max-height: 30px;" alt="categoryImage image"/>
+                    </a>
+                    <span *ngIf="categoryImage.categoryImage">{{categoryImage.categoryImageContentType}}, {{byteSize(categoryImage.categoryImage)}}</span>
+                </td>
+                <td>{{categoryImage.categoryImageType}}</td>
+                <td>{{categoryImage.status}}</td>
+                <td>{{categoryImage.createdDate}}</td>
+                <td>{{categoryImage.lastUpdatedDate}}</td>
+                <td>{{categoryImage.createdBy}}</td>
+                <td>{{categoryImage.lastUpdatedBy}}</td>
+                <td>
+                    <div *ngIf="categoryImage.categoryId">
+                        <a [routerLink]="['../category-suchaz', categoryImage.categoryId  ]" >{{categoryImage.categoryName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../category-image-suchaz', categoryImage.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'category-image-suchaz/'+ categoryImage.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'category-image-suchaz/'+ categoryImage.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

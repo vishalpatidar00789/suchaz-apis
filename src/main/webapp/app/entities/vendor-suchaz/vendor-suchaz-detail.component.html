@@ -1,0 +1,88 @@
+
+<div *ngIf="vendor">
+    <h2><span>Vendor</span> {{vendor.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Vendor Name</span></dt>
+        <dd>
+            <span>{{vendor.vendorName}}</span>
+        </dd>
+        <dt><span>Rate Limit</span></dt>
+        <dd>
+            <span>{{vendor.rateLimit}}</span>
+        </dd>
+        <dt><span>Start Date</span></dt>
+        <dd>
+            <span>{{vendor.startDate}}</span>
+        </dd>
+        <dt><span>End Date</span></dt>
+        <dd>
+            <span>{{vendor.endDate}}</span>
+        </dd>
+        <dt><span>Access Key</span></dt>
+        <dd>
+            <span>{{vendor.accessKey}}</span>
+        </dd>
+        <dt><span>Secret Key</span></dt>
+        <dd>
+            <span>{{vendor.secretKey}}</span>
+        </dd>
+        <dt><span>Associate Key</span></dt>
+        <dd>
+            <span>{{vendor.associateKey}}</span>
+        </dd>
+        <dt><span>Affilite Id</span></dt>
+        <dd>
+            <span>{{vendor.affiliteId}}</span>
+        </dd>
+        <dt><span>Access Key Exp Date</span></dt>
+        <dd>
+            <span>{{vendor.accessKeyExpDate}}</span>
+        </dd>
+        <dt><span>Scret Key Exp Date</span></dt>
+        <dd>
+            <span>{{vendor.scretKeyExpDate}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{vendor.status}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{vendor.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{vendor.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{vendor.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{vendor.lastUpdatedBy}}</span>
+        </dd>
+        <dt><span>Country</span></dt>
+        <dd>
+            <div *ngIf="vendor.countryId">
+                <a [routerLink]="['/country-suchaz', vendor.countryId]">{{vendor.countryCountryName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'vendor-suchaz/'+ vendor.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

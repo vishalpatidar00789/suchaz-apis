@@ -1,0 +1,81 @@
+
+<div *ngIf="itemImage">
+    <h2><span>Item Image</span> {{itemImage.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Item Image Name</span></dt>
+        <dd>
+            <span>{{itemImage.itemImageName}}</span>
+        </dd>
+        <dt><span>Item Image Desc</span></dt>
+        <dd>
+            <span>{{itemImage.itemImageDesc}}</span>
+        </dd>
+        <dt><span>Item Image Size</span></dt>
+        <dd>
+            <span>{{itemImage.itemImageSize}}</span>
+        </dd>
+        <dt><span>Item Image URL</span></dt>
+        <dd>
+            <span>{{itemImage.itemImageURL}}</span>
+        </dd>
+        <dt><span>Item Image</span></dt>
+        <dd>
+            <div *ngIf="itemImage.itemImage">
+                <a (click)="openFile(itemImage.itemImageContentType, itemImage.itemImage)">
+                    <img [src]="'data:' + itemImage.itemImageContentType + ';base64,' + itemImage.itemImage" style="max-width: 100%;" alt="itemImage image"/>
+                </a>
+                {{itemImage.itemImageContentType}}, {{byteSize(itemImage.itemImage)}}
+            </div>
+        </dd>
+        <dt><span>Item Type</span></dt>
+        <dd>
+            <span>{{itemImage.itemType}}</span>
+        </dd>
+        <dt><span>Last Refreshed Date</span></dt>
+        <dd>
+            <span>{{itemImage.lastRefreshedDate}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{itemImage.status}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{itemImage.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{itemImage.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{itemImage.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{itemImage.lastUpdatedBy}}</span>
+        </dd>
+        <dt><span>Item</span></dt>
+        <dd>
+            <div *ngIf="itemImage.itemId">
+                <a [routerLink]="['/item-suchaz', itemImage.itemId]">{{itemImage.itemTitle}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'item-image-suchaz/'+ itemImage.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

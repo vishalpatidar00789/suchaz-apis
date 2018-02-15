@@ -1,0 +1,195 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "wishListItem",
+            "otherEntityName": "wishListItem",
+            "otherEntityRelationshipName": "item"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "buyLaterListItem",
+            "otherEntityName": "buyLaterListItem",
+            "otherEntityRelationshipName": "item"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "activityListItem",
+            "otherEntityName": "activityListItem",
+            "otherEntityRelationshipName": "item"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "itemCommonAttribute",
+            "otherEntityName": "itemCommonAttribute",
+            "otherEntityRelationshipName": "item"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "itemReview",
+            "otherEntityName": "itemReview",
+            "otherEntityRelationshipName": "item"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "userGiftWrapper",
+            "otherEntityName": "userGiftWrapper",
+            "otherEntityRelationshipName": "item"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "itemImage",
+            "otherEntityName": "itemImage",
+            "otherEntityRelationshipName": "item"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "item",
+            "relationshipName": "offer",
+            "otherEntityName": "offer",
+            "otherEntityField": "offerName",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "category",
+            "otherEntityName": "category",
+            "otherEntityField": "name"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "vendor",
+            "otherEntityName": "vendor",
+            "otherEntityField": "vendorName"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "store",
+            "otherEntityName": "store",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "item"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "itemId",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "title",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "vendorItemType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "vendorItemCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "bestPrice",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "sellingPrice",
+            "fieldType": "Double",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "customerAvgRating",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "suchazAvgRating",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "ACTIVE,INACTIVE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "itemURL",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "brand",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "colors",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "availibity",
+            "fieldType": "Status",
+            "fieldValues": "ACTIVE,INACTIVE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastRefreshed",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "searchKeywords",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastUpdatedDate",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastUpdatedBy",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180207211039",
+    "entityTableName": "item",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "suchaz"
+}

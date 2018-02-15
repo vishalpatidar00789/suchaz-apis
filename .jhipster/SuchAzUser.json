@@ -1,0 +1,148 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "userGiftWrapper",
+            "otherEntityName": "userGiftWrapper",
+            "otherEntityRelationshipName": "suchAzUser"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "consumerProfile",
+            "otherEntityName": "consumerProfile",
+            "otherEntityRelationshipName": "suchAzUser"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityRelationshipName": "suchAzUser",
+            "relationshipName": "trait",
+            "otherEntityName": "trait",
+            "otherEntityField": "name",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "userProfile",
+            "otherEntityName": "userProfile",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "suchAzUser"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "wishList",
+            "otherEntityName": "wishList",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "suchAzUser"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "buyLaterList",
+            "otherEntityName": "buyLaterList",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "suchAzUser"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "activityList",
+            "otherEntityName": "activityList",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "suchAzUser"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "email",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "password",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "contact",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "ACTIVE,INACTIVE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "role",
+            "fieldType": "UserRole",
+            "fieldValues": "GIFTER",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "fbAccessToken",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "fbAccessTokenType",
+            "fieldType": "FBAccessTokenType",
+            "fieldValues": "USER_ACCESS_TOKEN"
+        },
+        {
+            "fieldName": "isVarified",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tokenExpDate",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "varifiedBy",
+            "fieldType": "SignupMethod",
+            "fieldValues": "FACEBOOK,EMAIL"
+        },
+        {
+            "fieldName": "signupMethod",
+            "fieldType": "SignupMethod",
+            "fieldValues": "FACEBOOK,EMAIL"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastUpdatedDate",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastUpdatedBy",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180207211018",
+    "entityTableName": "such_az_user",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "suchaz"
+}

@@ -1,0 +1,73 @@
+
+<div *ngIf="categoryImage">
+    <h2><span>Category Image</span> {{categoryImage.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Category Image Name</span></dt>
+        <dd>
+            <span>{{categoryImage.categoryImageName}}</span>
+        </dd>
+        <dt><span>Category Image Desc</span></dt>
+        <dd>
+            <span>{{categoryImage.categoryImageDesc}}</span>
+        </dd>
+        <dt><span>Category Image Size</span></dt>
+        <dd>
+            <span>{{categoryImage.categoryImageSize}}</span>
+        </dd>
+        <dt><span>Category Image</span></dt>
+        <dd>
+            <div *ngIf="categoryImage.categoryImage">
+                <a (click)="openFile(categoryImage.categoryImageContentType, categoryImage.categoryImage)">
+                    <img [src]="'data:' + categoryImage.categoryImageContentType + ';base64,' + categoryImage.categoryImage" style="max-width: 100%;" alt="categoryImage image"/>
+                </a>
+                {{categoryImage.categoryImageContentType}}, {{byteSize(categoryImage.categoryImage)}}
+            </div>
+        </dd>
+        <dt><span>Category Image Type</span></dt>
+        <dd>
+            <span>{{categoryImage.categoryImageType}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{categoryImage.status}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{categoryImage.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{categoryImage.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{categoryImage.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{categoryImage.lastUpdatedBy}}</span>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+            <div *ngIf="categoryImage.categoryId">
+                <a [routerLink]="['/category-suchaz', categoryImage.categoryId]">{{categoryImage.categoryName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'category-image-suchaz/'+ categoryImage.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

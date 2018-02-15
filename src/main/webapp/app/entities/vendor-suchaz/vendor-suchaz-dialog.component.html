@@ -1,0 +1,137 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myVendorLabel">Create or edit a Vendor</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!vendor.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="vendor.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_vendorName">Vendor Name</label>
+            <input type="text" class="form-control" name="vendorName" id="field_vendorName"
+                [(ngModel)]="vendor.vendorName" required/>
+            <div [hidden]="!(editForm.controls.vendorName?.dirty && editForm.controls.vendorName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.vendorName?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_rateLimit">Rate Limit</label>
+            <input type="number" class="form-control" name="rateLimit" id="field_rateLimit"
+                [(ngModel)]="vendor.rateLimit" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_startDate">Start Date</label>
+            <input type="number" class="form-control" name="startDate" id="field_startDate"
+                [(ngModel)]="vendor.startDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_endDate">End Date</label>
+            <input type="number" class="form-control" name="endDate" id="field_endDate"
+                [(ngModel)]="vendor.endDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_accessKey">Access Key</label>
+            <input type="text" class="form-control" name="accessKey" id="field_accessKey"
+                [(ngModel)]="vendor.accessKey" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_secretKey">Secret Key</label>
+            <input type="text" class="form-control" name="secretKey" id="field_secretKey"
+                [(ngModel)]="vendor.secretKey" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_associateKey">Associate Key</label>
+            <input type="text" class="form-control" name="associateKey" id="field_associateKey"
+                [(ngModel)]="vendor.associateKey" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_affiliteId">Affilite Id</label>
+            <input type="text" class="form-control" name="affiliteId" id="field_affiliteId"
+                [(ngModel)]="vendor.affiliteId" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_accessKeyExpDate">Access Key Exp Date</label>
+            <input type="number" class="form-control" name="accessKeyExpDate" id="field_accessKeyExpDate"
+                [(ngModel)]="vendor.accessKeyExpDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_scretKeyExpDate">Scret Key Exp Date</label>
+            <input type="number" class="form-control" name="scretKeyExpDate" id="field_scretKeyExpDate"
+                [(ngModel)]="vendor.scretKeyExpDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="vendor.status" id="field_status"  required>
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.status?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdDate">Created Date</label>
+            <input type="number" class="form-control" name="createdDate" id="field_createdDate"
+                [(ngModel)]="vendor.createdDate" required/>
+            <div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.createdDate?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedDate">Last Updated Date</label>
+            <input type="number" class="form-control" name="lastUpdatedDate" id="field_lastUpdatedDate"
+                [(ngModel)]="vendor.lastUpdatedDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdBy">Created By</label>
+            <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                [(ngModel)]="vendor.createdBy" required/>
+            <div [hidden]="!(editForm.controls.createdBy?.dirty && editForm.controls.createdBy?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdBy?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedBy">Last Updated By</label>
+            <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                [(ngModel)]="vendor.lastUpdatedBy" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_country">Country</label>
+            <select class="form-control" id="field_country" name="country" [(ngModel)]="vendor.countryId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="countryOption.id" *ngFor="let countryOption of countries; trackBy: trackCountryById">{{countryOption.countryName}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

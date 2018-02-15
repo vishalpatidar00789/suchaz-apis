@@ -1,0 +1,134 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myRelationshipImageLabel">Create or edit a Relationship Image</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!relationshipImage.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="relationshipImage.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_relationshipImageName">Relationship Image Name</label>
+            <input type="text" class="form-control" name="relationshipImageName" id="field_relationshipImageName"
+                [(ngModel)]="relationshipImage.relationshipImageName" required/>
+            <div [hidden]="!(editForm.controls.relationshipImageName?.dirty && editForm.controls.relationshipImageName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.relationshipImageName?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_relationshipImageDesc">Relationship Image Desc</label>
+            <input type="text" class="form-control" name="relationshipImageDesc" id="field_relationshipImageDesc"
+                [(ngModel)]="relationshipImage.relationshipImageDesc" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_relationshipImageSize">Relationship Image Size</label>
+            <input type="number" class="form-control" name="relationshipImageSize" id="field_relationshipImageSize"
+                [(ngModel)]="relationshipImage.relationshipImageSize" required/>
+            <div [hidden]="!(editForm.controls.relationshipImageSize?.dirty && editForm.controls.relationshipImageSize?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.relationshipImageSize?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.relationshipImageSize?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_relationshipImage">Relationship Image</label>
+            <div>
+                <img [src]="'data:' + relationshipImage.relationshipImageContentType + ';base64,' + relationshipImage.relationshipImage" style="max-height: 100px;" *ngIf="relationshipImage.relationshipImage" alt="relationshipImage image"/>
+                <div *ngIf="relationshipImage.relationshipImage" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{relationshipImage.relationshipImageContentType}}, {{byteSize(relationshipImage.relationshipImage)}}</span>
+                    <button type="button" (click)="clearInputImage('relationshipImage', 'relationshipImageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_relationshipImage" (change)="setFileData($event, relationshipImage, 'relationshipImage', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="relationshipImage" id="field_relationshipImage"
+                [(ngModel)]="relationshipImage.relationshipImage" />
+            <input type="hidden" class="form-control" name="relationshipImageContentType" id="field_relationshipImageContentType"
+                [(ngModel)]="relationshipImage.relationshipImageContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_relationshipImageType">Relationship Image Type</label>
+            <input type="text" class="form-control" name="relationshipImageType" id="field_relationshipImageType"
+                [(ngModel)]="relationshipImage.relationshipImageType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="relationshipImage.status" id="field_status"  required>
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.status?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdDate">Created Date</label>
+            <input type="number" class="form-control" name="createdDate" id="field_createdDate"
+                [(ngModel)]="relationshipImage.createdDate" required/>
+            <div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.createdDate?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedDate">Last Updated Date</label>
+            <input type="number" class="form-control" name="lastUpdatedDate" id="field_lastUpdatedDate"
+                [(ngModel)]="relationshipImage.lastUpdatedDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdBy">Created By</label>
+            <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                [(ngModel)]="relationshipImage.createdBy" required/>
+            <div [hidden]="!(editForm.controls.createdBy?.dirty && editForm.controls.createdBy?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdBy?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedBy">Last Updated By</label>
+            <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                [(ngModel)]="relationshipImage.lastUpdatedBy" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" for="field_relationship">Relationship</label>
+            <select class="form-control" id="field_relationship" name="relationship" [(ngModel)]="relationshipImage.relationshipId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="relationshipOption.id" *ngFor="let relationshipOption of relationships; trackBy: trackRelationshipById">{{relationshipOption.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

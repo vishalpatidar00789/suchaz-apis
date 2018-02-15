@@ -1,0 +1,68 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "suchAzUser",
+            "otherEntityName": "suchAzUser",
+            "otherEntityField": "email"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gender",
+            "fieldType": "Gender",
+            "fieldValues": "MALE,FEMALE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "age",
+            "fieldType": "AgeGroup",
+            "fieldValues": "KIDS,TEEN,YOUTH,ELDER",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "inputTraits",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "traitStructure",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "activityStructure",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "hobbyStructure",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "inputReletionship",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "inputHobbies",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "reccomendedProductTypes",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180207211038",
+    "entityTableName": "consumer_profile",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "suchaz"
+}

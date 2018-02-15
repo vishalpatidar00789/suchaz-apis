@@ -1,0 +1,58 @@
+
+<div *ngIf="occassion">
+    <h2><span>Occassion</span> {{occassion.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{occassion.name}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{occassion.description}}</span>
+        </dd>
+        <dt><span>Occasion Code</span></dt>
+        <dd>
+            <span>{{occassion.occasionCode}}</span>
+        </dd>
+        <dt><span>Is Exposed To Menu</span></dt>
+        <dd>
+            <span>{{occassion.isExposedToMenu}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{occassion.status}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{occassion.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{occassion.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{occassion.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{occassion.lastUpdatedBy}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'occassion-suchaz/'+ occassion.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

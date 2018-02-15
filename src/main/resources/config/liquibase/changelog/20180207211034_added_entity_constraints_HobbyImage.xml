@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity HobbyImage.
+    -->
+    <changeSet id="20180207211034-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="hobby_id"
+                                 baseTableName="hobby_image"
+                                 constraintName="fk_hobby_image_hobby_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="hobby"/>
+
+    </changeSet>
+</databaseChangeLog>

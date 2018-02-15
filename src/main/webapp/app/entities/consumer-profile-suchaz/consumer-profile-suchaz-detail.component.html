@@ -1,0 +1,68 @@
+
+<div *ngIf="consumerProfile">
+    <h2><span>Consumer Profile</span> {{consumerProfile.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{consumerProfile.name}}</span>
+        </dd>
+        <dt><span>Gender</span></dt>
+        <dd>
+            <span>{{consumerProfile.gender}}</span>
+        </dd>
+        <dt><span>Age</span></dt>
+        <dd>
+            <span>{{consumerProfile.age}}</span>
+        </dd>
+        <dt><span>Input Traits</span></dt>
+        <dd>
+            <span>{{consumerProfile.inputTraits}}</span>
+        </dd>
+        <dt><span>Trait Structure</span></dt>
+        <dd>
+            <span>{{consumerProfile.traitStructure}}</span>
+        </dd>
+        <dt><span>Activity Structure</span></dt>
+        <dd>
+            <span>{{consumerProfile.activityStructure}}</span>
+        </dd>
+        <dt><span>Hobby Structure</span></dt>
+        <dd>
+            <span>{{consumerProfile.hobbyStructure}}</span>
+        </dd>
+        <dt><span>Input Reletionship</span></dt>
+        <dd>
+            <span>{{consumerProfile.inputReletionship}}</span>
+        </dd>
+        <dt><span>Input Hobbies</span></dt>
+        <dd>
+            <span>{{consumerProfile.inputHobbies}}</span>
+        </dd>
+        <dt><span>Reccomended Product Types</span></dt>
+        <dd>
+            <span>{{consumerProfile.reccomendedProductTypes}}</span>
+        </dd>
+        <dt><span>Such Az User</span></dt>
+        <dd>
+            <div *ngIf="consumerProfile.suchAzUserId">
+                <a [routerLink]="['/such-az-user-suchaz', consumerProfile.suchAzUserId]">{{consumerProfile.suchAzUserEmail}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'consumer-profile-suchaz/'+ consumerProfile.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

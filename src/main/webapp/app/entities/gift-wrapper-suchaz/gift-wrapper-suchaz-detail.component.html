@@ -1,0 +1,67 @@
+
+<div *ngIf="giftWrapper">
+    <h2><span>Gift Wrapper</span> {{giftWrapper.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Name</span></dt>
+        <dd>
+            <span>{{giftWrapper.name}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{giftWrapper.description}}</span>
+        </dd>
+        <dt><span>Image</span></dt>
+        <dd>
+            <div *ngIf="giftWrapper.image">
+                <a (click)="openFile(giftWrapper.imageContentType, giftWrapper.image)">
+                    <img [src]="'data:' + giftWrapper.imageContentType + ';base64,' + giftWrapper.image" style="max-width: 100%;" alt="giftWrapper image"/>
+                </a>
+                {{giftWrapper.imageContentType}}, {{byteSize(giftWrapper.image)}}
+            </div>
+        </dd>
+        <dt><span>Size</span></dt>
+        <dd>
+            <span>{{giftWrapper.size}}</span>
+        </dd>
+        <dt><span>Type</span></dt>
+        <dd>
+            <span>{{giftWrapper.type}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{giftWrapper.status}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{giftWrapper.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{giftWrapper.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{giftWrapper.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{giftWrapper.lastUpdatedBy}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'gift-wrapper-suchaz/'+ giftWrapper.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

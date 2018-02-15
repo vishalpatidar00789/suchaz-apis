@@ -1,0 +1,74 @@
+<div>
+    <h2>
+        <span>Hobbies</span>
+        <button class="btn btn-primary float-right jh-create-entity create-hobby-suchaz" [routerLink]="['/', { outlets: { popup: ['hobby-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Hobby
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="hobbies">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Description</span></th>
+            <th><span>Hobby Code</span></th>
+            <th><span>Is Exposed To Menu</span></th>
+            <th><span>Status</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let hobby of hobbies ;trackBy: trackId">
+                <td><a [routerLink]="['../hobby-suchaz', hobby.id ]">{{hobby.id}}</a></td>
+                <td>{{hobby.name}}</td>
+                <td>{{hobby.description}}</td>
+                <td>{{hobby.hobbyCode}}</td>
+                <td>{{hobby.isExposedToMenu}}</td>
+                <td>{{hobby.status}}</td>
+                <td>{{hobby.createdDate}}</td>
+                <td>{{hobby.lastUpdatedDate}}</td>
+                <td>{{hobby.createdBy}}</td>
+                <td>{{hobby.lastUpdatedBy}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../hobby-suchaz', hobby.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'hobby-suchaz/'+ hobby.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'hobby-suchaz/'+ hobby.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

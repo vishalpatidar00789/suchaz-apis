@@ -1,0 +1,73 @@
+
+<div *ngIf="traitImage">
+    <h2><span>Trait Image</span> {{traitImage.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Personality Image Name</span></dt>
+        <dd>
+            <span>{{traitImage.personalityImageName}}</span>
+        </dd>
+        <dt><span>Personality Image Desc</span></dt>
+        <dd>
+            <span>{{traitImage.personalityImageDesc}}</span>
+        </dd>
+        <dt><span>Personality Image Size</span></dt>
+        <dd>
+            <span>{{traitImage.personalityImageSize}}</span>
+        </dd>
+        <dt><span>Personality Image</span></dt>
+        <dd>
+            <div *ngIf="traitImage.personalityImage">
+                <a (click)="openFile(traitImage.personalityImageContentType, traitImage.personalityImage)">
+                    <img [src]="'data:' + traitImage.personalityImageContentType + ';base64,' + traitImage.personalityImage" style="max-width: 100%;" alt="traitImage image"/>
+                </a>
+                {{traitImage.personalityImageContentType}}, {{byteSize(traitImage.personalityImage)}}
+            </div>
+        </dd>
+        <dt><span>Personality Image Type</span></dt>
+        <dd>
+            <span>{{traitImage.personalityImageType}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{traitImage.status}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{traitImage.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{traitImage.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{traitImage.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{traitImage.lastUpdatedBy}}</span>
+        </dd>
+        <dt><span>Trait</span></dt>
+        <dd>
+            <div *ngIf="traitImage.traitId">
+                <a [routerLink]="['/trait-suchaz', traitImage.traitId]">{{traitImage.traitName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'trait-image-suchaz/'+ traitImage.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

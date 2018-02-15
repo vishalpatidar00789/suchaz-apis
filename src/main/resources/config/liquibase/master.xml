@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+
+    <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211018_added_entity_SuchAzUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211019_added_entity_UserProfile.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211020_added_entity_Trait.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211021_added_entity_Hobby.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211022_added_entity_Relationship.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211023_added_entity_Occassion.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211024_added_entity_Store.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211025_added_entity_Category.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211026_added_entity_GiftWrapper.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211027_added_entity_Vendor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211028_added_entity_VendorImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211029_added_entity_StoreImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211030_added_entity_UserGiftWrapper.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211031_added_entity_CategoryImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211032_added_entity_RelationshipImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211033_added_entity_OccasionImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211034_added_entity_HobbyImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211035_added_entity_TraitImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211036_added_entity_ItemImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211037_added_entity_Country.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211038_added_entity_ConsumerProfile.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211039_added_entity_Item.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211040_added_entity_ItemReview.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211041_added_entity_Offer.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211042_added_entity_ItemCommonAttribute.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211043_added_entity_ItemAttributeType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211044_added_entity_WishList.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211045_added_entity_WishListItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211046_added_entity_BuyLaterList.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211047_added_entity_BuyLaterListItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211048_added_entity_ActivityList.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211049_added_entity_ActivityListItem.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20180207211018_added_entity_constraints_SuchAzUser.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211019_added_entity_constraints_UserProfile.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211024_added_entity_constraints_Store.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211025_added_entity_constraints_Category.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211027_added_entity_constraints_Vendor.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211028_added_entity_constraints_VendorImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211029_added_entity_constraints_StoreImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211030_added_entity_constraints_UserGiftWrapper.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211031_added_entity_constraints_CategoryImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211032_added_entity_constraints_RelationshipImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211033_added_entity_constraints_OccasionImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211034_added_entity_constraints_HobbyImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211035_added_entity_constraints_TraitImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211036_added_entity_constraints_ItemImage.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211038_added_entity_constraints_ConsumerProfile.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211039_added_entity_constraints_Item.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211040_added_entity_constraints_ItemReview.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211042_added_entity_constraints_ItemCommonAttribute.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211043_added_entity_constraints_ItemAttributeType.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211044_added_entity_constraints_WishList.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211045_added_entity_constraints_WishListItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211046_added_entity_constraints_BuyLaterList.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211047_added_entity_constraints_BuyLaterListItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211048_added_entity_constraints_ActivityList.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180207211049_added_entity_constraints_ActivityListItem.xml" relativeToChangelogFile="false"/>
+    <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
+</databaseChangeLog>

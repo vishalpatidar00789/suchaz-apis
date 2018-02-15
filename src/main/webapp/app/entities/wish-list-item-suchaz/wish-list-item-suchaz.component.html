@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span>Wish List Items</span>
+        <button class="btn btn-primary float-right jh-create-entity create-wish-list-item-suchaz" [routerLink]="['/', { outlets: { popup: ['wish-list-item-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Wish List Item
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="wishListItems">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Status</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th><span>Wish List</span></th>
+            <th><span>Item</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let wishListItem of wishListItems ;trackBy: trackId">
+                <td><a [routerLink]="['../wish-list-item-suchaz', wishListItem.id ]">{{wishListItem.id}}</a></td>
+                <td>{{wishListItem.status}}</td>
+                <td>{{wishListItem.createdDate}}</td>
+                <td>{{wishListItem.lastUpdatedDate}}</td>
+                <td>{{wishListItem.createdBy}}</td>
+                <td>{{wishListItem.lastUpdatedBy}}</td>
+                <td>
+                    <div *ngIf="wishListItem.wishListId">
+                        <a [routerLink]="['../wish-list-suchaz', wishListItem.wishListId  ]" >{{wishListItem.wishListId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="wishListItem.itemId">
+                        <a [routerLink]="['../item-suchaz', wishListItem.itemId  ]" >{{wishListItem.itemTitle}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../wish-list-item-suchaz', wishListItem.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'wish-list-item-suchaz/'+ wishListItem.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'wish-list-item-suchaz/'+ wishListItem.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

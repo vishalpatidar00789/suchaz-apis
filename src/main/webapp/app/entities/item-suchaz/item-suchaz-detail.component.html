@@ -1,0 +1,120 @@
+
+<div *ngIf="item">
+    <h2><span>Item</span> {{item.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Item Id</span></dt>
+        <dd>
+            <span>{{item.itemId}}</span>
+        </dd>
+        <dt><span>Title</span></dt>
+        <dd>
+            <span>{{item.title}}</span>
+        </dd>
+        <dt><span>Vendor Item Type</span></dt>
+        <dd>
+            <span>{{item.vendorItemType}}</span>
+        </dd>
+        <dt><span>Description</span></dt>
+        <dd>
+            <span>{{item.description}}</span>
+        </dd>
+        <dt><span>Vendor Item Code</span></dt>
+        <dd>
+            <span>{{item.vendorItemCode}}</span>
+        </dd>
+        <dt><span>Best Price</span></dt>
+        <dd>
+            <span>{{item.bestPrice}}</span>
+        </dd>
+        <dt><span>Selling Price</span></dt>
+        <dd>
+            <span>{{item.sellingPrice}}</span>
+        </dd>
+        <dt><span>Customer Avg Rating</span></dt>
+        <dd>
+            <span>{{item.customerAvgRating}}</span>
+        </dd>
+        <dt><span>Suchaz Avg Rating</span></dt>
+        <dd>
+            <span>{{item.suchazAvgRating}}</span>
+        </dd>
+        <dt><span>Status</span></dt>
+        <dd>
+            <span>{{item.status}}</span>
+        </dd>
+        <dt><span>Item URL</span></dt>
+        <dd>
+            <span>{{item.itemURL}}</span>
+        </dd>
+        <dt><span>Brand</span></dt>
+        <dd>
+            <span>{{item.brand}}</span>
+        </dd>
+        <dt><span>Colors</span></dt>
+        <dd>
+            <span>{{item.colors}}</span>
+        </dd>
+        <dt><span>Availibity</span></dt>
+        <dd>
+            <span>{{item.availibity}}</span>
+        </dd>
+        <dt><span>Last Refreshed</span></dt>
+        <dd>
+            <span>{{item.lastRefreshed}}</span>
+        </dd>
+        <dt><span>Search Keywords</span></dt>
+        <dd>
+            <span>{{item.searchKeywords}}</span>
+        </dd>
+        <dt><span>Created Date</span></dt>
+        <dd>
+            <span>{{item.createdDate}}</span>
+        </dd>
+        <dt><span>Last Updated Date</span></dt>
+        <dd>
+            <span>{{item.lastUpdatedDate}}</span>
+        </dd>
+        <dt><span>Created By</span></dt>
+        <dd>
+            <span>{{item.createdBy}}</span>
+        </dd>
+        <dt><span>Last Updated By</span></dt>
+        <dd>
+            <span>{{item.lastUpdatedBy}}</span>
+        </dd>
+        <dt><span>Offer</span></dt>
+        <dd>
+            <span *ngFor="let offer of item.offers; let last = last">
+                <a [routerLink]="['/offer-suchaz', offer?.id ]">{{offer.offerName}}</a>{{last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+            <div *ngIf="item.categoryId">
+                <a [routerLink]="['/category-suchaz', item.categoryId]">{{item.categoryName}}</a>
+            </div>
+        </dd>
+        <dt><span>Vendor</span></dt>
+        <dd>
+            <div *ngIf="item.vendorId">
+                <a [routerLink]="['/vendor-suchaz', item.vendorId]">{{item.vendorVendorName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'item-suchaz/'+ item.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

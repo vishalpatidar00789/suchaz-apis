@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span>Activity List Items</span>
+        <button class="btn btn-primary float-right jh-create-entity create-activity-list-item-suchaz" [routerLink]="['/', { outlets: { popup: ['activity-list-item-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Activity List Item
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="activityListItems">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Status</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th><span>Activity List</span></th>
+            <th><span>Item</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let activityListItem of activityListItems ;trackBy: trackId">
+                <td><a [routerLink]="['../activity-list-item-suchaz', activityListItem.id ]">{{activityListItem.id}}</a></td>
+                <td>{{activityListItem.status}}</td>
+                <td>{{activityListItem.createdDate}}</td>
+                <td>{{activityListItem.lastUpdatedDate}}</td>
+                <td>{{activityListItem.createdBy}}</td>
+                <td>{{activityListItem.lastUpdatedBy}}</td>
+                <td>
+                    <div *ngIf="activityListItem.activityListId">
+                        <a [routerLink]="['../activity-list-suchaz', activityListItem.activityListId  ]" >{{activityListItem.activityListId}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="activityListItem.itemId">
+                        <a [routerLink]="['../item-suchaz', activityListItem.itemId  ]" >{{activityListItem.itemTitle}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../activity-list-item-suchaz', activityListItem.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'activity-list-item-suchaz/'+ activityListItem.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'activity-list-item-suchaz/'+ activityListItem.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

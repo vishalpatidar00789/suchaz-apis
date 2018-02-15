@@ -1,0 +1,81 @@
+<div>
+    <h2>
+        <span>Gift Wrappers</span>
+        <button class="btn btn-primary float-right jh-create-entity create-gift-wrapper-suchaz" [routerLink]="['/', { outlets: { popup: ['gift-wrapper-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Gift Wrapper
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="giftWrappers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Name</span></th>
+            <th><span>Description</span></th>
+            <th><span>Image</span></th>
+            <th><span>Size</span></th>
+            <th><span>Type</span></th>
+            <th><span>Status</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let giftWrapper of giftWrappers ;trackBy: trackId">
+                <td><a [routerLink]="['../gift-wrapper-suchaz', giftWrapper.id ]">{{giftWrapper.id}}</a></td>
+                <td>{{giftWrapper.name}}</td>
+                <td>{{giftWrapper.description}}</td>
+                <td>
+                    <a *ngIf="giftWrapper.image" (click)="openFile(giftWrapper.imageContentType, giftWrapper.image)">
+                        <img [src]="'data:' + giftWrapper.imageContentType + ';base64,' + giftWrapper.image" style="max-height: 30px;" alt="giftWrapper image"/>
+                    </a>
+                    <span *ngIf="giftWrapper.image">{{giftWrapper.imageContentType}}, {{byteSize(giftWrapper.image)}}</span>
+                </td>
+                <td>{{giftWrapper.size}}</td>
+                <td>{{giftWrapper.type}}</td>
+                <td>{{giftWrapper.status}}</td>
+                <td>{{giftWrapper.createdDate}}</td>
+                <td>{{giftWrapper.lastUpdatedDate}}</td>
+                <td>{{giftWrapper.createdBy}}</td>
+                <td>{{giftWrapper.lastUpdatedBy}}</td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../gift-wrapper-suchaz', giftWrapper.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'gift-wrapper-suchaz/'+ giftWrapper.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'gift-wrapper-suchaz/'+ giftWrapper.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

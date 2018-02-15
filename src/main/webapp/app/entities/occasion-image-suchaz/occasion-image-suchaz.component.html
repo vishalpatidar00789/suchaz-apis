@@ -1,0 +1,87 @@
+<div>
+    <h2>
+        <span>Occasion Images</span>
+        <button class="btn btn-primary float-right jh-create-entity create-occasion-image-suchaz" [routerLink]="['/', { outlets: { popup: ['occasion-image-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Occasion Image
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="occasionImages">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Occasion Image Name</span></th>
+            <th><span>Occasion Image Desc</span></th>
+            <th><span>Occasion Image Size</span></th>
+            <th><span>Occasion Image</span></th>
+            <th><span>Occasion Image Type</span></th>
+            <th><span>Status</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th><span>Occasion</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let occasionImage of occasionImages ;trackBy: trackId">
+                <td><a [routerLink]="['../occasion-image-suchaz', occasionImage.id ]">{{occasionImage.id}}</a></td>
+                <td>{{occasionImage.occasionImageName}}</td>
+                <td>{{occasionImage.occasionImageDesc}}</td>
+                <td>{{occasionImage.occasionImageSize}}</td>
+                <td>
+                    <a *ngIf="occasionImage.occasionImage" (click)="openFile(occasionImage.occasionImageContentType, occasionImage.occasionImage)">
+                        <img [src]="'data:' + occasionImage.occasionImageContentType + ';base64,' + occasionImage.occasionImage" style="max-height: 30px;" alt="occasionImage image"/>
+                    </a>
+                    <span *ngIf="occasionImage.occasionImage">{{occasionImage.occasionImageContentType}}, {{byteSize(occasionImage.occasionImage)}}</span>
+                </td>
+                <td>{{occasionImage.occasionImageType}}</td>
+                <td>{{occasionImage.status}}</td>
+                <td>{{occasionImage.createdDate}}</td>
+                <td>{{occasionImage.lastUpdatedDate}}</td>
+                <td>{{occasionImage.createdBy}}</td>
+                <td>{{occasionImage.lastUpdatedBy}}</td>
+                <td>
+                    <div *ngIf="occasionImage.occasionId">
+                        <a [routerLink]="['../occassion-suchaz', occasionImage.occasionId  ]" >{{occasionImage.occasionName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../occasion-image-suchaz', occasionImage.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'occasion-image-suchaz/'+ occasionImage.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'occasion-image-suchaz/'+ occasionImage.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

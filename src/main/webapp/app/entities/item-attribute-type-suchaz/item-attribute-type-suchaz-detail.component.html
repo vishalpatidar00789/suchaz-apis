@@ -1,0 +1,32 @@
+
+<div *ngIf="itemAttributeType">
+    <h2><span>Item Attribute Type</span> {{itemAttributeType.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span>Attribute Type Name</span></dt>
+        <dd>
+            <span>{{itemAttributeType.attributeTypeName}}</span>
+        </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+            <div *ngIf="itemAttributeType.categoryId">
+                <a [routerLink]="['/category-suchaz', itemAttributeType.categoryId]">{{itemAttributeType.categoryName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'item-attribute-type-suchaz/'+ itemAttributeType.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+    </button>
+</div>

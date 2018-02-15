@@ -1,0 +1,91 @@
+<div>
+    <h2>
+        <span>User Gift Wrappers</span>
+        <button class="btn btn-primary float-right jh-create-entity create-user-gift-wrapper-suchaz" [routerLink]="['/', { outlets: { popup: ['user-gift-wrapper-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new User Gift Wrapper
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="userGiftWrappers">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Gift Wrapper Img</span></th>
+            <th><span>Status</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th><span>Such Az User</span></th>
+            <th><span>Item</span></th>
+            <th><span>Gift Wrapper</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let userGiftWrapper of userGiftWrappers ;trackBy: trackId">
+                <td><a [routerLink]="['../user-gift-wrapper-suchaz', userGiftWrapper.id ]">{{userGiftWrapper.id}}</a></td>
+                <td>
+                    <a *ngIf="userGiftWrapper.giftWrapperImg" (click)="openFile(userGiftWrapper.giftWrapperImgContentType, userGiftWrapper.giftWrapperImg)">
+                        <img [src]="'data:' + userGiftWrapper.giftWrapperImgContentType + ';base64,' + userGiftWrapper.giftWrapperImg" style="max-height: 30px;" alt="userGiftWrapper image"/>
+                    </a>
+                    <span *ngIf="userGiftWrapper.giftWrapperImg">{{userGiftWrapper.giftWrapperImgContentType}}, {{byteSize(userGiftWrapper.giftWrapperImg)}}</span>
+                </td>
+                <td>{{userGiftWrapper.status}}</td>
+                <td>{{userGiftWrapper.createdDate}}</td>
+                <td>{{userGiftWrapper.lastUpdatedDate}}</td>
+                <td>{{userGiftWrapper.createdBy}}</td>
+                <td>{{userGiftWrapper.lastUpdatedBy}}</td>
+                <td>
+                    <div *ngIf="userGiftWrapper.suchAzUserId">
+                        <a [routerLink]="['../such-az-user-suchaz', userGiftWrapper.suchAzUserId  ]" >{{userGiftWrapper.suchAzUserEmail}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="userGiftWrapper.itemId">
+                        <a [routerLink]="['../item-suchaz', userGiftWrapper.itemId  ]" >{{userGiftWrapper.itemTitle}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="userGiftWrapper.giftWrapperId">
+                        <a [routerLink]="['../gift-wrapper-suchaz', userGiftWrapper.giftWrapperId  ]" >{{userGiftWrapper.giftWrapperName}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../user-gift-wrapper-suchaz', userGiftWrapper.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-gift-wrapper-suchaz/'+ userGiftWrapper.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'user-gift-wrapper-suchaz/'+ userGiftWrapper.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
