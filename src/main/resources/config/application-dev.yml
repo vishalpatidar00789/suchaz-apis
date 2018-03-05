@@ -34,7 +34,10 @@ spring:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:mysql://localhost:3306/suchazapis?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
-        password: 
+        password: root
+        #url: jdbc:mysql://aafz8d5uneiuv0.chtkbirkvr1n.ap-south-1.rds.amazonaws.com:3306/suchazapis?useUnicode=true&characterEncoding=utf8&useSSL=false
+        #username: root
+        #password: dowhatyoulove
         hikari:
             data-source-properties:
                 cachePrepStmts: true
