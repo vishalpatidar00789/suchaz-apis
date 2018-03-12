@@ -79,6 +79,9 @@ public class SuchAzUserResourceIntTest {
     private static final SignupMethod DEFAULT_SIGNUP_METHOD = SignupMethod.FACEBOOK;
     private static final SignupMethod UPDATED_SIGNUP_METHOD = SignupMethod.EMAIL;
 
+    private static final String DEFAULT_VERIFY_TOKEN = "AAAAAAAAAA";
+    private static final String UPDATED_VERIFY_TOKEN = "BBBBBBBBBB";
+
     private static final Long DEFAULT_CREATED_DATE = 1L;
     private static final Long UPDATED_CREATED_DATE = 2L;
 
@@ -146,6 +149,7 @@ public class SuchAzUserResourceIntTest {
             .tokenExpDate(DEFAULT_TOKEN_EXP_DATE)
             .varifiedBy(DEFAULT_VARIFIED_BY)
             .signupMethod(DEFAULT_SIGNUP_METHOD)
+            .verifyToken(DEFAULT_VERIFY_TOKEN)
             .createdDate(DEFAULT_CREATED_DATE)
             .lastUpdatedDate(DEFAULT_LAST_UPDATED_DATE)
             .createdBy(DEFAULT_CREATED_BY)
@@ -185,6 +189,7 @@ public class SuchAzUserResourceIntTest {
         assertThat(testSuchAzUser.getTokenExpDate()).isEqualTo(DEFAULT_TOKEN_EXP_DATE);
         assertThat(testSuchAzUser.getVarifiedBy()).isEqualTo(DEFAULT_VARIFIED_BY);
         assertThat(testSuchAzUser.getSignupMethod()).isEqualTo(DEFAULT_SIGNUP_METHOD);
+        assertThat(testSuchAzUser.getVerifyToken()).isEqualTo(DEFAULT_VERIFY_TOKEN);
         assertThat(testSuchAzUser.getCreatedDate()).isEqualTo(DEFAULT_CREATED_DATE);
         assertThat(testSuchAzUser.getLastUpdatedDate()).isEqualTo(DEFAULT_LAST_UPDATED_DATE);
         assertThat(testSuchAzUser.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
@@ -366,6 +371,7 @@ public class SuchAzUserResourceIntTest {
             .andExpect(jsonPath("$.[*].tokenExpDate").value(hasItem(DEFAULT_TOKEN_EXP_DATE.intValue())))
             .andExpect(jsonPath("$.[*].varifiedBy").value(hasItem(DEFAULT_VARIFIED_BY.toString())))
             .andExpect(jsonPath("$.[*].signupMethod").value(hasItem(DEFAULT_SIGNUP_METHOD.toString())))
+            .andExpect(jsonPath("$.[*].verifyToken").value(hasItem(DEFAULT_VERIFY_TOKEN.toString())))
             .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.intValue())))
             .andExpect(jsonPath("$.[*].lastUpdatedDate").value(hasItem(DEFAULT_LAST_UPDATED_DATE.intValue())))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
@@ -394,6 +400,7 @@ public class SuchAzUserResourceIntTest {
             .andExpect(jsonPath("$.tokenExpDate").value(DEFAULT_TOKEN_EXP_DATE.intValue()))
             .andExpect(jsonPath("$.varifiedBy").value(DEFAULT_VARIFIED_BY.toString()))
             .andExpect(jsonPath("$.signupMethod").value(DEFAULT_SIGNUP_METHOD.toString()))
+            .andExpect(jsonPath("$.verifyToken").value(DEFAULT_VERIFY_TOKEN.toString()))
             .andExpect(jsonPath("$.createdDate").value(DEFAULT_CREATED_DATE.intValue()))
             .andExpect(jsonPath("$.lastUpdatedDate").value(DEFAULT_LAST_UPDATED_DATE.intValue()))
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()))
@@ -431,6 +438,7 @@ public class SuchAzUserResourceIntTest {
             .tokenExpDate(UPDATED_TOKEN_EXP_DATE)
             .varifiedBy(UPDATED_VARIFIED_BY)
             .signupMethod(UPDATED_SIGNUP_METHOD)
+            .verifyToken(UPDATED_VERIFY_TOKEN)
             .createdDate(UPDATED_CREATED_DATE)
             .lastUpdatedDate(UPDATED_LAST_UPDATED_DATE)
             .createdBy(UPDATED_CREATED_BY)
@@ -457,6 +465,7 @@ public class SuchAzUserResourceIntTest {
         assertThat(testSuchAzUser.getTokenExpDate()).isEqualTo(UPDATED_TOKEN_EXP_DATE);
         assertThat(testSuchAzUser.getVarifiedBy()).isEqualTo(UPDATED_VARIFIED_BY);
         assertThat(testSuchAzUser.getSignupMethod()).isEqualTo(UPDATED_SIGNUP_METHOD);
+        assertThat(testSuchAzUser.getVerifyToken()).isEqualTo(UPDATED_VERIFY_TOKEN);
         assertThat(testSuchAzUser.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);
         assertThat(testSuchAzUser.getLastUpdatedDate()).isEqualTo(UPDATED_LAST_UPDATED_DATE);
         assertThat(testSuchAzUser.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);

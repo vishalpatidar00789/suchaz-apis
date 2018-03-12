@@ -1,9 +1,6 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.domain.User;
-
 import io.github.jhipster.config.JHipsterProperties;
-
 import org.apache.commons.lang3.CharEncoding;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,10 +11,10 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
-
 import javax.mail.internet.MimeMessage;
 import java.util.Locale;
-
+import com.suchaz.app.domain.User;
+import com.suchaz.app.service.dto.SuchAzUserDTO;
 /**
  * Service for sending emails.
  * <p>
@@ -32,8 +29,9 @@ public class MailService {
 
     private static final String BASE_URL = "baseUrl";
 
+    
     private final JHipsterProperties jHipsterProperties;
-
+    
     private final JavaMailSender javaMailSender;
 
     private final MessageSource messageSource;
@@ -48,7 +46,8 @@ public class MailService {
         this.messageSource = messageSource;
         this.templateEngine = templateEngine;
     }
-
+    
+    
     @Async
     public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
         log.debug("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
@@ -84,11 +83,29 @@ public class MailService {
         sendEmail(user.getEmail(), subject, content, false, true);
 
     }
+    
+    @Async
+    public void sendEmailFromTemplate(SuchAzUserDTO suchAzUserDTO, String templateName, String titleKey) {
+        Locale locale = Locale.forLanguageTag(suchAzUserDTO.getRole().name());
+        Context context = new Context(locale);
+        context.setVariable(USER, suchAzUserDTO);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        sendEmail(suchAzUserDTO.getEmail(), subject, content, false, true);
+
+    }
 
     @Async
     public void sendActivationEmail(User user) {
         log.debug("Sending activation email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "activationEmail", "email.activation.title");
+    }
+    
+    @Async
+    public void sendActivationEmailToSuchAzUser(SuchAzUserDTO suchAzUserDTO) {
+        log.debug("Sending activation email to '{}'", suchAzUserDTO.getEmail());
+        sendEmailFromTemplate(suchAzUserDTO, "suchazActivationEmail", "suchaz.email.activation.title");
     }
 
     @Async
