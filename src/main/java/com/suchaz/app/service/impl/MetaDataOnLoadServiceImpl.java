@@ -148,6 +148,18 @@ public class MetaDataOnLoadServiceImpl implements MetaDataOnLoadService {
 			ArrayList listAllCategoryDTO = (ArrayList<CategoryDTO>) categoryMapper.toDto(categoryListAll);
 			mapOfAllMetaData.put(ApplicationConstants.CATEGORY,listAllCategoryDTO );
 		}
+		ArrayList<Object> listOfGender = new ArrayList<>();
+		listOfGender.add(ApplicationConstants.GENDER.MALE);
+		listOfGender.add(ApplicationConstants.GENDER.FEMALE);
+		
+		ArrayList<Object> listOfAgeGroup = new ArrayList<>();
+		listOfAgeGroup.add(ApplicationConstants.AGE_GROUP.KIDS);
+		listOfAgeGroup.add(ApplicationConstants.AGE_GROUP.TEEN);
+		listOfAgeGroup.add(ApplicationConstants.AGE_GROUP.YOUTH);
+		listOfAgeGroup.add(ApplicationConstants.AGE_GROUP.ELDERS);
+		
+		mapOfAllMetaData.put(ApplicationConstants.GENDER_TAG, listOfGender);
+		mapOfAllMetaData.put(ApplicationConstants.AGE_GROUP_TAG, listOfAgeGroup);
 		
 		MetaDataOnLoadDTO metaDataOnLoadDTO = new MetaDataOnLoadDTO();
 		metaDataOnLoadDTO.setMetaDataOnLoadMap(mapOfAllMetaData);
