@@ -79,6 +79,9 @@ public class SuchAzUserResourceIntTest {
     private static final SignupMethod DEFAULT_SIGNUP_METHOD = SignupMethod.FACEBOOK;
     private static final SignupMethod UPDATED_SIGNUP_METHOD = SignupMethod.EMAIL;
 
+    private static final String DEFAULT_VERIFY_TOKEN = "AAAAAAAAAA";
+    private static final String UPDATED_VERIFY_TOKEN = "BBBBBBBBBB";
+
     private static final Long DEFAULT_CREATED_DATE = 1L;
     private static final Long UPDATED_CREATED_DATE = 2L;
 
@@ -366,6 +369,7 @@ public class SuchAzUserResourceIntTest {
             .andExpect(jsonPath("$.[*].tokenExpDate").value(hasItem(DEFAULT_TOKEN_EXP_DATE.intValue())))
             .andExpect(jsonPath("$.[*].varifiedBy").value(hasItem(DEFAULT_VARIFIED_BY.toString())))
             .andExpect(jsonPath("$.[*].signupMethod").value(hasItem(DEFAULT_SIGNUP_METHOD.toString())))
+            .andExpect(jsonPath("$.[*].verifyToken").value(hasItem(DEFAULT_VERIFY_TOKEN.toString())))
             .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.intValue())))
             .andExpect(jsonPath("$.[*].lastUpdatedDate").value(hasItem(DEFAULT_LAST_UPDATED_DATE.intValue())))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
@@ -394,6 +398,7 @@ public class SuchAzUserResourceIntTest {
             .andExpect(jsonPath("$.tokenExpDate").value(DEFAULT_TOKEN_EXP_DATE.intValue()))
             .andExpect(jsonPath("$.varifiedBy").value(DEFAULT_VARIFIED_BY.toString()))
             .andExpect(jsonPath("$.signupMethod").value(DEFAULT_SIGNUP_METHOD.toString()))
+            .andExpect(jsonPath("$.verifyToken").value(DEFAULT_VERIFY_TOKEN.toString()))
             .andExpect(jsonPath("$.createdDate").value(DEFAULT_CREATED_DATE.intValue()))
             .andExpect(jsonPath("$.lastUpdatedDate").value(DEFAULT_LAST_UPDATED_DATE.intValue()))
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()))
