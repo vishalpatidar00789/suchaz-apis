@@ -63,7 +63,7 @@ public class Trait implements Serializable {
     @Column(name = "last_updated_by")
     private String lastUpdatedBy;
 
-    @OneToMany(mappedBy = "trait")
+    @OneToMany(mappedBy = "trait", fetch=FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<TraitImage> traitImages = new HashSet<>();

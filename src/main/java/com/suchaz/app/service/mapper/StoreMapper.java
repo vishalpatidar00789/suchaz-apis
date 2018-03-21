@@ -12,7 +12,7 @@ import org.mapstruct.*;
 public interface StoreMapper extends EntityMapper<StoreDTO, Store> {
 
 
-    @Mapping(target = "storeImages", ignore = true)
+    @Mapping(target = "storeImages", ignore = false)
     Store toEntity(StoreDTO storeDTO);
 
     default Store fromId(Long id) {

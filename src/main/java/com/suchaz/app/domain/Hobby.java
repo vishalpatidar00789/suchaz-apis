@@ -63,7 +63,7 @@ public class Hobby implements Serializable {
     @Column(name = "last_updated_by")
     private String lastUpdatedBy;
 
-    @OneToMany(mappedBy = "hobby")
+    @OneToMany(mappedBy = "hobby", fetch=FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<HobbyImage> hobbyImages = new HashSet<>();

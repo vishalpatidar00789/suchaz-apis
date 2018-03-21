@@ -63,7 +63,7 @@ public class Occassion implements Serializable {
     @Column(name = "last_updated_by")
     private String lastUpdatedBy;
 
-    @OneToMany(mappedBy = "occasion")
+    @OneToMany(mappedBy = "occasion", fetch=FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<OccasionImage> occasionImages = new HashSet<>();

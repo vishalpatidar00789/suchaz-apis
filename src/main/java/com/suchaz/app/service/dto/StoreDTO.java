@@ -1,11 +1,13 @@
 package com.suchaz.app.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+
 import com.suchaz.app.domain.enumeration.Status;
 
 /**
@@ -37,8 +39,18 @@ public class StoreDTO implements Serializable {
     private String lastUpdatedBy;
 
     private Set<ItemDTO> items = new HashSet<>();
+    
+    private Set<StoreImageDTO> storeImages = new HashSet<>();
 
-    public Long getId() {
+	public Set<StoreImageDTO> getStoreImages() {
+		return storeImages;
+	}
+
+	public void setStoreImages(Set<StoreImageDTO> storeImages) {
+		this.storeImages = storeImages;
+	}
+
+	public Long getId() {
         return id;
     }
 

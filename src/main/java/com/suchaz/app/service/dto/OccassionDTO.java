@@ -1,12 +1,13 @@
 package com.suchaz.app.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-import com.suchaz.app.domain.enumeration.Status;
+import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+
 import com.suchaz.app.domain.enumeration.Status;
 
 /**
@@ -39,8 +40,18 @@ public class OccassionDTO implements Serializable {
     private String createdBy;
 
     private String lastUpdatedBy;
+    
+    private Set<OccasionImageDTO> occasionImages = new HashSet<>();
+    
+    public Set<OccasionImageDTO> getOccasionImages() {
+		return occasionImages;
+	}
 
-    public Long getId() {
+	public void setOccasionImages(Set<OccasionImageDTO> occasionImages) {
+		this.occasionImages = occasionImages;
+	}
+
+	public Long getId() {
         return id;
     }
 

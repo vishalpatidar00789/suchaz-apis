@@ -1,12 +1,13 @@
 package com.suchaz.app.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-import com.suchaz.app.domain.enumeration.Status;
+import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+
 import com.suchaz.app.domain.enumeration.Status;
 
 /**
@@ -39,8 +40,18 @@ public class HobbyDTO implements Serializable {
     private String createdBy;
 
     private String lastUpdatedBy;
+    
+    private Set<HobbyImageDTO> hobbyImages = new HashSet<>();
+    
+    public Set<HobbyImageDTO> getHobbyImages() {
+		return hobbyImages;
+	}
 
-    public Long getId() {
+	public void setHobbyImages(Set<HobbyImageDTO> hobbyImages) {
+		this.hobbyImages = hobbyImages;
+	}
+
+	public Long getId() {
         return id;
     }
 

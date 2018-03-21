@@ -77,6 +77,9 @@ public class SuchAzUser implements Serializable {
     @Column(name = "signup_method")
     private SignupMethod signupMethod;
 
+    @Column(name = "verify_token")
+    private String verifyToken;
+
     @NotNull
     @Column(name = "created_date", nullable = false)
     private Long createdDate;
@@ -274,6 +277,19 @@ public class SuchAzUser implements Serializable {
 
     public void setSignupMethod(SignupMethod signupMethod) {
         this.signupMethod = signupMethod;
+    }
+
+    public String getVerifyToken() {
+        return verifyToken;
+    }
+
+    public SuchAzUser verifyToken(String verifyToken) {
+        this.verifyToken = verifyToken;
+        return this;
+    }
+
+    public void setVerifyToken(String verifyToken) {
+        this.verifyToken = verifyToken;
     }
 
     public Long getCreatedDate() {
@@ -491,6 +507,7 @@ public class SuchAzUser implements Serializable {
             ", tokenExpDate=" + getTokenExpDate() +
             ", varifiedBy='" + getVarifiedBy() + "'" +
             ", signupMethod='" + getSignupMethod() + "'" +
+            ", verifyToken='" + getVerifyToken() + "'" +
             ", createdDate=" + getCreatedDate() +
             ", lastUpdatedDate=" + getLastUpdatedDate() +
             ", createdBy='" + getCreatedBy() + "'" +

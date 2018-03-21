@@ -12,7 +12,7 @@ import org.mapstruct.*;
 public interface TraitMapper extends EntityMapper<TraitDTO, Trait> {
 
 
-    @Mapping(target = "traitImages", ignore = true)
+    @Mapping(target = "traitImages", ignore = false)
     @Mapping(target = "suchAzUsers", ignore = true)
     Trait toEntity(TraitDTO traitDTO);
 

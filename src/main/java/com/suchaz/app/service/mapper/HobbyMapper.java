@@ -12,7 +12,7 @@ import org.mapstruct.*;
 public interface HobbyMapper extends EntityMapper<HobbyDTO, Hobby> {
 
 
-    @Mapping(target = "hobbyImages", ignore = true)
+    @Mapping(target = "hobbyImages", ignore = false)
     Hobby toEntity(HobbyDTO hobbyDTO);
 
     default Hobby fromId(Long id) {

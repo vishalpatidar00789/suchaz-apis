@@ -63,7 +63,7 @@ public class Relationship implements Serializable {
     @Column(name = "last_updated_by")
     private String lastUpdatedBy;
 
-    @OneToMany(mappedBy = "relationship")
+    @OneToMany(mappedBy = "relationship", fetch=FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<RelationshipImage> relationshipImages = new HashSet<>();

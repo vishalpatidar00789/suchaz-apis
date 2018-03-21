@@ -58,7 +58,7 @@ public class Store implements Serializable {
     @Column(name = "last_updated_by")
     private String lastUpdatedBy;
 
-    @OneToMany(mappedBy = "store")
+    @OneToMany(mappedBy = "store", fetch=FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<StoreImage> storeImages = new HashSet<>();

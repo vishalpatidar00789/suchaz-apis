@@ -46,6 +46,8 @@ public class SuchAzUserDTO implements Serializable {
 
     private SignupMethod signupMethod;
 
+    private String verifyToken;
+
     @NotNull
     private Long createdDate;
 
@@ -154,6 +156,14 @@ public class SuchAzUserDTO implements Serializable {
         this.signupMethod = signupMethod;
     }
 
+    public String getVerifyToken() {
+        return verifyToken;
+    }
+
+    public void setVerifyToken(String verifyToken) {
+        this.verifyToken = verifyToken;
+    }
+
     public Long getCreatedDate() {
         return createdDate;
     }
@@ -230,6 +240,7 @@ public class SuchAzUserDTO implements Serializable {
             ", tokenExpDate=" + getTokenExpDate() +
             ", varifiedBy='" + getVarifiedBy() + "'" +
             ", signupMethod='" + getSignupMethod() + "'" +
+            ", verifyToken='" + getVerifyToken() + "'" +
             ", createdDate=" + getCreatedDate() +
             ", lastUpdatedDate=" + getLastUpdatedDate() +
             ", createdBy='" + getCreatedBy() + "'" +

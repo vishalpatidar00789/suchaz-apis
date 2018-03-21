@@ -12,7 +12,7 @@ import org.mapstruct.*;
 public interface RelationshipMapper extends EntityMapper<RelationshipDTO, Relationship> {
 
 
-    @Mapping(target = "relationshipImages", ignore = true)
+    @Mapping(target = "relationshipImages", ignore = false)
     Relationship toEntity(RelationshipDTO relationshipDTO);
 
     default Relationship fromId(Long id) {

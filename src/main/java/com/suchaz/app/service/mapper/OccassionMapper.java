@@ -12,7 +12,7 @@ import org.mapstruct.*;
 public interface OccassionMapper extends EntityMapper<OccassionDTO, Occassion> {
 
 
-    @Mapping(target = "occasionImages", ignore = true)
+    @Mapping(target = "occasionImages", ignore = false)
     Occassion toEntity(OccassionDTO occassionDTO);
 
     default Occassion fromId(Long id) {

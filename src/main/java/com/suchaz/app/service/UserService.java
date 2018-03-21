@@ -1,15 +1,12 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.config.CacheConfiguration;
-import com.suchaz.app.domain.Authority;
-import com.suchaz.app.domain.User;
-import com.suchaz.app.repository.AuthorityRepository;
-import com.suchaz.app.config.Constants;
-import com.suchaz.app.repository.UserRepository;
-import com.suchaz.app.security.AuthoritiesConstants;
-import com.suchaz.app.security.SecurityUtils;
-import com.suchaz.app.service.util.RandomUtil;
-import com.suchaz.app.service.dto.UserDTO;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +18,15 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.*;
-import java.util.stream.Collectors;
+import com.suchaz.app.config.Constants;
+import com.suchaz.app.domain.Authority;
+import com.suchaz.app.domain.User;
+import com.suchaz.app.repository.AuthorityRepository;
+import com.suchaz.app.repository.UserRepository;
+import com.suchaz.app.security.AuthoritiesConstants;
+import com.suchaz.app.security.SecurityUtils;
+import com.suchaz.app.service.dto.UserDTO;
+import com.suchaz.app.service.util.RandomUtil;
 
 /**
  * Service class for managing users.
