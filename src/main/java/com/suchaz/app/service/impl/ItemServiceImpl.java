@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -84,4 +85,13 @@ public class ItemServiceImpl implements ItemService {
         log.debug("Request to delete Item : {}", id);
         itemRepository.delete(id);
     }
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<ItemDTO> findAllWeeklyFeaturedItem() {
+		log.debug("Request to get all Weekly Featured Items Items");
+        return itemRepository.findAllWithEagerRelationships().stream()
+            .map(itemMapper::toDto)
+            .collect(Collectors.toCollection(ArrayList::new));
+	}
 }

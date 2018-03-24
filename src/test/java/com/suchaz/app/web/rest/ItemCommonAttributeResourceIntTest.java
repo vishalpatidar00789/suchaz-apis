@@ -47,6 +47,9 @@ public class ItemCommonAttributeResourceIntTest {
     private static final String DEFAULT_VALUE = "AAAAAAAAAA";
     private static final String UPDATED_VALUE = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_IS_QUICK_VIEW_ENABLED = false;
+    private static final Boolean UPDATED_IS_QUICK_VIEW_ENABLED = true;
+
     @Autowired
     private ItemCommonAttributeRepository itemCommonAttributeRepository;
 
@@ -92,7 +95,8 @@ public class ItemCommonAttributeResourceIntTest {
     public static ItemCommonAttribute createEntity(EntityManager em) {
         ItemCommonAttribute itemCommonAttribute = new ItemCommonAttribute()
             .name(DEFAULT_NAME)
-            .value(DEFAULT_VALUE);
+            .value(DEFAULT_VALUE)
+            .isQuickViewEnabled(DEFAULT_IS_QUICK_VIEW_ENABLED);
         return itemCommonAttribute;
     }
 
@@ -119,6 +123,7 @@ public class ItemCommonAttributeResourceIntTest {
         ItemCommonAttribute testItemCommonAttribute = itemCommonAttributeList.get(itemCommonAttributeList.size() - 1);
         assertThat(testItemCommonAttribute.getName()).isEqualTo(DEFAULT_NAME);
         assertThat(testItemCommonAttribute.getValue()).isEqualTo(DEFAULT_VALUE);
+        assertThat(testItemCommonAttribute.isIsQuickViewEnabled()).isEqualTo(DEFAULT_IS_QUICK_VIEW_ENABLED);
     }
 
     @Test
@@ -191,7 +196,8 @@ public class ItemCommonAttributeResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(itemCommonAttribute.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].value").value(hasItem(DEFAULT_VALUE.toString())));
+            .andExpect(jsonPath("$.[*].value").value(hasItem(DEFAULT_VALUE.toString())))
+            .andExpect(jsonPath("$.[*].isQuickViewEnabled").value(hasItem(DEFAULT_IS_QUICK_VIEW_ENABLED.booleanValue())));
     }
 
     @Test
@@ -206,7 +212,8 @@ public class ItemCommonAttributeResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(itemCommonAttribute.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.value").value(DEFAULT_VALUE.toString()));
+            .andExpect(jsonPath("$.value").value(DEFAULT_VALUE.toString()))
+            .andExpect(jsonPath("$.isQuickViewEnabled").value(DEFAULT_IS_QUICK_VIEW_ENABLED.booleanValue()));
     }
 
     @Test
@@ -230,7 +237,8 @@ public class ItemCommonAttributeResourceIntTest {
         em.detach(updatedItemCommonAttribute);
         updatedItemCommonAttribute
             .name(UPDATED_NAME)
-            .value(UPDATED_VALUE);
+            .value(UPDATED_VALUE)
+            .isQuickViewEnabled(UPDATED_IS_QUICK_VIEW_ENABLED);
         ItemCommonAttributeDTO itemCommonAttributeDTO = itemCommonAttributeMapper.toDto(updatedItemCommonAttribute);
 
         restItemCommonAttributeMockMvc.perform(put("/api/item-common-attributes")
@@ -244,6 +252,7 @@ public class ItemCommonAttributeResourceIntTest {
         ItemCommonAttribute testItemCommonAttribute = itemCommonAttributeList.get(itemCommonAttributeList.size() - 1);
         assertThat(testItemCommonAttribute.getName()).isEqualTo(UPDATED_NAME);
         assertThat(testItemCommonAttribute.getValue()).isEqualTo(UPDATED_VALUE);
+        assertThat(testItemCommonAttribute.isIsQuickViewEnabled()).isEqualTo(UPDATED_IS_QUICK_VIEW_ENABLED);
     }
 
     @Test

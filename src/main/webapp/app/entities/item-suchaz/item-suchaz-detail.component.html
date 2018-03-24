@@ -84,6 +84,14 @@
         <dd>
             <span>{{item.lastUpdatedBy}}</span>
         </dd>
+        <dt><span>Is Featured</span></dt>
+        <dd>
+            <span>{{item.isFeatured}}</span>
+        </dd>
+        <dt><span>Last Featured UPD Date</span></dt>
+        <dd>
+            <span>{{item.lastFeaturedUPDDate}}</span>
+        </dd>
         <dt><span>Offer</span></dt>
         <dd>
             <span *ngFor="let offer of item.offers; let last = last">

@@ -1,12 +1,13 @@
 package com.suchaz.app.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-import com.suchaz.app.domain.enumeration.Status;
+import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+
 import com.suchaz.app.domain.enumeration.Status;
 
 /**
@@ -66,6 +67,10 @@ public class ItemDTO implements Serializable {
 
     private String lastUpdatedBy;
 
+    private Boolean isFeatured;
+
+    private Long lastFeaturedUPDDate;
+
     private Set<OfferDTO> offers = new HashSet<>();
 
     private Long categoryId;
@@ -75,6 +80,8 @@ public class ItemDTO implements Serializable {
     private Long vendorId;
 
     private String vendorVendorName;
+    
+    private Set<ItemImageDTO> itemImages = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -244,6 +251,22 @@ public class ItemDTO implements Serializable {
         this.lastUpdatedBy = lastUpdatedBy;
     }
 
+    public Boolean isIsFeatured() {
+        return isFeatured;
+    }
+
+    public void setIsFeatured(Boolean isFeatured) {
+        this.isFeatured = isFeatured;
+    }
+
+    public Long getLastFeaturedUPDDate() {
+        return lastFeaturedUPDDate;
+    }
+
+    public void setLastFeaturedUPDDate(Long lastFeaturedUPDDate) {
+        this.lastFeaturedUPDDate = lastFeaturedUPDDate;
+    }
+
     public Set<OfferDTO> getOffers() {
         return offers;
     }
@@ -329,6 +352,20 @@ public class ItemDTO implements Serializable {
             ", lastUpdatedDate=" + getLastUpdatedDate() +
             ", createdBy='" + getCreatedBy() + "'" +
             ", lastUpdatedBy='" + getLastUpdatedBy() + "'" +
+            ", isFeatured='" + isIsFeatured() + "'" +
+            ", lastFeaturedUPDDate=" + getLastFeaturedUPDDate() +
             "}";
     }
+
+	public Set<ItemImageDTO> getItemImages() {
+		return itemImages;
+	}
+
+	public void setItemImages(Set<ItemImageDTO> itemImages) {
+		this.itemImages = itemImages;
+	}
+
+	public Boolean getIsFeatured() {
+		return isFeatured;
+	}
 }

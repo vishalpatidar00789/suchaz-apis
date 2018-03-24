@@ -37,4 +37,11 @@ public interface ItemService {
      * @param id the id of the entity
      */
     void delete(Long id);
+    
+    /**
+     * Get all the weekly Featured Items
+     *
+     * @return the list of entities
+     */
+    List<ItemDTO> findAllWeeklyFeaturedItem();
 }

@@ -102,6 +102,14 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="is_featured" type="bit">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="last_featured_upd_date" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
             <column name="category_id" type="bigint">
                 <constraints nullable="true" />
             </column>

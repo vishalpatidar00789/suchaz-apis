@@ -15,6 +15,7 @@ public final class ApplicationConstants {
     public static final String FEATURED_PRODUCTS = "featuredProducts";
     public static final String GENDER_TAG = "Gender";
     public static final String AGE_GROUP_TAG = "AgeGroup";
+    public static final String WEEKLY_FEATURED_PRODUTS = "weeklyFeaturedProducts";
     
     public static enum GENDER{
     	MALE("Male"),FEMALE("Female");

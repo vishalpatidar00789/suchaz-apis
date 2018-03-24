@@ -20,6 +20,8 @@ public class ItemCommonAttributeDTO implements Serializable {
     @NotNull
     private String value;
 
+    private Boolean isQuickViewEnabled;
+
     private Long itemId;
 
     private String itemTitle;
@@ -50,6 +52,14 @@ public class ItemCommonAttributeDTO implements Serializable {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Boolean isIsQuickViewEnabled() {
+        return isQuickViewEnabled;
+    }
+
+    public void setIsQuickViewEnabled(Boolean isQuickViewEnabled) {
+        this.isQuickViewEnabled = isQuickViewEnabled;
     }
 
     public Long getItemId() {
@@ -111,6 +121,7 @@ public class ItemCommonAttributeDTO implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", value='" + getValue() + "'" +
+            ", isQuickViewEnabled='" + isIsQuickViewEnabled() + "'" +
             "}";
     }
 }

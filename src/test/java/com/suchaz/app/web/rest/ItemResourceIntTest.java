@@ -103,6 +103,12 @@ public class ItemResourceIntTest {
     private static final String DEFAULT_LAST_UPDATED_BY = "AAAAAAAAAA";
     private static final String UPDATED_LAST_UPDATED_BY = "BBBBBBBBBB";
 
+    private static final Boolean DEFAULT_IS_FEATURED = false;
+    private static final Boolean UPDATED_IS_FEATURED = true;
+
+    private static final Long DEFAULT_LAST_FEATURED_UPD_DATE = 1L;
+    private static final Long UPDATED_LAST_FEATURED_UPD_DATE = 2L;
+
     @Autowired
     private ItemRepository itemRepository;
 
@@ -166,7 +172,9 @@ public class ItemResourceIntTest {
             .createdDate(DEFAULT_CREATED_DATE)
             .lastUpdatedDate(DEFAULT_LAST_UPDATED_DATE)
             .createdBy(DEFAULT_CREATED_BY)
-            .lastUpdatedBy(DEFAULT_LAST_UPDATED_BY);
+            .lastUpdatedBy(DEFAULT_LAST_UPDATED_BY)
+            .isFeatured(DEFAULT_IS_FEATURED)
+            .lastFeaturedUPDDate(DEFAULT_LAST_FEATURED_UPD_DATE);
         return item;
     }
 
@@ -211,6 +219,8 @@ public class ItemResourceIntTest {
         assertThat(testItem.getLastUpdatedDate()).isEqualTo(DEFAULT_LAST_UPDATED_DATE);
         assertThat(testItem.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
         assertThat(testItem.getLastUpdatedBy()).isEqualTo(DEFAULT_LAST_UPDATED_BY);
+        assertThat(testItem.isIsFeatured()).isEqualTo(DEFAULT_IS_FEATURED);
+        assertThat(testItem.getLastFeaturedUPDDate()).isEqualTo(DEFAULT_LAST_FEATURED_UPD_DATE);
     }
 
     @Test
@@ -453,7 +463,9 @@ public class ItemResourceIntTest {
             .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.intValue())))
             .andExpect(jsonPath("$.[*].lastUpdatedDate").value(hasItem(DEFAULT_LAST_UPDATED_DATE.intValue())))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
-            .andExpect(jsonPath("$.[*].lastUpdatedBy").value(hasItem(DEFAULT_LAST_UPDATED_BY.toString())));
+            .andExpect(jsonPath("$.[*].lastUpdatedBy").value(hasItem(DEFAULT_LAST_UPDATED_BY.toString())))
+            .andExpect(jsonPath("$.[*].isFeatured").value(hasItem(DEFAULT_IS_FEATURED.booleanValue())))
+            .andExpect(jsonPath("$.[*].lastFeaturedUPDDate").value(hasItem(DEFAULT_LAST_FEATURED_UPD_DATE.intValue())));
     }
 
     @Test
@@ -486,7 +498,9 @@ public class ItemResourceIntTest {
             .andExpect(jsonPath("$.createdDate").value(DEFAULT_CREATED_DATE.intValue()))
             .andExpect(jsonPath("$.lastUpdatedDate").value(DEFAULT_LAST_UPDATED_DATE.intValue()))
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()))
-            .andExpect(jsonPath("$.lastUpdatedBy").value(DEFAULT_LAST_UPDATED_BY.toString()));
+            .andExpect(jsonPath("$.lastUpdatedBy").value(DEFAULT_LAST_UPDATED_BY.toString()))
+            .andExpect(jsonPath("$.isFeatured").value(DEFAULT_IS_FEATURED.booleanValue()))
+            .andExpect(jsonPath("$.lastFeaturedUPDDate").value(DEFAULT_LAST_FEATURED_UPD_DATE.intValue()));
     }
 
     @Test
@@ -528,7 +542,9 @@ public class ItemResourceIntTest {
             .createdDate(UPDATED_CREATED_DATE)
             .lastUpdatedDate(UPDATED_LAST_UPDATED_DATE)
             .createdBy(UPDATED_CREATED_BY)
-            .lastUpdatedBy(UPDATED_LAST_UPDATED_BY);
+            .lastUpdatedBy(UPDATED_LAST_UPDATED_BY)
+            .isFeatured(UPDATED_IS_FEATURED)
+            .lastFeaturedUPDDate(UPDATED_LAST_FEATURED_UPD_DATE);
         ItemDTO itemDTO = itemMapper.toDto(updatedItem);
 
         restItemMockMvc.perform(put("/api/items")
@@ -560,6 +576,8 @@ public class ItemResourceIntTest {
         assertThat(testItem.getLastUpdatedDate()).isEqualTo(UPDATED_LAST_UPDATED_DATE);
         assertThat(testItem.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
         assertThat(testItem.getLastUpdatedBy()).isEqualTo(UPDATED_LAST_UPDATED_BY);
+        assertThat(testItem.isIsFeatured()).isEqualTo(UPDATED_IS_FEATURED);
+        assertThat(testItem.getLastFeaturedUPDDate()).isEqualTo(UPDATED_LAST_FEATURED_UPD_DATE);
     }
 
     @Test

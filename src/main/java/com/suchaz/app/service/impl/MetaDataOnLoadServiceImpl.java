@@ -22,11 +22,15 @@ import com.suchaz.app.repository.OccassionRepository;
 import com.suchaz.app.repository.RelationshipRepository;
 import com.suchaz.app.repository.StoreRepository;
 import com.suchaz.app.repository.TraitRepository;
+import com.suchaz.app.service.ItemService;
 import com.suchaz.app.service.MetaDataOnLoadService;
+import com.suchaz.app.service.QuickViewService;
 import com.suchaz.app.service.dto.CategoryDTO;
 import com.suchaz.app.service.dto.HobbyDTO;
+import com.suchaz.app.service.dto.ItemDTO;
 import com.suchaz.app.service.dto.MetaDataOnLoadDTO;
 import com.suchaz.app.service.dto.OccassionDTO;
+import com.suchaz.app.service.dto.QuickViewDTO;
 import com.suchaz.app.service.dto.RelationshipDTO;
 import com.suchaz.app.service.dto.StoreDTO;
 import com.suchaz.app.service.dto.TraitDTO;
@@ -78,11 +82,15 @@ public class MetaDataOnLoadServiceImpl implements MetaDataOnLoadService {
 	
 	private CategoryRepository categoryRepository;
 	private CategoryMapper categoryMapper;
+	
+	private ItemService itemService;
+	private QuickViewService quickViewService;
 
 	public MetaDataOnLoadServiceImpl(TraitRepository traitRepository, TraitMapper traitMapper, HobbyRepository hobbyRepository,HobbyMapper hobbyMapper,
 			RelationshipRepository relationshipRepository, RelationshipMapper relationshipMapper, OccassionRepository occassionRepository,
 			OccassionMapper occassionMapper, StoreRepository storeRepository, StoreMapper storeMapper,
-			CategoryRepository categoryRepository, CategoryMapper categoryMapper) {
+			CategoryRepository categoryRepository, CategoryMapper categoryMapper, ItemService itemService,
+			QuickViewService quickViewService) {
 		this.traitRepository = traitRepository;
 		this.traitMapper = traitMapper;
 		this.hobbyRepository = hobbyRepository;
@@ -95,6 +103,8 @@ public class MetaDataOnLoadServiceImpl implements MetaDataOnLoadService {
 		this.storeMapper = storeMapper;
 		this.categoryRepository =  categoryRepository;
 		this.categoryMapper = categoryMapper;
+		this.itemService = itemService;
+		this.quickViewService = quickViewService;
 	}
 
 	/**
@@ -160,6 +170,22 @@ public class MetaDataOnLoadServiceImpl implements MetaDataOnLoadService {
 		
 		mapOfAllMetaData.put(ApplicationConstants.GENDER_TAG, listOfGender);
 		mapOfAllMetaData.put(ApplicationConstants.AGE_GROUP_TAG, listOfAgeGroup);
+		
+		// Adding Weekly Featured products.
+		ArrayList<ItemDTO> listItemDTO = (ArrayList<ItemDTO>) itemService.findAllWeeklyFeaturedItem();
+		Long [] itemIds = new Long[listItemDTO.size()];
+		int counter = 0;
+		for(ItemDTO itemDTO : listItemDTO)
+		{
+			itemIds[counter] = itemDTO.getId();
+			counter++;
+		}
+		
+		ArrayList listQuickViewDTO = (ArrayList<QuickViewDTO>) quickViewService.findRangeOfItem(itemIds);
+		if(listQuickViewDTO!=null && listQuickViewDTO.size()>0)
+		{
+			mapOfAllMetaData.put(ApplicationConstants.WEEKLY_FEATURED_PRODUTS, listQuickViewDTO);
+		}
 		
 		MetaDataOnLoadDTO metaDataOnLoadDTO = new MetaDataOnLoadDTO();
 		metaDataOnLoadDTO.setMetaDataOnLoadMap(mapOfAllMetaData);

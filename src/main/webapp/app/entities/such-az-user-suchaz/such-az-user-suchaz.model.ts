@@ -32,6 +32,7 @@ export class SuchAzUserSuchaz implements BaseEntity {
         public tokenExpDate?: number,
         public varifiedBy?: SignupMethod,
         public signupMethod?: SignupMethod,
+        public verifyToken?: string,
         public createdDate?: number,
         public lastUpdatedDate?: number,
         public createdBy?: string,

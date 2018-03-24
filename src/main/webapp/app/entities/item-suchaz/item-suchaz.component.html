@@ -37,6 +37,8 @@
             <th><span>Last Updated Date</span></th>
             <th><span>Created By</span></th>
             <th><span>Last Updated By</span></th>
+            <th><span>Is Featured</span></th>
+            <th><span>Last Featured UPD Date</span></th>
             <th><span>Offer</span></th>
             <th><span>Category</span></th>
             <th><span>Vendor</span></th>
@@ -66,6 +68,8 @@
                 <td>{{item.lastUpdatedDate}}</td>
                 <td>{{item.createdBy}}</td>
                 <td>{{item.lastUpdatedBy}}</td>
+                <td>{{item.isFeatured}}</td>
+                <td>{{item.lastFeaturedUPDDate}}</td>
                 <td>
                     <span *ngFor="let offer of item.offers; let last = last">
                             <a class="form-control-static" [routerLink]="['../offer-suchaz', offer?.id ]">{{offer.offerName}}</a>{{last ? '' : ', '}}

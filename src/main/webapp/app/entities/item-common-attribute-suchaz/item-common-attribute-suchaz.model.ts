@@ -5,8 +5,10 @@ export class ItemCommonAttributeSuchaz implements BaseEntity {
         public id?: number,
         public name?: string,
         public value?: string,
+        public isQuickViewEnabled?: boolean,
         public itemId?: number,
         public itemAttributeTypeId?: number,
     ) {
+        this.isQuickViewEnabled = false;
     }
 }

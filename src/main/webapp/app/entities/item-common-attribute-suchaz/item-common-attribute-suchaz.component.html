@@ -19,6 +19,7 @@
             <th><span>ID</span></th>
             <th><span>Name</span></th>
             <th><span>Value</span></th>
+            <th><span>Is Quick View Enabled</span></th>
             <th><span>Item</span></th>
             <th><span>Item Attribute Type</span></th>
             <th></th>
@@ -29,6 +30,7 @@
                 <td><a [routerLink]="['../item-common-attribute-suchaz', itemCommonAttribute.id ]">{{itemCommonAttribute.id}}</a></td>
                 <td>{{itemCommonAttribute.name}}</td>
                 <td>{{itemCommonAttribute.value}}</td>
+                <td>{{itemCommonAttribute.isQuickViewEnabled}}</td>
                 <td>
                     <div *ngIf="itemCommonAttribute.itemId">
                         <a [routerLink]="['../item-suchaz', itemCommonAttribute.itemId  ]" >{{itemCommonAttribute.itemTitle}}</a>

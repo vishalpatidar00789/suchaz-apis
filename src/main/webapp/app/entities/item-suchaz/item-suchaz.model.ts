@@ -28,6 +28,8 @@ export class ItemSuchaz implements BaseEntity {
         public lastUpdatedDate?: number,
         public createdBy?: string,
         public lastUpdatedBy?: string,
+        public isFeatured?: boolean,
+        public lastFeaturedUPDDate?: number,
         public wishListItems?: BaseEntity[],
         public buyLaterListItems?: BaseEntity[],
         public activityListItems?: BaseEntity[],
@@ -40,5 +42,6 @@ export class ItemSuchaz implements BaseEntity {
         public vendorId?: number,
         public stores?: BaseEntity[],
     ) {
+        this.isFeatured = false;
     }
 }

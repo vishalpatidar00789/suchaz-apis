@@ -31,6 +31,9 @@ public class ItemCommonAttribute implements Serializable {
     @Column(name = "jhi_value", nullable = false)
     private String value;
 
+    @Column(name = "is_quick_view_enabled")
+    private Boolean isQuickViewEnabled;
+
     @ManyToOne
     private Item item;
 
@@ -70,6 +73,19 @@ public class ItemCommonAttribute implements Serializable {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public Boolean isIsQuickViewEnabled() {
+        return isQuickViewEnabled;
+    }
+
+    public ItemCommonAttribute isQuickViewEnabled(Boolean isQuickViewEnabled) {
+        this.isQuickViewEnabled = isQuickViewEnabled;
+        return this;
+    }
+
+    public void setIsQuickViewEnabled(Boolean isQuickViewEnabled) {
+        this.isQuickViewEnabled = isQuickViewEnabled;
     }
 
     public Item getItem() {
@@ -125,6 +141,7 @@ public class ItemCommonAttribute implements Serializable {
             "id=" + getId() +
             ", name='" + getName() + "'" +
             ", value='" + getValue() + "'" +
+            ", isQuickViewEnabled='" + isIsQuickViewEnabled() + "'" +
             "}";
     }
 }

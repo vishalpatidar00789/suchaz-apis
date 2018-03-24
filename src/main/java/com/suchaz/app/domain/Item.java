@@ -100,6 +100,12 @@ public class Item implements Serializable {
     @Column(name = "last_updated_by")
     private String lastUpdatedBy;
 
+    @Column(name = "is_featured")
+    private Boolean isFeatured;
+
+    @Column(name = "last_featured_upd_date")
+    private Long lastFeaturedUPDDate;
+
     @OneToMany(mappedBy = "item")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -130,7 +136,7 @@ public class Item implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<UserGiftWrapper> userGiftWrappers = new HashSet<>();
 
-    @OneToMany(mappedBy = "item")
+    @OneToMany(mappedBy = "item",fetch=FetchType.EAGER)
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemImage> itemImages = new HashSet<>();
@@ -420,6 +426,32 @@ public class Item implements Serializable {
 
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public Boolean isIsFeatured() {
+        return isFeatured;
+    }
+
+    public Item isFeatured(Boolean isFeatured) {
+        this.isFeatured = isFeatured;
+        return this;
+    }
+
+    public void setIsFeatured(Boolean isFeatured) {
+        this.isFeatured = isFeatured;
+    }
+
+    public Long getLastFeaturedUPDDate() {
+        return lastFeaturedUPDDate;
+    }
+
+    public Item lastFeaturedUPDDate(Long lastFeaturedUPDDate) {
+        this.lastFeaturedUPDDate = lastFeaturedUPDDate;
+        return this;
+    }
+
+    public void setLastFeaturedUPDDate(Long lastFeaturedUPDDate) {
+        this.lastFeaturedUPDDate = lastFeaturedUPDDate;
     }
 
     public Set<WishListItem> getWishListItems() {
@@ -718,6 +750,8 @@ public class Item implements Serializable {
             ", lastUpdatedDate=" + getLastUpdatedDate() +
             ", createdBy='" + getCreatedBy() + "'" +
             ", lastUpdatedBy='" + getLastUpdatedBy() + "'" +
+            ", isFeatured='" + isIsFeatured() + "'" +
+            ", lastFeaturedUPDDate=" + getLastFeaturedUPDDate() +
             "}";
     }
 }
