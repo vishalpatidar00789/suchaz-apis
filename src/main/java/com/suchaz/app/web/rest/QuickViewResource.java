@@ -45,7 +45,6 @@ public class QuickViewResource {
     public List<QuickViewDTO> getRangeOfQuickView(@PathVariable("idList") String listOfIds) {
         log.debug("REST request to getRangeOfQuickViewDTO from QuickViewDTO with Ip : {}", "User's IP");
         String[] strListOfIds = listOfIds.split(",");
-        System.out.println("size of string array "+ strListOfIds.length);
         Long[] lngListOfIds = new Long[strListOfIds.length];
         for(int i=0;i<strListOfIds.length;i++)
         {

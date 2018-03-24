@@ -1,6 +1,7 @@
 package com.suchaz.app.service.impl;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.suchaz.app.domain.Item;
+import com.suchaz.app.domain.ItemCommonAttribute;
 import com.suchaz.app.domain.ItemImage;
+import com.suchaz.app.repository.ItemCommonAttributeRepository;
 import com.suchaz.app.repository.ItemRepository;
 import com.suchaz.app.service.QuickViewService;
 import com.suchaz.app.service.dto.QuickViewDTO;
@@ -25,10 +28,12 @@ public class QuickViewServiceImpl implements QuickViewService {
     private final Logger log = LoggerFactory.getLogger(QuickViewServiceImpl.class);
 
     private final ItemRepository itemRepository;
+    private final ItemCommonAttributeRepository itemCommonAttributeRepository;
 
 
-    public QuickViewServiceImpl(ItemRepository itemRepository) {
+    public QuickViewServiceImpl(ItemRepository itemRepository,ItemCommonAttributeRepository itemCommonAttributeRepository) {
         this.itemRepository = itemRepository;
+        this.itemCommonAttributeRepository = itemCommonAttributeRepository;
     }
 
     /**
@@ -42,7 +47,9 @@ public class QuickViewServiceImpl implements QuickViewService {
     public QuickViewDTO findOne(Long id) {
         log.debug("Request to get Item : {}", id);
         Item item = itemRepository.findOneWithEagerRelationships(id);
-        return mapItemtoQuickViewDTO(item);
+        QuickViewDTO quickViewDTO = mapItemtoQuickViewDTO(item);
+        quickViewDTO = getCommomAttributeForQuickView(item.getId(), quickViewDTO);
+        return quickViewDTO;
     }
 
 	@Override
@@ -65,12 +72,26 @@ public class QuickViewServiceImpl implements QuickViewService {
 				{
 					//Throw exception here.
 				}
+				quickViewDTO = getCommomAttributeForQuickView(idList[counter],quickViewDTO);
 				listQuickViewDTO.add(quickViewDTO);
+				
 			}
 		}
 		return listQuickViewDTO;
 	}
 	
+	private QuickViewDTO getCommomAttributeForQuickView(Long itemId, QuickViewDTO quickViewDTO) {
+		
+		ArrayList<ItemCommonAttribute> listOfItemCommsonAttribute = (ArrayList<ItemCommonAttribute>) itemCommonAttributeRepository.findItemCommonAttributeQuickViewEnabledForItem(itemId);
+		HashMap<String,String> mapOfQuickViewAttributes = new HashMap<>();
+		for(ItemCommonAttribute itemCommonAttribute : listOfItemCommsonAttribute) 
+		{
+			mapOfQuickViewAttributes.put(itemCommonAttribute.getName(), itemCommonAttribute.getValue());
+		}
+		quickViewDTO.setMapOfItemAttributeAndValues(mapOfQuickViewAttributes);
+		return quickViewDTO;
+	}
+
 	private QuickViewDTO mapItemtoQuickViewDTO(Item item)
 	{
 		QuickViewDTO quickViewDTO = null;

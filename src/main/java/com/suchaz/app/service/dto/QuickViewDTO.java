@@ -4,6 +4,7 @@ package com.suchaz.app.service.dto;
 import javax.persistence.Lob;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -43,7 +44,7 @@ public class QuickViewDTO implements Serializable {
 
     private String vendorVendorName;
     
-    
+    private HashMap<String,String> mapOfItemAttributeAndValues;
     
     @Lob
     private byte[] itemImageTop;
@@ -170,6 +171,14 @@ public class QuickViewDTO implements Serializable {
     public void setVendorVendorName(String vendorVendorName) {
         this.vendorVendorName = vendorVendorName;
     }
+
+	public HashMap<String, String> getMapOfItemAttributeAndValues() {
+		return mapOfItemAttributeAndValues;
+	}
+
+	public void setMapOfItemAttributeAndValues(HashMap<String, String> mapOfItemAttributeAndValues) {
+		this.mapOfItemAttributeAndValues = mapOfItemAttributeAndValues;
+	}
 
 
 }
