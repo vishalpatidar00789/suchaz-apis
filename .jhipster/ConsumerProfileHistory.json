@@ -1,0 +1,83 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "gender",
+            "fieldType": "Gender",
+            "fieldValues": "MALE,FEMALE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "age",
+            "fieldType": "AgeGroup",
+            "fieldValues": "KIDS,TEEN,YOUTH,ELDER",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "inputTraits",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "traitStructure",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "activityStructure",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "hobbyStructure",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "inputReletionship",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "inputHobbies",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "reccomendedProductTypes",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastUpdatedDate",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastUpdatedBy",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180326050158",
+    "entityTableName": "consumer_profile_history",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "suchaz"
+}

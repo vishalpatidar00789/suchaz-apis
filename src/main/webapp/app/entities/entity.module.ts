@@ -32,6 +32,7 @@ import { SuchazapisBuyLaterListSuchazModule } from './buy-later-list-suchaz/buy-
 import { SuchazapisBuyLaterListItemSuchazModule } from './buy-later-list-item-suchaz/buy-later-list-item-suchaz.module';
 import { SuchazapisActivityListSuchazModule } from './activity-list-suchaz/activity-list-suchaz.module';
 import { SuchazapisActivityListItemSuchazModule } from './activity-list-item-suchaz/activity-list-item-suchaz.module';
+import { SuchazapisConsumerProfileHistorySuchazModule } from './consumer-profile-history-suchaz/consumer-profile-history-suchaz.module';
 /* jhipster-needle-add-entity-module-import - JHipster will add entity modules imports here */
 
 @NgModule({
@@ -68,6 +69,7 @@ import { SuchazapisActivityListItemSuchazModule } from './activity-list-item-suc
         SuchazapisBuyLaterListItemSuchazModule,
         SuchazapisActivityListSuchazModule,
         SuchazapisActivityListItemSuchazModule,
+        SuchazapisConsumerProfileHistorySuchazModule,
         /* jhipster-needle-add-entity-module - JHipster will add entity modules here */
     ],
     declarations: [],

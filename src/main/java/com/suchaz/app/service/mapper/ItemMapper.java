@@ -23,7 +23,7 @@ public interface ItemMapper extends EntityMapper<ItemDTO, Item> {
     @Mapping(target = "itemCommonAttributes", ignore = true)
     @Mapping(target = "itemReviews", ignore = true)
     @Mapping(target = "userGiftWrappers", ignore = true)
-    @Mapping(target = "itemImages", ignore = false)
+    @Mapping(target = "itemImages", ignore = true)
     @Mapping(source = "categoryId", target = "category")
     @Mapping(source = "vendorId", target = "vendor")
     @Mapping(target = "stores", ignore = true)

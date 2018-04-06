@@ -12,6 +12,12 @@
             "relationshipName": "itemAttributeType",
             "otherEntityName": "itemAttributeType",
             "otherEntityField": "attributeTypeName"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "category",
+            "otherEntityName": "category",
+            "otherEntityField": "name"
         }
     ],
     "fields": [
@@ -28,6 +34,10 @@
             "fieldValidateRules": [
                 "required"
             ]
+        },
+        {
+            "fieldName": "isQuickViewEnabled",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20180207211042",

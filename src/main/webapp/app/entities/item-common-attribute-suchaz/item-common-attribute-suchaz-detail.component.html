@@ -28,6 +28,12 @@
                 <a [routerLink]="['/item-attribute-type-suchaz', itemCommonAttribute.itemAttributeTypeId]">{{itemCommonAttribute.itemAttributeTypeAttributeTypeName}}</a>
             </div>
         </dd>
+        <dt><span>Category</span></dt>
+        <dd>
+            <div *ngIf="itemCommonAttribute.categoryId">
+                <a [routerLink]="['/category-suchaz', itemCommonAttribute.categoryId]">{{itemCommonAttribute.categoryName}}</a>
+            </div>
+        </dd>
     </dl>
 
     <button type="submit"

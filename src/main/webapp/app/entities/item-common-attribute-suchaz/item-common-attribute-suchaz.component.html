@@ -22,6 +22,7 @@
             <th><span>Is Quick View Enabled</span></th>
             <th><span>Item</span></th>
             <th><span>Item Attribute Type</span></th>
+            <th><span>Category</span></th>
             <th></th>
             </tr>
             </thead>
@@ -39,6 +40,11 @@
                 <td>
                     <div *ngIf="itemCommonAttribute.itemAttributeTypeId">
                         <a [routerLink]="['../item-attribute-type-suchaz', itemCommonAttribute.itemAttributeTypeId  ]" >{{itemCommonAttribute.itemAttributeTypeAttributeTypeName}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="itemCommonAttribute.categoryId">
+                        <a [routerLink]="['../category-suchaz', itemCommonAttribute.categoryId  ]" >{{itemCommonAttribute.categoryName}}</a>
                     </div>
                 </td>
                 <td class="text-right">

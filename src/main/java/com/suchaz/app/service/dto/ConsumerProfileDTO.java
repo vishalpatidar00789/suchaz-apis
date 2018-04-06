@@ -38,6 +38,16 @@ public class ConsumerProfileDTO implements Serializable {
 
     private String reccomendedProductTypes;
 
+    @NotNull
+    private Long createdDate;
+
+    private Long lastUpdatedDate;
+
+    @NotNull
+    private String createdBy;
+
+    private String lastUpdatedBy;
+
     private Long suchAzUserId;
 
     private String suchAzUserEmail;
@@ -130,6 +140,38 @@ public class ConsumerProfileDTO implements Serializable {
         this.reccomendedProductTypes = reccomendedProductTypes;
     }
 
+    public Long getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Long createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Long getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
+
+    public void setLastUpdatedDate(Long lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
+    }
+
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+    }
+
     public Long getSuchAzUserId() {
         return suchAzUserId;
     }
@@ -181,6 +223,10 @@ public class ConsumerProfileDTO implements Serializable {
             ", inputReletionship='" + getInputReletionship() + "'" +
             ", inputHobbies='" + getInputHobbies() + "'" +
             ", reccomendedProductTypes='" + getReccomendedProductTypes() + "'" +
+            ", createdDate=" + getCreatedDate() +
+            ", lastUpdatedDate=" + getLastUpdatedDate() +
+            ", createdBy='" + getCreatedBy() + "'" +
+            ", lastUpdatedBy='" + getLastUpdatedBy() + "'" +
             "}";
     }
 }

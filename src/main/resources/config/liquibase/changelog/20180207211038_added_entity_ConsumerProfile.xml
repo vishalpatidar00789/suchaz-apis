@@ -62,6 +62,22 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="created_date" type="bigint">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="last_updated_date" type="bigint">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="created_by" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="last_updated_by" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="such_az_user_id" type="bigint">
                 <constraints nullable="true" />
             </column>

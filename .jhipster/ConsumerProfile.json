@@ -56,6 +56,28 @@
         {
             "fieldName": "reccomendedProductTypes",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "createdDate",
+            "fieldType": "Long",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastUpdatedDate",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "lastUpdatedBy",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20180207211038",
