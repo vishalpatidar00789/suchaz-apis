@@ -18,6 +18,8 @@ import com.suchaz.app.repository.ItemRepository;
 import com.suchaz.app.service.QuickViewService;
 import com.suchaz.app.service.dto.QuickViewDTO;
 
+import com.suchaz.app.domain.Offer;
+
 /**
  * Service Implementation for managing Item.
  */
@@ -111,7 +113,11 @@ public class QuickViewServiceImpl implements QuickViewService {
 			quickViewDTO.setTitle(item.getTitle());
 			quickViewDTO.setVendorId(item.getVendor().getId());
 			quickViewDTO.setVendorVendorName(item.getVendor().getVendorName());
+			quickViewDTO.setCustomerAvgRating(item.getCustomerAvgRating());
 			
+			//Adding Offers
+			Set<Offer> itemOffersSet = item.getOffers();
+			addOffersToQuickViewDTO(quickViewDTO,itemOffersSet);
 			// Adding Images
 			Set<ItemImage> itemImageSet = item.getItemImages();
 			addItemImageToQuickViewDTO(quickViewDTO,itemImageSet);
@@ -121,9 +127,15 @@ public class QuickViewServiceImpl implements QuickViewService {
 		return quickViewDTO;
 		
 	}
+	
+	private void addOffersToQuickViewDTO(QuickViewDTO quickViewDTO, Set<Offer> itemOffersSet) {
+		if(itemOffersSet.iterator().hasNext()) {
+			quickViewDTO.getOffers().add(itemOffersSet.iterator().next().getOfferName());
+		}
+	}
 
 	private void addItemImageToQuickViewDTO(QuickViewDTO quickViewDTO, Set<ItemImage> itemImageSet) {
-		
+			
 		
 		// Need to add Logic here for filtering images to top and hover
 		if(itemImageSet.iterator().hasNext()) {
