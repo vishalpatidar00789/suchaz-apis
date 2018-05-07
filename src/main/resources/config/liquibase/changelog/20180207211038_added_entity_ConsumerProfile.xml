@@ -78,10 +78,13 @@
                 <constraints nullable="true" />
             </column>
 
+<<<<<<< HEAD
             <column name="is_logged_in_user" type="bit">
                 <constraints nullable="false" />
             </column>
 
+=======
+>>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
             <column name="such_az_user_id" type="bigint">
                 <constraints nullable="true" />
             </column>

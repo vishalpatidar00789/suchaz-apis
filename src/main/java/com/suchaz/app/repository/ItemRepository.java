@@ -18,11 +18,14 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     @Query("select item from Item item left join fetch item.offers where item.id =:id")
     Item findOneWithEagerRelationships(@Param("id") Long id);
+<<<<<<< HEAD
     
     @Query("select item from Item item where item.category.categoryCode IN (:listCateogryCodes)")
     List<Item> findAllforCategory(String[] listCateogryCodes);
     
     @Query("select item.id from Item item where item.category.categoryCode IN (:listCateogryCodes)")
     List<Long> findAllItemsIdsforCategory(String[] listCateogryCodes);
+=======
+>>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
 
 }

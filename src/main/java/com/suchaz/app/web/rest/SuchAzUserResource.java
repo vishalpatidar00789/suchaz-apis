@@ -1,12 +1,13 @@
 package com.suchaz.app.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import com.suchaz.app.service.SuchAzUserService;
-import com.suchaz.app.web.rest.errors.BadRequestAlertException;
-import com.suchaz.app.web.rest.util.HeaderUtil;
-import com.suchaz.app.web.rest.util.PaginationUtil;
-import com.suchaz.app.service.dto.SuchAzUserDTO;
-import io.github.jhipster.web.util.ResponseUtil;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -14,15 +15,29 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
+import com.codahale.metrics.annotation.Timed;
+import com.suchaz.app.domain.enumeration.Status;
+import com.suchaz.app.domain.enumeration.UserRole;
+import com.suchaz.app.service.MailService;
+import com.suchaz.app.service.SuchAzUserService;
+import com.suchaz.app.service.dto.SuchAzUserDTO;
+import com.suchaz.app.service.dto.UserProfileDTO;
+import com.suchaz.app.service.view.SignUpView;
+import com.suchaz.app.web.rest.errors.BadRequestAlertException;
+import com.suchaz.app.web.rest.util.HeaderUtil;
+import com.suchaz.app.web.rest.util.PaginationUtil;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.StreamSupport;
+import io.github.jhipster.web.util.ResponseUtil;
 
 /**
  * REST controller for managing SuchAzUser.
@@ -36,9 +51,52 @@ public class SuchAzUserResource {
     private static final String ENTITY_NAME = "suchAzUser";
 
     private final SuchAzUserService suchAzUserService;
+    
+    private final MailService mailService;
 
-    public SuchAzUserResource(SuchAzUserService suchAzUserService) {
+    public SuchAzUserResource(SuchAzUserService suchAzUserService, MailService mailService) {
         this.suchAzUserService = suchAzUserService;
+        this.mailService = mailService;
+    }
+    /**
+     * POST  /such-az-users : Create a new suchAzUser.
+     *
+     * @param suchAzUserDTO the suchAzUserDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new suchAzUserDTO, or with status 400 (Bad Request) if the suchAzUser has already an ID
+     * @throws URISyntaxException if the Location URI syntax is incorrect
+     */
+    @PostMapping("/signup")
+    @Timed
+    public ResponseEntity<String> signUP(@Valid @RequestBody SignUpView signUpView) throws URISyntaxException {
+        log.debug("REST request to SignUp SuchAzUser : {}", signUpView);
+        
+        UserProfileDTO userProfileDTO = new UserProfileDTO();
+        userProfileDTO.setFullName(signUpView.getFullName());
+        userProfileDTO.setCreatedBy("SYSTEM");
+        userProfileDTO.setCreatedDate(new Date().getTime());
+        SuchAzUserDTO suchAzUserDTO = new SuchAzUserDTO();
+        suchAzUserDTO.setEmail(signUpView.getEmail());
+        suchAzUserDTO.setPassword(signUpView.getPassword());
+        suchAzUserDTO.setRole(UserRole.GIFTER);
+        suchAzUserDTO.setIsVarified("N");
+        suchAzUserDTO.setStatus(Status.INACTIVE);
+        suchAzUserDTO.setCreatedBy("SYSTEM");
+        suchAzUserDTO.setCreatedDate(new Date().getTime());
+        return createSuchAzUser(suchAzUserDTO);
+    }
+    
+    
+    public ResponseEntity<String> createSuchAzUser(@Valid SuchAzUserDTO suchAzUserDTO) throws URISyntaxException {
+        log.debug("REST request to save SuchAzUser : {}", suchAzUserDTO);
+        if (suchAzUserDTO.getId() != null) {
+            throw new BadRequestAlertException("A new suchAzUser cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        SuchAzUserDTO result = suchAzUserService.save(suchAzUserDTO);
+        mailService.sendActivationEmailToSuchAzUser(suchAzUserDTO);
+        return ResponseEntity.ok()//created(new URI("/api/such-az-users/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
+            .body("Success");
+            //.build();
     }
 
     /**
@@ -47,7 +105,7 @@ public class SuchAzUserResource {
      * @param suchAzUserDTO the suchAzUserDTO to create
      * @return the ResponseEntity with status 201 (Created) and with body the new suchAzUserDTO, or with status 400 (Bad Request) if the suchAzUser has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
-     */
+     
     @PostMapping("/such-az-users")
     @Timed
     public ResponseEntity<SuchAzUserDTO> createSuchAzUser(@Valid @RequestBody SuchAzUserDTO suchAzUserDTO) throws URISyntaxException {
@@ -59,7 +117,8 @@ public class SuchAzUserResource {
         return ResponseEntity.created(new URI("/api/such-az-users/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
-    }
+    }*/
+    
 
     /**
      * PUT  /such-az-users : Updates an existing suchAzUser.
@@ -72,15 +131,15 @@ public class SuchAzUserResource {
      */
     @PutMapping("/such-az-users")
     @Timed
-    public ResponseEntity<SuchAzUserDTO> updateSuchAzUser(@Valid @RequestBody SuchAzUserDTO suchAzUserDTO) throws URISyntaxException {
+    public ResponseEntity<String> updateSuchAzUser(@Valid @RequestBody SuchAzUserDTO suchAzUserDTO) throws URISyntaxException {
         log.debug("REST request to update SuchAzUser : {}", suchAzUserDTO);
         if (suchAzUserDTO.getId() == null) {
             return createSuchAzUser(suchAzUserDTO);
         }
         SuchAzUserDTO result = suchAzUserService.save(suchAzUserDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, suchAzUserDTO.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, suchAzUserDTO.getId().toString()))
+                .body("Success");
     }
 
     /**

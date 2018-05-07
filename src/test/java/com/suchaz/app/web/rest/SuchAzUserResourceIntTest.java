@@ -4,6 +4,7 @@ import com.suchaz.app.SuchazapisApp;
 
 import com.suchaz.app.domain.SuchAzUser;
 import com.suchaz.app.repository.SuchAzUserRepository;
+import com.suchaz.app.service.MailService;
 import com.suchaz.app.service.SuchAzUserService;
 import com.suchaz.app.service.dto.SuchAzUserDTO;
 import com.suchaz.app.service.mapper.SuchAzUserMapper;
@@ -102,6 +103,9 @@ public class SuchAzUserResourceIntTest {
 
     @Autowired
     private SuchAzUserService suchAzUserService;
+    
+    @Autowired
+    private MailService mailService;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -122,7 +126,7 @@ public class SuchAzUserResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final SuchAzUserResource suchAzUserResource = new SuchAzUserResource(suchAzUserService);
+        final SuchAzUserResource suchAzUserResource = new SuchAzUserResource(suchAzUserService, mailService);
         this.restSuchAzUserMockMvc = MockMvcBuilders.standaloneSetup(suchAzUserResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

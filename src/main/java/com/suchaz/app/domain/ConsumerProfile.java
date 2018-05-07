@@ -75,10 +75,13 @@ public class ConsumerProfile implements Serializable {
     @Column(name = "last_updated_by")
     private String lastUpdatedBy;
 
+<<<<<<< HEAD
     @NotNull
     @Column(name = "is_logged_in_user", nullable = false)
     private Boolean isLoggedInUser;
 
+=======
+>>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
     @ManyToOne
     private SuchAzUser suchAzUser;
 
@@ -273,6 +276,7 @@ public class ConsumerProfile implements Serializable {
         this.lastUpdatedBy = lastUpdatedBy;
     }
 
+<<<<<<< HEAD
     public Boolean isIsLoggedInUser() {
         return isLoggedInUser;
     }
@@ -286,6 +290,8 @@ public class ConsumerProfile implements Serializable {
         this.isLoggedInUser = isLoggedInUser;
     }
 
+=======
+>>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
     public SuchAzUser getSuchAzUser() {
         return suchAzUser;
     }
@@ -338,7 +344,10 @@ public class ConsumerProfile implements Serializable {
             ", lastUpdatedDate=" + getLastUpdatedDate() +
             ", createdBy='" + getCreatedBy() + "'" +
             ", lastUpdatedBy='" + getLastUpdatedBy() + "'" +
+<<<<<<< HEAD
             ", isLoggedInUser='" + isIsLoggedInUser() + "'" +
+=======
+>>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
             "}";
     }
 }
