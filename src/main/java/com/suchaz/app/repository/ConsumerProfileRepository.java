@@ -13,4 +13,10 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface ConsumerProfileRepository extends JpaRepository<ConsumerProfile, Long> {
 
+	@Query("Select consumerProfile from ConsumerProfile consumerProfile where consumerProfile.suchAzUser.email like CONCAT(?1,'%') and isLoggedInUser = 'Y'")
+	ConsumerProfile findOneWithSuchAzEmailId(String email);
+
+	@Query("Select consumerProfile from ConsumerProfile consumerProfile where consumerProfile.suchAzUser.email like CONCAT(?1,'%') and isLoggedInUser = 'N'")
+	ConsumerProfile findOneWithUniqueIdentifierForNonLoggedInUser(String userIdentifier);
+
 }

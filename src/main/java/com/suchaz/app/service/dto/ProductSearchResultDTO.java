@@ -16,17 +16,17 @@ public class ProductSearchResultDTO implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long suchAzUserId;
-	private ArrayList<ItemDTO> listOfItems;
+	private ArrayList<QuickViewDTO> listOfItems;
 	public Long getSuchAzUserId() {
 		return suchAzUserId;
 	}
 	public void setSuchAzUserId(Long suchAzUserId) {
 		this.suchAzUserId = suchAzUserId;
 	}
-	public ArrayList<ItemDTO> getListOfItems() {
+	public ArrayList<QuickViewDTO> getListOfItems() {
 		return listOfItems;
 	}
-	public void setListOfItems(ArrayList<ItemDTO> listOfItems) {
+	public void setListOfItems(ArrayList<QuickViewDTO> listOfItems) {
 		this.listOfItems = listOfItems;
 	}
     

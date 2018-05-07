@@ -20,5 +20,11 @@
                                  referencedColumnNames="id"
                                  referencedTableName="item_attribute_type"/>
 
+        <addForeignKeyConstraint baseColumnNames="category_id"
+                                 baseTableName="item_common_attribute"
+                                 constraintName="fk_item_common_attribute_category_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="category"/>
+
     </changeSet>
 </databaseChangeLog>

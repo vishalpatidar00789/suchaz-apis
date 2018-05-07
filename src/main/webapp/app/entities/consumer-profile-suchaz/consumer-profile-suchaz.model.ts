@@ -25,7 +25,13 @@ export class ConsumerProfileSuchaz implements BaseEntity {
         public inputReletionship?: string,
         public inputHobbies?: string,
         public reccomendedProductTypes?: string,
+        public createdDate?: number,
+        public lastUpdatedDate?: number,
+        public createdBy?: string,
+        public lastUpdatedBy?: string,
+        public isLoggedInUser?: boolean,
         public suchAzUserId?: number,
     ) {
+        this.isLoggedInUser = false;
     }
 }

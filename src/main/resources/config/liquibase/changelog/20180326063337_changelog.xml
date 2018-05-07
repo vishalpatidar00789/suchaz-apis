@@ -1,0 +1,64 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <changeSet author="DJ (generated)" id="1522046039526-1">
+        <addColumn tableName="item_common_attribute">
+            <column name="category_id" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="DJ (generated)" id="1522046039526-2">
+        <addColumn tableName="consumer_profile">
+            <column name="created_by" type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="DJ (generated)" id="1522046039526-3">
+        <addColumn tableName="consumer_profile">
+            <column name="created_date" type="bigint">
+                <constraints nullable="false"/>
+            </column>
+        </addColumn>
+    </changeSet>
+    <changeSet author="DJ (generated)" id="1522046039526-4">
+        <addColumn tableName="item">
+            <column name="is_featured" type="bit"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="DJ (generated)" id="1522046039526-5">
+        <addColumn tableName="item_common_attribute">
+            <column name="is_quick_view_enabled" type="bit"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="DJ (generated)" id="1522046039526-6">
+        <addColumn tableName="item">
+            <column name="last_featured_upd_date" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="DJ (generated)" id="1522046039526-7">
+        <addColumn tableName="consumer_profile">
+            <column name="last_updated_by" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="DJ (generated)" id="1522046039526-8">
+        <addColumn tableName="consumer_profile">
+            <column name="last_updated_date" type="bigint"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="DJ (generated)" id="1522046039526-9">
+        <addColumn tableName="such_az_user">
+            <column name="verify_token" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="DJ (generated)" id="1522046039526-10">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="item_common_attribute" constraintName="FK4mvvyuu5loghaixii2d42y819" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="category"/>
+    </changeSet>
+    <changeSet author="DJ (generated)" id="1522046039526-11">
+        <dropForeignKeyConstraint baseTableName="weekly_feature_product" constraintName="fk_weekly_feature_product_item_id"/>
+    </changeSet>
+    <changeSet author="DJ (generated)" id="1522046039526-12">
+        <dropUniqueConstraint constraintName="item_id" tableName="weekly_feature_product"/>
+    </changeSet>
+    <changeSet author="DJ (generated)" id="1522046039526-13">
+        <dropTable tableName="weekly_feature_product"/>
+    </changeSet>
+</databaseChangeLog>

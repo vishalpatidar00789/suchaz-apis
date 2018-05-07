@@ -37,6 +37,7 @@
     <include file="config/liquibase/changelog/20180207211047_added_entity_BuyLaterListItem.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180207211048_added_entity_ActivityList.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180207211049_added_entity_ActivityListItem.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20180326050158_added_entity_ConsumerProfileHistory.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20180207211018_added_entity_constraints_SuchAzUser.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20180207211019_added_entity_constraints_UserProfile.xml" relativeToChangelogFile="false"/>

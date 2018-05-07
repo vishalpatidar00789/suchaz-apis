@@ -80,6 +80,53 @@
             <input type="text" class="form-control" name="reccomendedProductTypes" id="field_reccomendedProductTypes"
                 [(ngModel)]="consumerProfile.reccomendedProductTypes" />
         </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdDate">Created Date</label>
+            <input type="number" class="form-control" name="createdDate" id="field_createdDate"
+                [(ngModel)]="consumerProfile.createdDate" required/>
+            <div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.createdDate?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedDate">Last Updated Date</label>
+            <input type="number" class="form-control" name="lastUpdatedDate" id="field_lastUpdatedDate"
+                [(ngModel)]="consumerProfile.lastUpdatedDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdBy">Created By</label>
+            <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                [(ngModel)]="consumerProfile.createdBy" required/>
+            <div [hidden]="!(editForm.controls.createdBy?.dirty && editForm.controls.createdBy?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdBy?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedBy">Last Updated By</label>
+            <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                [(ngModel)]="consumerProfile.lastUpdatedBy" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_isLoggedInUser">Is Logged In User</label>
+            <input type="checkbox" class="form-control" name="isLoggedInUser" id="field_isLoggedInUser"
+                [(ngModel)]="consumerProfile.isLoggedInUser" />
+            <div [hidden]="!(editForm.controls.isLoggedInUser?.dirty && editForm.controls.isLoggedInUser?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.isLoggedInUser?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
 
         <div class="form-group">
             <label class="form-control-label" for="field_suchAzUser">Such Az User</label>

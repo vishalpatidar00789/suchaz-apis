@@ -61,6 +61,24 @@ public class ConsumerProfile implements Serializable {
     @Column(name = "reccomended_product_types")
     private String reccomendedProductTypes;
 
+    @NotNull
+    @Column(name = "created_date", nullable = false)
+    private Long createdDate;
+
+    @Column(name = "last_updated_date")
+    private Long lastUpdatedDate;
+
+    @NotNull
+    @Column(name = "created_by", nullable = false)
+    private String createdBy;
+
+    @Column(name = "last_updated_by")
+    private String lastUpdatedBy;
+
+    @NotNull
+    @Column(name = "is_logged_in_user", nullable = false)
+    private Boolean isLoggedInUser;
+
     @ManyToOne
     private SuchAzUser suchAzUser;
 
@@ -203,6 +221,71 @@ public class ConsumerProfile implements Serializable {
         this.reccomendedProductTypes = reccomendedProductTypes;
     }
 
+    public Long getCreatedDate() {
+        return createdDate;
+    }
+
+    public ConsumerProfile createdDate(Long createdDate) {
+        this.createdDate = createdDate;
+        return this;
+    }
+
+    public void setCreatedDate(Long createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Long getLastUpdatedDate() {
+        return lastUpdatedDate;
+    }
+
+    public ConsumerProfile lastUpdatedDate(Long lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+        return this;
+    }
+
+    public void setLastUpdatedDate(Long lastUpdatedDate) {
+        this.lastUpdatedDate = lastUpdatedDate;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public ConsumerProfile createdBy(String createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public String getLastUpdatedBy() {
+        return lastUpdatedBy;
+    }
+
+    public ConsumerProfile lastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+        return this;
+    }
+
+    public void setLastUpdatedBy(String lastUpdatedBy) {
+        this.lastUpdatedBy = lastUpdatedBy;
+    }
+
+    public Boolean isIsLoggedInUser() {
+        return isLoggedInUser;
+    }
+
+    public ConsumerProfile isLoggedInUser(Boolean isLoggedInUser) {
+        this.isLoggedInUser = isLoggedInUser;
+        return this;
+    }
+
+    public void setIsLoggedInUser(Boolean isLoggedInUser) {
+        this.isLoggedInUser = isLoggedInUser;
+    }
+
     public SuchAzUser getSuchAzUser() {
         return suchAzUser;
     }
@@ -251,6 +334,11 @@ public class ConsumerProfile implements Serializable {
             ", inputReletionship='" + getInputReletionship() + "'" +
             ", inputHobbies='" + getInputHobbies() + "'" +
             ", reccomendedProductTypes='" + getReccomendedProductTypes() + "'" +
+            ", createdDate=" + getCreatedDate() +
+            ", lastUpdatedDate=" + getLastUpdatedDate() +
+            ", createdBy='" + getCreatedBy() + "'" +
+            ", lastUpdatedBy='" + getLastUpdatedBy() + "'" +
+            ", isLoggedInUser='" + isIsLoggedInUser() + "'" +
             "}";
     }
 }

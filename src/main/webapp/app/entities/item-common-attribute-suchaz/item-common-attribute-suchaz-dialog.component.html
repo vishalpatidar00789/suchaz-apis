@@ -54,6 +54,13 @@
                 <option [ngValue]="itemAttributeTypeOption.id" *ngFor="let itemAttributeTypeOption of itemattributetypes; trackBy: trackItemAttributeTypeById">{{itemAttributeTypeOption.attributeTypeName}}</option>
             </select>
         </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_category">Category</label>
+            <select class="form-control" id="field_category" name="category" [(ngModel)]="itemCommonAttribute.categoryId" >
+                <option [ngValue]="null"></option>
+                <option [ngValue]="categoryOption.id" *ngFor="let categoryOption of categories; trackBy: trackCategoryById">{{categoryOption.name}}</option>
+            </select>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">

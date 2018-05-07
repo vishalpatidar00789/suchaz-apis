@@ -40,6 +40,9 @@ public class ItemCommonAttribute implements Serializable {
     @ManyToOne
     private ItemAttributeType itemAttributeType;
 
+    @ManyToOne
+    private Category category;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -112,6 +115,19 @@ public class ItemCommonAttribute implements Serializable {
 
     public void setItemAttributeType(ItemAttributeType itemAttributeType) {
         this.itemAttributeType = itemAttributeType;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public ItemCommonAttribute category(Category category) {
+        this.category = category;
+        return this;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

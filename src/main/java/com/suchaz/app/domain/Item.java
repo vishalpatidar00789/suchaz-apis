@@ -136,7 +136,7 @@ public class Item implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<UserGiftWrapper> userGiftWrappers = new HashSet<>();
 
-    @OneToMany(mappedBy = "item",fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "item")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemImage> itemImages = new HashSet<>();

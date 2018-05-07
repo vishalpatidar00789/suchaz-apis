@@ -116,6 +116,10 @@
             "fieldValues": "FACEBOOK,EMAIL"
         },
         {
+            "fieldName": "verifyToken",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "createdDate",
             "fieldType": "Long",
             "fieldValidateRules": [

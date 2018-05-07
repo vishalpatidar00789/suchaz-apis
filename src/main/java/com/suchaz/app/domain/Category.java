@@ -73,7 +73,12 @@ public class Category implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<ItemAttributeType> itemAttributeTypes = new HashSet<>();
 
-    @OneToMany(mappedBy = "category", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "category")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<ItemCommonAttribute> itemCommonAttributes = new HashSet<>();
+
+    @OneToMany(mappedBy = "category")
     @JsonIgnore
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<CategoryImage> categoryImages = new HashSet<>();
@@ -267,6 +272,31 @@ public class Category implements Serializable {
 
     public void setItemAttributeTypes(Set<ItemAttributeType> itemAttributeTypes) {
         this.itemAttributeTypes = itemAttributeTypes;
+    }
+
+    public Set<ItemCommonAttribute> getItemCommonAttributes() {
+        return itemCommonAttributes;
+    }
+
+    public Category itemCommonAttributes(Set<ItemCommonAttribute> itemCommonAttributes) {
+        this.itemCommonAttributes = itemCommonAttributes;
+        return this;
+    }
+
+    public Category addItemCommonAttribute(ItemCommonAttribute itemCommonAttribute) {
+        this.itemCommonAttributes.add(itemCommonAttribute);
+        itemCommonAttribute.setCategory(this);
+        return this;
+    }
+
+    public Category removeItemCommonAttribute(ItemCommonAttribute itemCommonAttribute) {
+        this.itemCommonAttributes.remove(itemCommonAttribute);
+        itemCommonAttribute.setCategory(null);
+        return this;
+    }
+
+    public void setItemCommonAttributes(Set<ItemCommonAttribute> itemCommonAttributes) {
+        this.itemCommonAttributes = itemCommonAttributes;
     }
 
     public Set<CategoryImage> getCategoryImages() {

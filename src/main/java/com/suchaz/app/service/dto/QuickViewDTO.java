@@ -44,7 +44,11 @@ public class QuickViewDTO implements Serializable {
 
     private String vendorVendorName;
     
+    private String customerAvgRating;
+    
     private HashMap<String,String> mapOfItemAttributeAndValues;
+    
+    private Set<String> offers;
     
     @Lob
     private byte[] itemImageTop;
@@ -171,6 +175,14 @@ public class QuickViewDTO implements Serializable {
     public void setVendorVendorName(String vendorVendorName) {
         this.vendorVendorName = vendorVendorName;
     }
+    
+	public String getCustomerAvgRating() {
+		return customerAvgRating;
+	}
+
+	public void setCustomerAvgRating(String customerAvgRating) {
+		this.customerAvgRating = customerAvgRating;
+	}
 
 	public HashMap<String, String> getMapOfItemAttributeAndValues() {
 		return mapOfItemAttributeAndValues;
@@ -178,6 +190,14 @@ public class QuickViewDTO implements Serializable {
 
 	public void setMapOfItemAttributeAndValues(HashMap<String, String> mapOfItemAttributeAndValues) {
 		this.mapOfItemAttributeAndValues = mapOfItemAttributeAndValues;
+	}
+
+	public Set<String> getOffers() {
+		return offers;
+	}
+
+	public void setOffers(Set<String> offers) {
+		this.offers = offers;
 	}
 
 

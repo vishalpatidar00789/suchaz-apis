@@ -183,6 +183,14 @@
         {
             "fieldName": "lastUpdatedBy",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "isFeatured",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "lastFeaturedUPDDate",
+            "fieldType": "Long"
         }
     ],
     "changelogDate": "20180207211039",

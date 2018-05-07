@@ -1,13 +1,11 @@
 package com.suchaz.app.service.dto;
 
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
-
-import javax.validation.constraints.NotNull;
-
+import java.util.Objects;
 import com.suchaz.app.domain.enumeration.Status;
 
 /**
@@ -41,18 +39,8 @@ public class CategoryDTO implements Serializable {
     private Long parentId;
 
     private String parentName;
-    
-    private Set<CategoryImageDTO> categoryImages = new HashSet<>();
-    
-    public Set<CategoryImageDTO> getCategoryImages() {
-		return categoryImages;
-	}
 
-	public void setCategoryImages(Set<CategoryImageDTO> categoryImages) {
-		this.categoryImages = categoryImages;
-	}
-
-	public Long getId() {
+    public Long getId() {
         return id;
     }
 

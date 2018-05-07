@@ -21,6 +21,12 @@
         },
         {
             "relationshipType": "one-to-many",
+            "relationshipName": "itemCommonAttribute",
+            "otherEntityName": "itemCommonAttribute",
+            "otherEntityRelationshipName": "category"
+        },
+        {
+            "relationshipType": "one-to-many",
             "relationshipName": "categoryImage",
             "otherEntityName": "categoryImage",
             "otherEntityRelationshipName": "category"

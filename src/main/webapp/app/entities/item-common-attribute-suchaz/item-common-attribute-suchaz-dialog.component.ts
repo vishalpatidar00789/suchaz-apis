@@ -11,6 +11,7 @@ import { ItemCommonAttributeSuchazPopupService } from './item-common-attribute-s
 import { ItemCommonAttributeSuchazService } from './item-common-attribute-suchaz.service';
 import { ItemSuchaz, ItemSuchazService } from '../item-suchaz';
 import { ItemAttributeTypeSuchaz, ItemAttributeTypeSuchazService } from '../item-attribute-type-suchaz';
+import { CategorySuchaz, CategorySuchazService } from '../category-suchaz';
 
 @Component({
     selector: 'jhi-item-common-attribute-suchaz-dialog',
@@ -25,12 +26,15 @@ export class ItemCommonAttributeSuchazDialogComponent implements OnInit {
 
     itemattributetypes: ItemAttributeTypeSuchaz[];
 
+    categories: CategorySuchaz[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
         private itemCommonAttributeService: ItemCommonAttributeSuchazService,
         private itemService: ItemSuchazService,
         private itemAttributeTypeService: ItemAttributeTypeSuchazService,
+        private categoryService: CategorySuchazService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -41,6 +45,8 @@ export class ItemCommonAttributeSuchazDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<ItemSuchaz[]>) => { this.items = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.itemAttributeTypeService.query()
             .subscribe((res: HttpResponse<ItemAttributeTypeSuchaz[]>) => { this.itemattributetypes = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.categoryService.query()
+            .subscribe((res: HttpResponse<CategorySuchaz[]>) => { this.categories = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -82,6 +88,10 @@ export class ItemCommonAttributeSuchazDialogComponent implements OnInit {
     }
 
     trackItemAttributeTypeById(index: number, item: ItemAttributeTypeSuchaz) {
+        return item.id;
+    }
+
+    trackCategoryById(index: number, item: CategorySuchaz) {
         return item.id;
     }
 }

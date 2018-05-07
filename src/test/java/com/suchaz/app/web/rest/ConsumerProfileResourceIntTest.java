@@ -73,6 +73,21 @@ public class ConsumerProfileResourceIntTest {
     private static final String DEFAULT_RECCOMENDED_PRODUCT_TYPES = "AAAAAAAAAA";
     private static final String UPDATED_RECCOMENDED_PRODUCT_TYPES = "BBBBBBBBBB";
 
+    private static final Long DEFAULT_CREATED_DATE = 1L;
+    private static final Long UPDATED_CREATED_DATE = 2L;
+
+    private static final Long DEFAULT_LAST_UPDATED_DATE = 1L;
+    private static final Long UPDATED_LAST_UPDATED_DATE = 2L;
+
+    private static final String DEFAULT_CREATED_BY = "AAAAAAAAAA";
+    private static final String UPDATED_CREATED_BY = "BBBBBBBBBB";
+
+    private static final String DEFAULT_LAST_UPDATED_BY = "AAAAAAAAAA";
+    private static final String UPDATED_LAST_UPDATED_BY = "BBBBBBBBBB";
+
+    private static final Boolean DEFAULT_IS_LOGGED_IN_USER = false;
+    private static final Boolean UPDATED_IS_LOGGED_IN_USER = true;
+
     @Autowired
     private ConsumerProfileRepository consumerProfileRepository;
 
@@ -126,7 +141,12 @@ public class ConsumerProfileResourceIntTest {
             .hobbyStructure(DEFAULT_HOBBY_STRUCTURE)
             .inputReletionship(DEFAULT_INPUT_RELETIONSHIP)
             .inputHobbies(DEFAULT_INPUT_HOBBIES)
-            .reccomendedProductTypes(DEFAULT_RECCOMENDED_PRODUCT_TYPES);
+            .reccomendedProductTypes(DEFAULT_RECCOMENDED_PRODUCT_TYPES)
+            .createdDate(DEFAULT_CREATED_DATE)
+            .lastUpdatedDate(DEFAULT_LAST_UPDATED_DATE)
+            .createdBy(DEFAULT_CREATED_BY)
+            .lastUpdatedBy(DEFAULT_LAST_UPDATED_BY)
+            .isLoggedInUser(DEFAULT_IS_LOGGED_IN_USER);
         return consumerProfile;
     }
 
@@ -161,6 +181,11 @@ public class ConsumerProfileResourceIntTest {
         assertThat(testConsumerProfile.getInputReletionship()).isEqualTo(DEFAULT_INPUT_RELETIONSHIP);
         assertThat(testConsumerProfile.getInputHobbies()).isEqualTo(DEFAULT_INPUT_HOBBIES);
         assertThat(testConsumerProfile.getReccomendedProductTypes()).isEqualTo(DEFAULT_RECCOMENDED_PRODUCT_TYPES);
+        assertThat(testConsumerProfile.getCreatedDate()).isEqualTo(DEFAULT_CREATED_DATE);
+        assertThat(testConsumerProfile.getLastUpdatedDate()).isEqualTo(DEFAULT_LAST_UPDATED_DATE);
+        assertThat(testConsumerProfile.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
+        assertThat(testConsumerProfile.getLastUpdatedBy()).isEqualTo(DEFAULT_LAST_UPDATED_BY);
+        assertThat(testConsumerProfile.isIsLoggedInUser()).isEqualTo(DEFAULT_IS_LOGGED_IN_USER);
     }
 
     @Test
@@ -223,6 +248,63 @@ public class ConsumerProfileResourceIntTest {
 
     @Test
     @Transactional
+    public void checkCreatedDateIsRequired() throws Exception {
+        int databaseSizeBeforeTest = consumerProfileRepository.findAll().size();
+        // set the field null
+        consumerProfile.setCreatedDate(null);
+
+        // Create the ConsumerProfile, which fails.
+        ConsumerProfileDTO consumerProfileDTO = consumerProfileMapper.toDto(consumerProfile);
+
+        restConsumerProfileMockMvc.perform(post("/api/consumer-profiles")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(consumerProfileDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<ConsumerProfile> consumerProfileList = consumerProfileRepository.findAll();
+        assertThat(consumerProfileList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkCreatedByIsRequired() throws Exception {
+        int databaseSizeBeforeTest = consumerProfileRepository.findAll().size();
+        // set the field null
+        consumerProfile.setCreatedBy(null);
+
+        // Create the ConsumerProfile, which fails.
+        ConsumerProfileDTO consumerProfileDTO = consumerProfileMapper.toDto(consumerProfile);
+
+        restConsumerProfileMockMvc.perform(post("/api/consumer-profiles")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(consumerProfileDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<ConsumerProfile> consumerProfileList = consumerProfileRepository.findAll();
+        assertThat(consumerProfileList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkIsLoggedInUserIsRequired() throws Exception {
+        int databaseSizeBeforeTest = consumerProfileRepository.findAll().size();
+        // set the field null
+        consumerProfile.setIsLoggedInUser(null);
+
+        // Create the ConsumerProfile, which fails.
+        ConsumerProfileDTO consumerProfileDTO = consumerProfileMapper.toDto(consumerProfile);
+
+        restConsumerProfileMockMvc.perform(post("/api/consumer-profiles")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(consumerProfileDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<ConsumerProfile> consumerProfileList = consumerProfileRepository.findAll();
+        assertThat(consumerProfileList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllConsumerProfiles() throws Exception {
         // Initialize the database
         consumerProfileRepository.saveAndFlush(consumerProfile);
@@ -241,7 +323,12 @@ public class ConsumerProfileResourceIntTest {
             .andExpect(jsonPath("$.[*].hobbyStructure").value(hasItem(DEFAULT_HOBBY_STRUCTURE.toString())))
             .andExpect(jsonPath("$.[*].inputReletionship").value(hasItem(DEFAULT_INPUT_RELETIONSHIP.toString())))
             .andExpect(jsonPath("$.[*].inputHobbies").value(hasItem(DEFAULT_INPUT_HOBBIES.toString())))
-            .andExpect(jsonPath("$.[*].reccomendedProductTypes").value(hasItem(DEFAULT_RECCOMENDED_PRODUCT_TYPES.toString())));
+            .andExpect(jsonPath("$.[*].reccomendedProductTypes").value(hasItem(DEFAULT_RECCOMENDED_PRODUCT_TYPES.toString())))
+            .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.intValue())))
+            .andExpect(jsonPath("$.[*].lastUpdatedDate").value(hasItem(DEFAULT_LAST_UPDATED_DATE.intValue())))
+            .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
+            .andExpect(jsonPath("$.[*].lastUpdatedBy").value(hasItem(DEFAULT_LAST_UPDATED_BY.toString())))
+            .andExpect(jsonPath("$.[*].isLoggedInUser").value(hasItem(DEFAULT_IS_LOGGED_IN_USER.booleanValue())));
     }
 
     @Test
@@ -264,7 +351,12 @@ public class ConsumerProfileResourceIntTest {
             .andExpect(jsonPath("$.hobbyStructure").value(DEFAULT_HOBBY_STRUCTURE.toString()))
             .andExpect(jsonPath("$.inputReletionship").value(DEFAULT_INPUT_RELETIONSHIP.toString()))
             .andExpect(jsonPath("$.inputHobbies").value(DEFAULT_INPUT_HOBBIES.toString()))
-            .andExpect(jsonPath("$.reccomendedProductTypes").value(DEFAULT_RECCOMENDED_PRODUCT_TYPES.toString()));
+            .andExpect(jsonPath("$.reccomendedProductTypes").value(DEFAULT_RECCOMENDED_PRODUCT_TYPES.toString()))
+            .andExpect(jsonPath("$.createdDate").value(DEFAULT_CREATED_DATE.intValue()))
+            .andExpect(jsonPath("$.lastUpdatedDate").value(DEFAULT_LAST_UPDATED_DATE.intValue()))
+            .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()))
+            .andExpect(jsonPath("$.lastUpdatedBy").value(DEFAULT_LAST_UPDATED_BY.toString()))
+            .andExpect(jsonPath("$.isLoggedInUser").value(DEFAULT_IS_LOGGED_IN_USER.booleanValue()));
     }
 
     @Test
@@ -296,7 +388,12 @@ public class ConsumerProfileResourceIntTest {
             .hobbyStructure(UPDATED_HOBBY_STRUCTURE)
             .inputReletionship(UPDATED_INPUT_RELETIONSHIP)
             .inputHobbies(UPDATED_INPUT_HOBBIES)
-            .reccomendedProductTypes(UPDATED_RECCOMENDED_PRODUCT_TYPES);
+            .reccomendedProductTypes(UPDATED_RECCOMENDED_PRODUCT_TYPES)
+            .createdDate(UPDATED_CREATED_DATE)
+            .lastUpdatedDate(UPDATED_LAST_UPDATED_DATE)
+            .createdBy(UPDATED_CREATED_BY)
+            .lastUpdatedBy(UPDATED_LAST_UPDATED_BY)
+            .isLoggedInUser(UPDATED_IS_LOGGED_IN_USER);
         ConsumerProfileDTO consumerProfileDTO = consumerProfileMapper.toDto(updatedConsumerProfile);
 
         restConsumerProfileMockMvc.perform(put("/api/consumer-profiles")
@@ -318,6 +415,11 @@ public class ConsumerProfileResourceIntTest {
         assertThat(testConsumerProfile.getInputReletionship()).isEqualTo(UPDATED_INPUT_RELETIONSHIP);
         assertThat(testConsumerProfile.getInputHobbies()).isEqualTo(UPDATED_INPUT_HOBBIES);
         assertThat(testConsumerProfile.getReccomendedProductTypes()).isEqualTo(UPDATED_RECCOMENDED_PRODUCT_TYPES);
+        assertThat(testConsumerProfile.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);
+        assertThat(testConsumerProfile.getLastUpdatedDate()).isEqualTo(UPDATED_LAST_UPDATED_DATE);
+        assertThat(testConsumerProfile.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
+        assertThat(testConsumerProfile.getLastUpdatedBy()).isEqualTo(UPDATED_LAST_UPDATED_BY);
+        assertThat(testConsumerProfile.isIsLoggedInUser()).isEqualTo(UPDATED_IS_LOGGED_IN_USER);
     }
 
     @Test

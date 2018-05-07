@@ -1,0 +1,140 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myConsumerProfileHistoryLabel">Create or edit a Consumer Profile History</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!consumerProfileHistory.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="consumerProfileHistory.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_name">Name</label>
+            <input type="text" class="form-control" name="name" id="field_name"
+                [(ngModel)]="consumerProfileHistory.name" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_gender">Gender</label>
+            <select class="form-control" name="gender" [(ngModel)]="consumerProfileHistory.gender" id="field_gender"  required>
+                <option value="MALE">MALE</option>
+                <option value="FEMALE">FEMALE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.gender?.dirty && editForm.controls.gender?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.gender?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_age">Age</label>
+            <select class="form-control" name="age" [(ngModel)]="consumerProfileHistory.age" id="field_age"  required>
+                <option value="KIDS">KIDS</option>
+                <option value="TEEN">TEEN</option>
+                <option value="YOUTH">YOUTH</option>
+                <option value="ELDER">ELDER</option>
+            </select>
+            <div [hidden]="!(editForm.controls.age?.dirty && editForm.controls.age?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.age?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_inputTraits">Input Traits</label>
+            <input type="text" class="form-control" name="inputTraits" id="field_inputTraits"
+                [(ngModel)]="consumerProfileHistory.inputTraits" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_traitStructure">Trait Structure</label>
+            <input type="text" class="form-control" name="traitStructure" id="field_traitStructure"
+                [(ngModel)]="consumerProfileHistory.traitStructure" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_activityStructure">Activity Structure</label>
+            <input type="text" class="form-control" name="activityStructure" id="field_activityStructure"
+                [(ngModel)]="consumerProfileHistory.activityStructure" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_hobbyStructure">Hobby Structure</label>
+            <input type="text" class="form-control" name="hobbyStructure" id="field_hobbyStructure"
+                [(ngModel)]="consumerProfileHistory.hobbyStructure" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_inputReletionship">Input Reletionship</label>
+            <input type="text" class="form-control" name="inputReletionship" id="field_inputReletionship"
+                [(ngModel)]="consumerProfileHistory.inputReletionship" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_inputHobbies">Input Hobbies</label>
+            <input type="text" class="form-control" name="inputHobbies" id="field_inputHobbies"
+                [(ngModel)]="consumerProfileHistory.inputHobbies" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_reccomendedProductTypes">Reccomended Product Types</label>
+            <input type="text" class="form-control" name="reccomendedProductTypes" id="field_reccomendedProductTypes"
+                [(ngModel)]="consumerProfileHistory.reccomendedProductTypes" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdDate">Created Date</label>
+            <input type="number" class="form-control" name="createdDate" id="field_createdDate"
+                [(ngModel)]="consumerProfileHistory.createdDate" required/>
+            <div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.createdDate?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedDate">Last Updated Date</label>
+            <input type="number" class="form-control" name="lastUpdatedDate" id="field_lastUpdatedDate"
+                [(ngModel)]="consumerProfileHistory.lastUpdatedDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdBy">Created By</label>
+            <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                [(ngModel)]="consumerProfileHistory.createdBy" required/>
+            <div [hidden]="!(editForm.controls.createdBy?.dirty && editForm.controls.createdBy?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdBy?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedBy">Last Updated By</label>
+            <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                [(ngModel)]="consumerProfileHistory.lastUpdatedBy" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_isLoggedInUser">Is Logged In User</label>
+            <input type="checkbox" class="form-control" name="isLoggedInUser" id="field_isLoggedInUser"
+                [(ngModel)]="consumerProfileHistory.isLoggedInUser" />
+            <div [hidden]="!(editForm.controls.isLoggedInUser?.dirty && editForm.controls.isLoggedInUser?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.isLoggedInUser?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

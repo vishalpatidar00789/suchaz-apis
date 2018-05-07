@@ -19,6 +19,7 @@ export class CategorySuchaz implements BaseEntity {
         public items?: BaseEntity[],
         public children?: BaseEntity[],
         public itemAttributeTypes?: BaseEntity[],
+        public itemCommonAttributes?: BaseEntity[],
         public categoryImages?: BaseEntity[],
         public parentId?: number,
     ) {

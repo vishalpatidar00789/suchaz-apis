@@ -11,6 +11,7 @@ import { ItemCommonAttributeSuchazService } from '../../../../../../main/webapp/
 import { ItemCommonAttributeSuchaz } from '../../../../../../main/webapp/app/entities/item-common-attribute-suchaz/item-common-attribute-suchaz.model';
 import { ItemSuchazService } from '../../../../../../main/webapp/app/entities/item-suchaz';
 import { ItemAttributeTypeSuchazService } from '../../../../../../main/webapp/app/entities/item-attribute-type-suchaz';
+import { CategorySuchazService } from '../../../../../../main/webapp/app/entities/category-suchaz';
 
 describe('Component Tests', () => {
 
@@ -28,6 +29,7 @@ describe('Component Tests', () => {
                 providers: [
                     ItemSuchazService,
                     ItemAttributeTypeSuchazService,
+                    CategorySuchazService,
                     ItemCommonAttributeSuchazService
                 ]
             })
