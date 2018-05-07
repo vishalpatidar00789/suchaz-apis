@@ -85,12 +85,10 @@ public class ConsumerProfileHistoryResourceIntTest {
     private static final String DEFAULT_LAST_UPDATED_BY = "AAAAAAAAAA";
     private static final String UPDATED_LAST_UPDATED_BY = "BBBBBBBBBB";
 
-<<<<<<< HEAD
     private static final Boolean DEFAULT_IS_LOGGED_IN_USER = false;
     private static final Boolean UPDATED_IS_LOGGED_IN_USER = true;
 
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
+
     @Autowired
     private ConsumerProfileHistoryRepository consumerProfileHistoryRepository;
 
@@ -148,12 +146,8 @@ public class ConsumerProfileHistoryResourceIntTest {
             .createdDate(DEFAULT_CREATED_DATE)
             .lastUpdatedDate(DEFAULT_LAST_UPDATED_DATE)
             .createdBy(DEFAULT_CREATED_BY)
-<<<<<<< HEAD
             .lastUpdatedBy(DEFAULT_LAST_UPDATED_BY)
             .isLoggedInUser(DEFAULT_IS_LOGGED_IN_USER);
-=======
-            .lastUpdatedBy(DEFAULT_LAST_UPDATED_BY);
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
         return consumerProfileHistory;
     }
 
@@ -192,10 +186,9 @@ public class ConsumerProfileHistoryResourceIntTest {
         assertThat(testConsumerProfileHistory.getLastUpdatedDate()).isEqualTo(DEFAULT_LAST_UPDATED_DATE);
         assertThat(testConsumerProfileHistory.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
         assertThat(testConsumerProfileHistory.getLastUpdatedBy()).isEqualTo(DEFAULT_LAST_UPDATED_BY);
-<<<<<<< HEAD
+
         assertThat(testConsumerProfileHistory.isIsLoggedInUser()).isEqualTo(DEFAULT_IS_LOGGED_IN_USER);
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
+
     }
 
     @Test
@@ -296,7 +289,7 @@ public class ConsumerProfileHistoryResourceIntTest {
 
     @Test
     @Transactional
-<<<<<<< HEAD
+
     public void checkIsLoggedInUserIsRequired() throws Exception {
         int databaseSizeBeforeTest = consumerProfileHistoryRepository.findAll().size();
         // set the field null
@@ -316,8 +309,7 @@ public class ConsumerProfileHistoryResourceIntTest {
 
     @Test
     @Transactional
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
+
     public void getAllConsumerProfileHistories() throws Exception {
         // Initialize the database
         consumerProfileHistoryRepository.saveAndFlush(consumerProfileHistory);
@@ -340,12 +332,11 @@ public class ConsumerProfileHistoryResourceIntTest {
             .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.intValue())))
             .andExpect(jsonPath("$.[*].lastUpdatedDate").value(hasItem(DEFAULT_LAST_UPDATED_DATE.intValue())))
             .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
-<<<<<<< HEAD
+
             .andExpect(jsonPath("$.[*].lastUpdatedBy").value(hasItem(DEFAULT_LAST_UPDATED_BY.toString())))
             .andExpect(jsonPath("$.[*].isLoggedInUser").value(hasItem(DEFAULT_IS_LOGGED_IN_USER.booleanValue())));
-=======
-            .andExpect(jsonPath("$.[*].lastUpdatedBy").value(hasItem(DEFAULT_LAST_UPDATED_BY.toString())));
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
+
+
     }
 
     @Test
@@ -372,12 +363,9 @@ public class ConsumerProfileHistoryResourceIntTest {
             .andExpect(jsonPath("$.createdDate").value(DEFAULT_CREATED_DATE.intValue()))
             .andExpect(jsonPath("$.lastUpdatedDate").value(DEFAULT_LAST_UPDATED_DATE.intValue()))
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()))
-<<<<<<< HEAD
+
             .andExpect(jsonPath("$.lastUpdatedBy").value(DEFAULT_LAST_UPDATED_BY.toString()))
             .andExpect(jsonPath("$.isLoggedInUser").value(DEFAULT_IS_LOGGED_IN_USER.booleanValue()));
-=======
-            .andExpect(jsonPath("$.lastUpdatedBy").value(DEFAULT_LAST_UPDATED_BY.toString()));
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
     }
 
     @Test
@@ -413,12 +401,9 @@ public class ConsumerProfileHistoryResourceIntTest {
             .createdDate(UPDATED_CREATED_DATE)
             .lastUpdatedDate(UPDATED_LAST_UPDATED_DATE)
             .createdBy(UPDATED_CREATED_BY)
-<<<<<<< HEAD
+
             .lastUpdatedBy(UPDATED_LAST_UPDATED_BY)
             .isLoggedInUser(UPDATED_IS_LOGGED_IN_USER);
-=======
-            .lastUpdatedBy(UPDATED_LAST_UPDATED_BY);
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
         ConsumerProfileHistoryDTO consumerProfileHistoryDTO = consumerProfileHistoryMapper.toDto(updatedConsumerProfileHistory);
 
         restConsumerProfileHistoryMockMvc.perform(put("/api/consumer-profile-histories")
@@ -444,10 +429,8 @@ public class ConsumerProfileHistoryResourceIntTest {
         assertThat(testConsumerProfileHistory.getLastUpdatedDate()).isEqualTo(UPDATED_LAST_UPDATED_DATE);
         assertThat(testConsumerProfileHistory.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
         assertThat(testConsumerProfileHistory.getLastUpdatedBy()).isEqualTo(UPDATED_LAST_UPDATED_BY);
-<<<<<<< HEAD
+
         assertThat(testConsumerProfileHistory.isIsLoggedInUser()).isEqualTo(UPDATED_IS_LOGGED_IN_USER);
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
     }
 
     @Test

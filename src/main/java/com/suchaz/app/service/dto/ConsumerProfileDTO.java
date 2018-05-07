@@ -48,12 +48,11 @@ public class ConsumerProfileDTO implements Serializable {
 
     private String lastUpdatedBy;
 
-<<<<<<< HEAD
+
     @NotNull
     private Boolean isLoggedInUser;
 
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
+
     private Long suchAzUserId;
 
     private String suchAzUserEmail;
@@ -178,7 +177,7 @@ public class ConsumerProfileDTO implements Serializable {
         this.lastUpdatedBy = lastUpdatedBy;
     }
 
-<<<<<<< HEAD
+
     public Boolean isIsLoggedInUser() {
         return isLoggedInUser;
     }
@@ -187,8 +186,7 @@ public class ConsumerProfileDTO implements Serializable {
         this.isLoggedInUser = isLoggedInUser;
     }
 
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
+
     public Long getSuchAzUserId() {
         return suchAzUserId;
     }
@@ -244,10 +242,7 @@ public class ConsumerProfileDTO implements Serializable {
             ", lastUpdatedDate=" + getLastUpdatedDate() +
             ", createdBy='" + getCreatedBy() + "'" +
             ", lastUpdatedBy='" + getLastUpdatedBy() + "'" +
-<<<<<<< HEAD
             ", isLoggedInUser='" + isIsLoggedInUser() + "'" +
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
             "}";
     }
 }

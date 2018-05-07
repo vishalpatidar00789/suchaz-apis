@@ -46,12 +46,11 @@ public class ConsumerProfileHistoryDTO implements Serializable {
 
     private String lastUpdatedBy;
 
-<<<<<<< HEAD
+
     @NotNull
     private Boolean isLoggedInUser;
 
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
+
     public Long getId() {
         return id;
     }
@@ -172,7 +171,7 @@ public class ConsumerProfileHistoryDTO implements Serializable {
         this.lastUpdatedBy = lastUpdatedBy;
     }
 
-<<<<<<< HEAD
+
     public Boolean isIsLoggedInUser() {
         return isLoggedInUser;
     }
@@ -181,8 +180,6 @@ public class ConsumerProfileHistoryDTO implements Serializable {
         this.isLoggedInUser = isLoggedInUser;
     }
 
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -222,10 +219,8 @@ public class ConsumerProfileHistoryDTO implements Serializable {
             ", lastUpdatedDate=" + getLastUpdatedDate() +
             ", createdBy='" + getCreatedBy() + "'" +
             ", lastUpdatedBy='" + getLastUpdatedBy() + "'" +
-<<<<<<< HEAD
+
             ", isLoggedInUser='" + isIsLoggedInUser() + "'" +
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
             "}";
     }
 }
