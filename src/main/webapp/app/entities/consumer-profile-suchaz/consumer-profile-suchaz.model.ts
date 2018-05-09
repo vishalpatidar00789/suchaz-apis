@@ -29,10 +29,7 @@ export class ConsumerProfileSuchaz implements BaseEntity {
         public lastUpdatedDate?: number,
         public createdBy?: string,
         public lastUpdatedBy?: string,
-<<<<<<< HEAD
         public isLoggedInUser?: boolean,
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
         public suchAzUserId?: number,
     ) {
         this.isLoggedInUser = false;

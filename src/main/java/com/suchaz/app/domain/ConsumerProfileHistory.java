@@ -75,13 +75,10 @@ public class ConsumerProfileHistory implements Serializable {
     @Column(name = "last_updated_by")
     private String lastUpdatedBy;
 
-<<<<<<< HEAD
     @NotNull
     @Column(name = "is_logged_in_user", nullable = false)
     private Boolean isLoggedInUser;
 
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -272,8 +269,7 @@ public class ConsumerProfileHistory implements Serializable {
     public void setLastUpdatedBy(String lastUpdatedBy) {
         this.lastUpdatedBy = lastUpdatedBy;
     }
-<<<<<<< HEAD
-
+    
     public Boolean isIsLoggedInUser() {
         return isLoggedInUser;
     }
@@ -286,8 +282,6 @@ public class ConsumerProfileHistory implements Serializable {
     public void setIsLoggedInUser(Boolean isLoggedInUser) {
         this.isLoggedInUser = isLoggedInUser;
     }
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -328,10 +322,7 @@ public class ConsumerProfileHistory implements Serializable {
             ", lastUpdatedDate=" + getLastUpdatedDate() +
             ", createdBy='" + getCreatedBy() + "'" +
             ", lastUpdatedBy='" + getLastUpdatedBy() + "'" +
-<<<<<<< HEAD
             ", isLoggedInUser='" + isIsLoggedInUser() + "'" +
-=======
->>>>>>> 6cab73db24b70508e06c72c996d5888289cc39ad
             "}";
     }
 }
