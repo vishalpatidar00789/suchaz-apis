@@ -41,6 +41,7 @@ export class ItemSuchaz implements BaseEntity {
         public categoryId?: number,
         public vendorId?: number,
         public stores?: BaseEntity[],
+        public menus?: BaseEntity[],
     ) {
         this.isFeatured = false;
     }

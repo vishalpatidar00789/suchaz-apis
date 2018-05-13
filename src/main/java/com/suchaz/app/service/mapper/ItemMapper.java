@@ -27,6 +27,7 @@ public interface ItemMapper extends EntityMapper<ItemDTO, Item> {
     @Mapping(source = "categoryId", target = "category")
     @Mapping(source = "vendorId", target = "vendor")
     @Mapping(target = "stores", ignore = true)
+    @Mapping(target = "menus", ignore = true)
     Item toEntity(ItemDTO itemDTO);
 
     default Item fromId(Long id) {

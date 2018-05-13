@@ -159,6 +159,11 @@ public class Item implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<Store> stores = new HashSet<>();
 
+    @ManyToMany(mappedBy = "items")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<SuchAzMenu> menus = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -703,6 +708,31 @@ public class Item implements Serializable {
 
     public void setStores(Set<Store> stores) {
         this.stores = stores;
+    }
+
+    public Set<SuchAzMenu> getMenus() {
+        return menus;
+    }
+
+    public Item menus(Set<SuchAzMenu> suchAzMenus) {
+        this.menus = suchAzMenus;
+        return this;
+    }
+
+    public Item addMenu(SuchAzMenu suchAzMenu) {
+        this.menus.add(suchAzMenu);
+        suchAzMenu.getItems().add(this);
+        return this;
+    }
+
+    public Item removeMenu(SuchAzMenu suchAzMenu) {
+        this.menus.remove(suchAzMenu);
+        suchAzMenu.getItems().remove(this);
+        return this;
+    }
+
+    public void setMenus(Set<SuchAzMenu> suchAzMenus) {
+        this.menus = suchAzMenus;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

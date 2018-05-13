@@ -69,6 +69,13 @@
             "otherEntityName": "store",
             "ownerSide": false,
             "otherEntityRelationshipName": "item"
+        },
+        {
+            "relationshipType": "many-to-many",
+            "relationshipName": "menu",
+            "otherEntityName": "suchAzMenu",
+            "ownerSide": false,
+            "otherEntityRelationshipName": "item"
         }
     ],
     "fields": [

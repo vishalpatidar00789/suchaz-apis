@@ -13,6 +13,7 @@ import { OfferSuchaz, OfferSuchazService } from '../offer-suchaz';
 import { CategorySuchaz, CategorySuchazService } from '../category-suchaz';
 import { VendorSuchaz, VendorSuchazService } from '../vendor-suchaz';
 import { StoreSuchaz, StoreSuchazService } from '../store-suchaz';
+import { SuchAzMenuSuchaz, SuchAzMenuSuchazService } from '../such-az-menu-suchaz';
 
 @Component({
     selector: 'jhi-item-suchaz-dialog',
@@ -31,6 +32,8 @@ export class ItemSuchazDialogComponent implements OnInit {
 
     stores: StoreSuchaz[];
 
+    suchazmenus: SuchAzMenuSuchaz[];
+
     constructor(
         public activeModal: NgbActiveModal,
         private jhiAlertService: JhiAlertService,
@@ -39,6 +42,7 @@ export class ItemSuchazDialogComponent implements OnInit {
         private categoryService: CategorySuchazService,
         private vendorService: VendorSuchazService,
         private storeService: StoreSuchazService,
+        private suchAzMenuService: SuchAzMenuSuchazService,
         private eventManager: JhiEventManager
     ) {
     }
@@ -53,6 +57,8 @@ export class ItemSuchazDialogComponent implements OnInit {
             .subscribe((res: HttpResponse<VendorSuchaz[]>) => { this.vendors = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
         this.storeService.query()
             .subscribe((res: HttpResponse<StoreSuchaz[]>) => { this.stores = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
+        this.suchAzMenuService.query()
+            .subscribe((res: HttpResponse<SuchAzMenuSuchaz[]>) => { this.suchazmenus = res.body; }, (res: HttpErrorResponse) => this.onError(res.message));
     }
 
     clear() {
@@ -102,6 +108,10 @@ export class ItemSuchazDialogComponent implements OnInit {
     }
 
     trackStoreById(index: number, item: StoreSuchaz) {
+        return item.id;
+    }
+
+    trackSuchAzMenuById(index: number, item: SuchAzMenuSuchaz) {
         return item.id;
     }
 
