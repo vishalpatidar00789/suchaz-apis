@@ -71,6 +71,13 @@
         {
             "fieldName": "lastUpdatedBy",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "isLoggedInUser",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
         }
     ],
     "changelogDate": "20180326050158",
