@@ -82,11 +82,11 @@ public class SuchAzUserResource {
         suchAzUserDTO.setStatus(Status.INACTIVE);
         suchAzUserDTO.setCreatedBy("SYSTEM");
         suchAzUserDTO.setCreatedDate(new Date().getTime());
-        return createSuchAzUser(suchAzUserDTO);
+        return createSuchAzUserAPI(suchAzUserDTO);
     }
     
     
-    public ResponseEntity<String> createSuchAzUser(@Valid SuchAzUserDTO suchAzUserDTO) throws URISyntaxException {
+    public ResponseEntity<String> createSuchAzUserAPI(@Valid SuchAzUserDTO suchAzUserDTO) throws URISyntaxException {
         log.debug("REST request to save SuchAzUser : {}", suchAzUserDTO);
         if (suchAzUserDTO.getId() != null) {
             throw new BadRequestAlertException("A new suchAzUser cannot already have an ID", ENTITY_NAME, "idexists");
@@ -105,7 +105,7 @@ public class SuchAzUserResource {
      * @param suchAzUserDTO the suchAzUserDTO to create
      * @return the ResponseEntity with status 201 (Created) and with body the new suchAzUserDTO, or with status 400 (Bad Request) if the suchAzUser has already an ID
      * @throws URISyntaxException if the Location URI syntax is incorrect
-     
+     */
     @PostMapping("/such-az-users")
     @Timed
     public ResponseEntity<SuchAzUserDTO> createSuchAzUser(@Valid @RequestBody SuchAzUserDTO suchAzUserDTO) throws URISyntaxException {
@@ -117,7 +117,7 @@ public class SuchAzUserResource {
         return ResponseEntity.created(new URI("/api/such-az-users/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
-    }*/
+    }
     
 
     /**
@@ -131,15 +131,15 @@ public class SuchAzUserResource {
      */
     @PutMapping("/such-az-users")
     @Timed
-    public ResponseEntity<String> updateSuchAzUser(@Valid @RequestBody SuchAzUserDTO suchAzUserDTO) throws URISyntaxException {
+    public ResponseEntity<SuchAzUserDTO> updateSuchAzUser(@Valid @RequestBody SuchAzUserDTO suchAzUserDTO) throws URISyntaxException {
         log.debug("REST request to update SuchAzUser : {}", suchAzUserDTO);
         if (suchAzUserDTO.getId() == null) {
             return createSuchAzUser(suchAzUserDTO);
         }
         SuchAzUserDTO result = suchAzUserService.save(suchAzUserDTO);
         return ResponseEntity.ok()
-                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, suchAzUserDTO.getId().toString()))
-                .body("Success");
+            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, suchAzUserDTO.getId().toString()))
+            .body(result);
     }
 
     /**

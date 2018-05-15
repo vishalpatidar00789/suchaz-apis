@@ -85,7 +85,6 @@ public class ConsumerProfileResourceIntTest {
     private static final String DEFAULT_LAST_UPDATED_BY = "AAAAAAAAAA";
     private static final String UPDATED_LAST_UPDATED_BY = "BBBBBBBBBB";
 
-
     private static final Boolean DEFAULT_IS_LOGGED_IN_USER = false;
     private static final Boolean UPDATED_IS_LOGGED_IN_USER = true;
 
@@ -146,7 +145,6 @@ public class ConsumerProfileResourceIntTest {
             .createdDate(DEFAULT_CREATED_DATE)
             .lastUpdatedDate(DEFAULT_LAST_UPDATED_DATE)
             .createdBy(DEFAULT_CREATED_BY)
-
             .lastUpdatedBy(DEFAULT_LAST_UPDATED_BY)
             .isLoggedInUser(DEFAULT_IS_LOGGED_IN_USER);
         return consumerProfile;
@@ -187,7 +185,6 @@ public class ConsumerProfileResourceIntTest {
         assertThat(testConsumerProfile.getLastUpdatedDate()).isEqualTo(DEFAULT_LAST_UPDATED_DATE);
         assertThat(testConsumerProfile.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
         assertThat(testConsumerProfile.getLastUpdatedBy()).isEqualTo(DEFAULT_LAST_UPDATED_BY);
-
         assertThat(testConsumerProfile.isIsLoggedInUser()).isEqualTo(DEFAULT_IS_LOGGED_IN_USER);
 
     }
@@ -310,7 +307,6 @@ public class ConsumerProfileResourceIntTest {
 
     @Test
     @Transactional
-
     public void getAllConsumerProfiles() throws Exception {
         // Initialize the database
         consumerProfileRepository.saveAndFlush(consumerProfile);
@@ -363,7 +359,6 @@ public class ConsumerProfileResourceIntTest {
             .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()))
             .andExpect(jsonPath("$.lastUpdatedBy").value(DEFAULT_LAST_UPDATED_BY.toString()))
             .andExpect(jsonPath("$.isLoggedInUser").value(DEFAULT_IS_LOGGED_IN_USER.booleanValue()));
-
     }
 
     @Test

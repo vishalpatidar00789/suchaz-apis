@@ -25,5 +25,4 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
     @Query("select item.id from Item item where item.category.categoryCode IN (:listCateogryCodes)")
     List<Long> findAllItemsIdsforCategory(String[] listCateogryCodes);
 
-
 }
