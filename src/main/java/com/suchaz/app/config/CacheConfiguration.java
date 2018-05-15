@@ -108,6 +108,9 @@ public class CacheConfiguration {
             cm.createCache(com.suchaz.app.domain.ActivityListItem.class.getName(), jcacheConfiguration);
             cm.createCache(com.suchaz.app.domain.Category.class.getName() + ".itemCommonAttributes", jcacheConfiguration);
             cm.createCache(com.suchaz.app.domain.ConsumerProfileHistory.class.getName(), jcacheConfiguration);
+            cm.createCache(com.suchaz.app.domain.Item.class.getName() + ".menus", jcacheConfiguration);
+            cm.createCache(com.suchaz.app.domain.SuchAzMenu.class.getName(), jcacheConfiguration);
+            cm.createCache(com.suchaz.app.domain.SuchAzMenu.class.getName() + ".items", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

@@ -1,0 +1,142 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="mySuchAzMenuLabel">Create or edit a Such Az Menu</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!suchAzMenu.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="suchAzMenu.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                [(ngModel)]="suchAzMenu.title" required/>
+            <div [hidden]="!(editForm.controls.title?.dirty && editForm.controls.title?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.title?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_menu">Menu</label>
+            <input type="text" class="form-control" name="menu" id="field_menu"
+                [(ngModel)]="suchAzMenu.menu" required/>
+            <div [hidden]="!(editForm.controls.menu?.dirty && editForm.controls.menu?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.menu?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_menuCode">Menu Code</label>
+            <input type="text" class="form-control" name="menuCode" id="field_menuCode"
+                [(ngModel)]="suchAzMenu.menuCode" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_discription">Discription</label>
+            <input type="text" class="form-control" name="discription" id="field_discription"
+                [(ngModel)]="suchAzMenu.discription" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_menuImage">Menu Image</label>
+            <div>
+                <img [src]="'data:' + suchAzMenu.menuImageContentType + ';base64,' + suchAzMenu.menuImage" style="max-height: 100px;" *ngIf="suchAzMenu.menuImage" alt="suchAzMenu image"/>
+                <div *ngIf="suchAzMenu.menuImage" class="form-text text-danger clearfix">
+                    <span class="pull-left">{{suchAzMenu.menuImageContentType}}, {{byteSize(suchAzMenu.menuImage)}}</span>
+                    <button type="button" (click)="clearInputImage('menuImage', 'menuImageContentType', 'fileImage')" class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_menuImage" (change)="setFileData($event, suchAzMenu, 'menuImage', true)" accept="image/*"/>
+            </div>
+            <input type="hidden" class="form-control" name="menuImage" id="field_menuImage"
+                [(ngModel)]="suchAzMenu.menuImage" />
+            <input type="hidden" class="form-control" name="menuImageContentType" id="field_menuImageContentType"
+                [(ngModel)]="suchAzMenu.menuImageContentType" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_status">Status</label>
+            <select class="form-control" name="status" [(ngModel)]="suchAzMenu.status" id="field_status"  required>
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.status?.dirty && editForm.controls.status?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.status?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_isExposedToMenu">Is Exposed To Menu</label>
+            <select class="form-control" name="isExposedToMenu" [(ngModel)]="suchAzMenu.isExposedToMenu" id="field_isExposedToMenu"  required>
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+            </select>
+            <div [hidden]="!(editForm.controls.isExposedToMenu?.dirty && editForm.controls.isExposedToMenu?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.isExposedToMenu?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdDate">Created Date</label>
+            <input type="number" class="form-control" name="createdDate" id="field_createdDate"
+                [(ngModel)]="suchAzMenu.createdDate" required/>
+            <div [hidden]="!(editForm.controls.createdDate?.dirty && editForm.controls.createdDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdDate?.errors?.required">
+                   This field is required.
+                </small>
+                <small class="form-text text-danger"
+                    [hidden]="!editForm.controls.createdDate?.errors?.number">
+                    This field should be a number.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedDate">Last Updated Date</label>
+            <input type="number" class="form-control" name="lastUpdatedDate" id="field_lastUpdatedDate"
+                [(ngModel)]="suchAzMenu.lastUpdatedDate" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_createdBy">Created By</label>
+            <input type="text" class="form-control" name="createdBy" id="field_createdBy"
+                [(ngModel)]="suchAzMenu.createdBy" required/>
+            <div [hidden]="!(editForm.controls.createdBy?.dirty && editForm.controls.createdBy?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.createdBy?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_lastUpdatedBy">Last Updated By</label>
+            <input type="text" class="form-control" name="lastUpdatedBy" id="field_lastUpdatedBy"
+                [(ngModel)]="suchAzMenu.lastUpdatedBy" />
+        </div>
+
+        <div class="form-group">
+            <label for="field_item">Item</label>
+            <select class="form-control" id="field_item" multiple name="item" [(ngModel)]="suchAzMenu.items">
+                <option [ngValue]="getSelected(suchAzMenu.items, itemOption)" *ngFor="let itemOption of items; trackBy: trackItemById">{{itemOption.title}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

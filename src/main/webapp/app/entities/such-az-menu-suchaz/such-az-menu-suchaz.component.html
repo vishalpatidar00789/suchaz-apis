@@ -1,0 +1,89 @@
+<div>
+    <h2>
+        <span>Such Az Menus</span>
+        <button class="btn btn-primary float-right jh-create-entity create-such-az-menu-suchaz" [routerLink]="['/', { outlets: { popup: ['such-az-menu-suchaz-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Such Az Menu
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="suchAzMenus">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span>ID</span></th>
+            <th><span>Title</span></th>
+            <th><span>Menu</span></th>
+            <th><span>Menu Code</span></th>
+            <th><span>Discription</span></th>
+            <th><span>Menu Image</span></th>
+            <th><span>Status</span></th>
+            <th><span>Is Exposed To Menu</span></th>
+            <th><span>Created Date</span></th>
+            <th><span>Last Updated Date</span></th>
+            <th><span>Created By</span></th>
+            <th><span>Last Updated By</span></th>
+            <th><span>Item</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let suchAzMenu of suchAzMenus ;trackBy: trackId">
+                <td><a [routerLink]="['../such-az-menu-suchaz', suchAzMenu.id ]">{{suchAzMenu.id}}</a></td>
+                <td>{{suchAzMenu.title}}</td>
+                <td>{{suchAzMenu.menu}}</td>
+                <td>{{suchAzMenu.menuCode}}</td>
+                <td>{{suchAzMenu.discription}}</td>
+                <td>
+                    <a *ngIf="suchAzMenu.menuImage" (click)="openFile(suchAzMenu.menuImageContentType, suchAzMenu.menuImage)">
+                        <img [src]="'data:' + suchAzMenu.menuImageContentType + ';base64,' + suchAzMenu.menuImage" style="max-height: 30px;" alt="suchAzMenu image"/>
+                    </a>
+                    <span *ngIf="suchAzMenu.menuImage">{{suchAzMenu.menuImageContentType}}, {{byteSize(suchAzMenu.menuImage)}}</span>
+                </td>
+                <td>{{suchAzMenu.status}}</td>
+                <td>{{suchAzMenu.isExposedToMenu}}</td>
+                <td>{{suchAzMenu.createdDate}}</td>
+                <td>{{suchAzMenu.lastUpdatedDate}}</td>
+                <td>{{suchAzMenu.createdBy}}</td>
+                <td>{{suchAzMenu.lastUpdatedBy}}</td>
+                <td>
+                    <span *ngFor="let item of suchAzMenu.items; let last = last">
+                            <a class="form-control-static" [routerLink]="['../item-suchaz', item?.id ]">{{item.title}}</a>{{last ? '' : ', '}}
+                        </span>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../such-az-menu-suchaz', suchAzMenu.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'such-az-menu-suchaz/'+ suchAzMenu.id + '/edit'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'such-az-menu-suchaz/'+ suchAzMenu.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
