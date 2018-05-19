@@ -74,6 +74,8 @@ public class SuchAzMenu implements Serializable {
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
     @JoinTable(name = "such_az_menu_item",
                joinColumns = @JoinColumn(name="such_az_menus_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="items_id", referencedColumnName="id"))

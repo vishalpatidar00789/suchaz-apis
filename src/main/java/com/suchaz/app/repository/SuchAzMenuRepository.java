@@ -13,7 +13,7 @@ import java.util.List;
 @SuppressWarnings("unused")
 @Repository
 public interface SuchAzMenuRepository extends JpaRepository<SuchAzMenu, Long> {
-    @Query("select distinct such_az_menu from SuchAzMenu such_az_menu left join fetch such_az_menu.items")
+    @Query("select distinct such_az_menu from SuchAzMenu such_az_menu")
     List<SuchAzMenu> findAllWithEagerRelationships();
 
     @Query("select such_az_menu from SuchAzMenu such_az_menu left join fetch such_az_menu.items where such_az_menu.id =:id")
