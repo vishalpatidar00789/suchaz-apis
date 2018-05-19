@@ -46,7 +46,7 @@ public class QuickViewDTO implements Serializable {
     
     private String customerAvgRating;
     
-    private HashMap<String,String> mapOfItemAttributeAndValues;
+    //private HashMap<String,String> mapOfItemAttributeAndValues;
     
     private Set<String> offers;
     
@@ -184,13 +184,13 @@ public class QuickViewDTO implements Serializable {
 		this.customerAvgRating = customerAvgRating;
 	}
 
-	public HashMap<String, String> getMapOfItemAttributeAndValues() {
+	/*public HashMap<String, String> getMapOfItemAttributeAndValues() {
 		return mapOfItemAttributeAndValues;
 	}
 
 	public void setMapOfItemAttributeAndValues(HashMap<String, String> mapOfItemAttributeAndValues) {
 		this.mapOfItemAttributeAndValues = mapOfItemAttributeAndValues;
-	}
+	}*/
 
 	public Set<String> getOffers() {
 		return offers;

@@ -50,7 +50,7 @@ public class QuickViewServiceImpl implements QuickViewService {
         log.debug("Request to get Item : {}", id);
         Item item = itemRepository.findOneWithEagerRelationships(id);
         QuickViewDTO quickViewDTO = mapItemtoQuickViewDTO(item);
-        quickViewDTO = getCommomAttributeForQuickView(item.getId(), quickViewDTO);
+        //quickViewDTO = getCommomAttributeForQuickView(item.getId(), quickViewDTO);
         return quickViewDTO;
     }
 
@@ -74,7 +74,7 @@ public class QuickViewServiceImpl implements QuickViewService {
 				{
 					//Throw exception here.
 				}
-				quickViewDTO = getCommomAttributeForQuickView(idList[counter],quickViewDTO);
+				//quickViewDTO = getCommomAttributeForQuickView(idList[counter],quickViewDTO);
 				listQuickViewDTO.add(quickViewDTO);
 				
 			}
@@ -82,7 +82,7 @@ public class QuickViewServiceImpl implements QuickViewService {
 		return listQuickViewDTO;
 	}
 	
-	private QuickViewDTO getCommomAttributeForQuickView(Long itemId, QuickViewDTO quickViewDTO) {
+	/*private QuickViewDTO getCommomAttributeForQuickView(Long itemId, QuickViewDTO quickViewDTO) {
 		
 		ArrayList<ItemCommonAttribute> listOfItemCommsonAttribute = (ArrayList<ItemCommonAttribute>) itemCommonAttributeRepository.findItemCommonAttributeQuickViewEnabledForItem(itemId);
 		HashMap<String,String> mapOfQuickViewAttributes = new HashMap<>();
@@ -92,7 +92,7 @@ public class QuickViewServiceImpl implements QuickViewService {
 		}
 		quickViewDTO.setMapOfItemAttributeAndValues(mapOfQuickViewAttributes);
 		return quickViewDTO;
-	}
+	}*/
 
 	private QuickViewDTO mapItemtoQuickViewDTO(Item item)
 	{
