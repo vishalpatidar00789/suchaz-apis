@@ -1,9 +1,10 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.SuchAzUserDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.SuchAzUser;
+import com.suchaz.app.service.dto.SuchAzUserDTO;
 
 /**
  * Mapper for the entity SuchAzUser and its DTO SuchAzUserDTO.

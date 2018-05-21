@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
-import com.suchaz.app.service.MetaDataOnLoadService;
 import com.suchaz.app.service.QuickViewService;
-import com.suchaz.app.service.dto.MetaDataOnLoadDTO;
 import com.suchaz.app.service.dto.QuickViewDTO;
 
 import io.github.jhipster.web.util.ResponseUtil;

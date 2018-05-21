@@ -1,18 +1,19 @@
 package com.suchaz.app.service.impl;
 
-import com.suchaz.app.service.CategoryService;
-import com.suchaz.app.domain.Category;
-import com.suchaz.app.repository.CategoryRepository;
-import com.suchaz.app.service.dto.CategoryDTO;
-import com.suchaz.app.service.mapper.CategoryMapper;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.suchaz.app.domain.Category;
+import com.suchaz.app.repository.CategoryRepository;
+import com.suchaz.app.service.CategoryService;
+import com.suchaz.app.service.dto.CategoryDTO;
+import com.suchaz.app.service.mapper.CategoryMapper;
 
 /**
  * Service Implementation for managing Category.

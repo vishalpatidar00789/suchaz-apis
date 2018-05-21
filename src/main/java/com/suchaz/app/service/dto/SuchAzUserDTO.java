@@ -1,16 +1,17 @@
 package com.suchaz.app.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-import com.suchaz.app.domain.enumeration.Status;
-import com.suchaz.app.domain.enumeration.UserRole;
+import java.util.Set;
+
+import javax.validation.constraints.NotNull;
+
 import com.suchaz.app.domain.enumeration.FBAccessTokenType;
 import com.suchaz.app.domain.enumeration.SignupMethod;
-import com.suchaz.app.domain.enumeration.SignupMethod;
+import com.suchaz.app.domain.enumeration.Status;
+import com.suchaz.app.domain.enumeration.UserRole;
 
 /**
  * A DTO for the SuchAzUser entity.

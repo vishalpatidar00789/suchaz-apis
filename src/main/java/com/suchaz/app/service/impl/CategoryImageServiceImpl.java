@@ -1,18 +1,19 @@
 package com.suchaz.app.service.impl;
 
-import com.suchaz.app.service.CategoryImageService;
-import com.suchaz.app.domain.CategoryImage;
-import com.suchaz.app.repository.CategoryImageRepository;
-import com.suchaz.app.service.dto.CategoryImageDTO;
-import com.suchaz.app.service.mapper.CategoryImageMapper;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.suchaz.app.domain.CategoryImage;
+import com.suchaz.app.repository.CategoryImageRepository;
+import com.suchaz.app.service.CategoryImageService;
+import com.suchaz.app.service.dto.CategoryImageDTO;
+import com.suchaz.app.service.mapper.CategoryImageMapper;
 
 /**
  * Service Implementation for managing CategoryImage.

@@ -1,16 +1,17 @@
 package com.suchaz.app.service.impl;
 
-import com.suchaz.app.service.UserProfileService;
-import com.suchaz.app.domain.UserProfile;
-import com.suchaz.app.repository.UserProfileRepository;
-import com.suchaz.app.service.dto.UserProfileDTO;
-import com.suchaz.app.service.mapper.UserProfileMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.suchaz.app.domain.UserProfile;
+import com.suchaz.app.repository.UserProfileRepository;
+import com.suchaz.app.service.UserProfileService;
+import com.suchaz.app.service.dto.UserProfileDTO;
+import com.suchaz.app.service.mapper.UserProfileMapper;
 
 
 /**

@@ -1,18 +1,19 @@
 package com.suchaz.app.service.impl;
 
-import com.suchaz.app.service.ItemAttributeTypeService;
-import com.suchaz.app.domain.ItemAttributeType;
-import com.suchaz.app.repository.ItemAttributeTypeRepository;
-import com.suchaz.app.service.dto.ItemAttributeTypeDTO;
-import com.suchaz.app.service.mapper.ItemAttributeTypeMapper;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.suchaz.app.domain.ItemAttributeType;
+import com.suchaz.app.repository.ItemAttributeTypeRepository;
+import com.suchaz.app.service.ItemAttributeTypeService;
+import com.suchaz.app.service.dto.ItemAttributeTypeDTO;
+import com.suchaz.app.service.mapper.ItemAttributeTypeMapper;
 
 /**
  * Service Implementation for managing ItemAttributeType.

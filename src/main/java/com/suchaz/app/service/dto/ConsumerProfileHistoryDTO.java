@@ -1,11 +1,13 @@
 package com.suchaz.app.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
-import com.suchaz.app.domain.enumeration.Gender;
+
+import javax.validation.constraints.NotNull;
+
 import com.suchaz.app.domain.enumeration.AgeGroup;
+import com.suchaz.app.domain.enumeration.Gender;
 
 /**
  * A DTO for the ConsumerProfileHistory entity.

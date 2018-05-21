@@ -1,9 +1,10 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.HobbyDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.Hobby;
+import com.suchaz.app.service.dto.HobbyDTO;
 
 /**
  * Mapper for the entity Hobby and its DTO HobbyDTO.

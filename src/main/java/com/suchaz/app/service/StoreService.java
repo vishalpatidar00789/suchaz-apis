@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.StoreDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.StoreDTO;
 
 /**
  * Service Interface for managing Store.

@@ -1,7 +1,9 @@
 package com.suchaz.app.security.jwt;
 
-import com.suchaz.app.security.AuthoritiesConstants;
-import io.github.jhipster.config.JHipsterProperties;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Collections;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.http.HttpStatus;
@@ -13,9 +15,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.test.util.ReflectionTestUtils;
 
-import java.util.Collections;
+import com.suchaz.app.security.AuthoritiesConstants;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import io.github.jhipster.config.JHipsterProperties;
 
 public class JWTFilterTest {
 

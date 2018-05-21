@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.StoreImageDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.StoreImageDTO;
 
 /**
  * Service Interface for managing StoreImage.

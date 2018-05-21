@@ -1,9 +1,10 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.GiftWrapperDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.GiftWrapper;
+import com.suchaz.app.service.dto.GiftWrapperDTO;
 
 /**
  * Mapper for the entity GiftWrapper and its DTO GiftWrapperDTO.

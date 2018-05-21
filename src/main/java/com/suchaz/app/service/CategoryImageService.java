@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.CategoryImageDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.CategoryImageDTO;
 
 /**
  * Service Interface for managing CategoryImage.

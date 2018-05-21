@@ -1,9 +1,11 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.SuchAzUserDTO;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import java.util.List;
+
+import com.suchaz.app.service.dto.SuchAzUserDTO;
 
 /**
  * Service Interface for managing SuchAzUser.

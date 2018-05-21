@@ -1,24 +1,33 @@
 package com.suchaz.app.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Objects;
-
-import com.suchaz.app.domain.enumeration.Status;
-
-import com.suchaz.app.domain.enumeration.UserRole;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.suchaz.app.domain.enumeration.FBAccessTokenType;
-
 import com.suchaz.app.domain.enumeration.SignupMethod;
+import com.suchaz.app.domain.enumeration.Status;
+import com.suchaz.app.domain.enumeration.UserRole;
 
 /**
  * A SuchAzUser.

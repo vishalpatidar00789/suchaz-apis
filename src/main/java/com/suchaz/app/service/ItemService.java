@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.ItemDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.ItemDTO;
 
 /**
  * Service Interface for managing Item.
@@ -44,4 +45,11 @@ public interface ItemService {
      * @return the list of entities
      */
     List<ItemDTO> findAllWeeklyFeaturedItem();
+    
+    /**
+     * Get all the Items with Title Search
+     *
+     * @return the list of entities
+     */
+    Long[] findAllItemsIdsWithKeyWord(String keyWord);
 }

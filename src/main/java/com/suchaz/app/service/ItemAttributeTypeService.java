@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.ItemAttributeTypeDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.ItemAttributeTypeDTO;
 
 /**
  * Service Interface for managing ItemAttributeType.

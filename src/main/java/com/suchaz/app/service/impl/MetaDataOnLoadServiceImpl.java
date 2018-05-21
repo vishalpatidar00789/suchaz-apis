@@ -2,6 +2,7 @@ package com.suchaz.app.service.impl;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -25,6 +26,7 @@ import com.suchaz.app.repository.TraitRepository;
 import com.suchaz.app.service.ItemService;
 import com.suchaz.app.service.MetaDataOnLoadService;
 import com.suchaz.app.service.QuickViewService;
+import com.suchaz.app.service.SuchAzMenuService;
 import com.suchaz.app.service.dto.CategoryDTO;
 import com.suchaz.app.service.dto.HobbyDTO;
 import com.suchaz.app.service.dto.ItemDTO;
@@ -33,6 +35,7 @@ import com.suchaz.app.service.dto.OccassionDTO;
 import com.suchaz.app.service.dto.QuickViewDTO;
 import com.suchaz.app.service.dto.RelationshipDTO;
 import com.suchaz.app.service.dto.StoreDTO;
+import com.suchaz.app.service.dto.SuchAzMenuDTO;
 import com.suchaz.app.service.dto.TraitDTO;
 import com.suchaz.app.service.mapper.CategoryMapper;
 import com.suchaz.app.service.mapper.HobbyMapper;
@@ -85,12 +88,14 @@ public class MetaDataOnLoadServiceImpl implements MetaDataOnLoadService {
 	
 	private ItemService itemService;
 	private QuickViewService quickViewService;
+	
+	private SuchAzMenuService suchAzMenuService;
 
 	public MetaDataOnLoadServiceImpl(TraitRepository traitRepository, TraitMapper traitMapper, HobbyRepository hobbyRepository,HobbyMapper hobbyMapper,
 			RelationshipRepository relationshipRepository, RelationshipMapper relationshipMapper, OccassionRepository occassionRepository,
 			OccassionMapper occassionMapper, StoreRepository storeRepository, StoreMapper storeMapper,
 			CategoryRepository categoryRepository, CategoryMapper categoryMapper, ItemService itemService,
-			QuickViewService quickViewService) {
+			QuickViewService quickViewService, SuchAzMenuService suchAzMenuService) {
 		this.traitRepository = traitRepository;
 		this.traitMapper = traitMapper;
 		this.hobbyRepository = hobbyRepository;
@@ -105,7 +110,9 @@ public class MetaDataOnLoadServiceImpl implements MetaDataOnLoadService {
 		this.categoryMapper = categoryMapper;
 		this.itemService = itemService;
 		this.quickViewService = quickViewService;
+		this.suchAzMenuService = suchAzMenuService;
 	}
+	
 
 	/**
 	 * Load All meta Data
@@ -190,6 +197,42 @@ public class MetaDataOnLoadServiceImpl implements MetaDataOnLoadService {
 		MetaDataOnLoadDTO metaDataOnLoadDTO = new MetaDataOnLoadDTO();
 		metaDataOnLoadDTO.setMetaDataOnLoadMap(mapOfAllMetaData);
 
+		return metaDataOnLoadDTO;
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public MetaDataOnLoadDTO loadAllMetaDataForBeta() {
+		
+		log.debug("Request to Load All MetaData Beta Version for User : {}", "UserIP");
+		Map<String,ArrayList<Object>> mapOfAllMetaData = new HashMap<String,ArrayList<Object>>();
+		
+		// Adding Weekly Featured products.
+		ArrayList<ItemDTO> listItemDTO = (ArrayList<ItemDTO>) itemService.findAllWeeklyFeaturedItem();
+		Long [] itemIds = new Long[listItemDTO.size()];
+		int counter = 0;
+		for(ItemDTO itemDTO : listItemDTO)
+		{
+			itemIds[counter] = itemDTO.getId();
+			counter++;
+		}
+		
+		ArrayList listQuickViewDTO = (ArrayList<QuickViewDTO>) quickViewService.findRangeOfItem(itemIds);
+		if(listQuickViewDTO!=null && listQuickViewDTO.size()>0)
+		{
+			mapOfAllMetaData.put(ApplicationConstants.WEEKLY_FEATURED_PRODUTS, listQuickViewDTO);
+		}
+		
+		// Adding Menu List.
+		ArrayList listSuchAzMenuDTO = (ArrayList<SuchAzMenuDTO>) suchAzMenuService.findAll();
+		if(listSuchAzMenuDTO!=null && !listSuchAzMenuDTO.isEmpty())
+		{
+			mapOfAllMetaData.put(ApplicationConstants.SUCHAZ_MENU_LIST, listSuchAzMenuDTO);
+		}
+		
+		MetaDataOnLoadDTO metaDataOnLoadDTO = new MetaDataOnLoadDTO();
+		metaDataOnLoadDTO.setMetaDataOnLoadMap(mapOfAllMetaData);
+		
 		return metaDataOnLoadDTO;
 	}
 

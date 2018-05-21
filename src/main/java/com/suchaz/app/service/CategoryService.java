@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.CategoryDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.CategoryDTO;
 
 /**
  * Service Interface for managing Category.

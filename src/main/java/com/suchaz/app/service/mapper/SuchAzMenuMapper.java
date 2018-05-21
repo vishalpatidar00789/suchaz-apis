@@ -1,9 +1,9 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.SuchAzMenuDTO;
+import org.mapstruct.Mapper;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.SuchAzMenu;
+import com.suchaz.app.service.dto.SuchAzMenuDTO;
 
 /**
  * Mapper for the entity SuchAzMenu and its DTO SuchAzMenuDTO.

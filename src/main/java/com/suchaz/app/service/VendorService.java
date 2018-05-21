@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.VendorDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.VendorDTO;
 
 /**
  * Service Interface for managing Vendor.

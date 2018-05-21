@@ -1,7 +1,8 @@
 package com.suchaz.app.web.rest.vm;
 
-import com.suchaz.app.service.dto.UserDTO;
 import javax.validation.constraints.Size;
+
+import com.suchaz.app.service.dto.UserDTO;
 
 /**
  * View Model extending the UserDTO, which is meant to be used in the user management UI.

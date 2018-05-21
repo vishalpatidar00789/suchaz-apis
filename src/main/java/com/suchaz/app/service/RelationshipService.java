@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.RelationshipDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.RelationshipDTO;
 
 /**
  * Service Interface for managing Relationship.

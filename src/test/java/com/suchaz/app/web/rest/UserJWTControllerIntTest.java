@@ -1,11 +1,13 @@
 package com.suchaz.app.web.rest;
 
-import com.suchaz.app.SuchazapisApp;
-import com.suchaz.app.domain.User;
-import com.suchaz.app.repository.UserRepository;
-import com.suchaz.app.security.jwt.TokenProvider;
-import com.suchaz.app.web.rest.vm.LoginVM;
-import com.suchaz.app.web.rest.errors.ExceptionTranslator;
+import static org.hamcrest.Matchers.isEmptyString;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.nullValue;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -18,13 +20,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
-import static org.hamcrest.Matchers.nullValue;
-import static org.hamcrest.Matchers.isEmptyString;
-import static org.hamcrest.Matchers.not;
+import com.suchaz.app.SuchazapisApp;
+import com.suchaz.app.domain.User;
+import com.suchaz.app.repository.UserRepository;
+import com.suchaz.app.security.jwt.TokenProvider;
+import com.suchaz.app.web.rest.errors.ExceptionTranslator;
+import com.suchaz.app.web.rest.vm.LoginVM;
 
 /**
  * Test class for the UserJWTController REST controller.

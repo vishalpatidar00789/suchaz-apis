@@ -1,9 +1,10 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.RelationshipDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.Relationship;
+import com.suchaz.app.service.dto.RelationshipDTO;
 
 /**
  * Mapper for the entity Relationship and its DTO RelationshipDTO.

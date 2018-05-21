@@ -1,8 +1,9 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.UserProfileDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import com.suchaz.app.service.dto.UserProfileDTO;
 
 /**
  * Service Interface for managing UserProfile.

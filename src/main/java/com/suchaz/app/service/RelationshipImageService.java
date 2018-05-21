@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.RelationshipImageDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.RelationshipImageDTO;
 
 /**
  * Service Interface for managing RelationshipImage.

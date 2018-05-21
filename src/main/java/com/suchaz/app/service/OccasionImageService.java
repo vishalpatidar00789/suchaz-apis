@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.OccasionImageDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.OccasionImageDTO;
 
 /**
  * Service Interface for managing OccasionImage.

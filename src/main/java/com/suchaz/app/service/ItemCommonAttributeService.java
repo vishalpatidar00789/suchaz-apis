@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.ItemCommonAttributeDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.ItemCommonAttributeDTO;
 
 /**
  * Service Interface for managing ItemCommonAttribute.

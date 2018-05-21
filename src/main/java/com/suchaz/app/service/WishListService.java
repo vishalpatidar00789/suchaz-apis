@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.WishListDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.WishListDTO;
 
 /**
  * Service Interface for managing WishList.

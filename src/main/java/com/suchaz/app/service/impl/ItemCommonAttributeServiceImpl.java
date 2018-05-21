@@ -1,18 +1,19 @@
 package com.suchaz.app.service.impl;
 
-import com.suchaz.app.service.ItemCommonAttributeService;
-import com.suchaz.app.domain.ItemCommonAttribute;
-import com.suchaz.app.repository.ItemCommonAttributeRepository;
-import com.suchaz.app.service.dto.ItemCommonAttributeDTO;
-import com.suchaz.app.service.mapper.ItemCommonAttributeMapper;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.suchaz.app.domain.ItemCommonAttribute;
+import com.suchaz.app.repository.ItemCommonAttributeRepository;
+import com.suchaz.app.service.ItemCommonAttributeService;
+import com.suchaz.app.service.dto.ItemCommonAttributeDTO;
+import com.suchaz.app.service.mapper.ItemCommonAttributeMapper;
 
 /**
  * Service Implementation for managing ItemCommonAttribute.

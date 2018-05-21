@@ -1,9 +1,10 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.OfferDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.Offer;
+import com.suchaz.app.service.dto.OfferDTO;
 
 /**
  * Mapper for the entity Offer and its DTO OfferDTO.

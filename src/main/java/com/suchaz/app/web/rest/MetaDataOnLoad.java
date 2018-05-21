@@ -38,7 +38,7 @@ public class MetaDataOnLoad {
     @Timed
     public ResponseEntity<MetaDataOnLoadDTO> getMetaDataOnLoad() {
         log.debug("REST request to MetaDataOnLoad with Ip : {}", "User's IP");
-        MetaDataOnLoadDTO metaDataOnLoadDTO = metaDataOnLoadService.loadAllMetaData();
+        MetaDataOnLoadDTO metaDataOnLoadDTO = metaDataOnLoadService.loadAllMetaDataForBeta();
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(metaDataOnLoadDTO));
     }
 

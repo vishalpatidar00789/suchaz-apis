@@ -1,9 +1,10 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.ActivityListDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.ActivityList;
+import com.suchaz.app.service.dto.ActivityListDTO;
 
 /**
  * Mapper for the entity ActivityList and its DTO ActivityListDTO.

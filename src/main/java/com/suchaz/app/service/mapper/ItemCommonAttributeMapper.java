@@ -1,9 +1,10 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.ItemCommonAttributeDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.ItemCommonAttribute;
+import com.suchaz.app.service.dto.ItemCommonAttributeDTO;
 
 /**
  * Mapper for the entity ItemCommonAttribute and its DTO ItemCommonAttributeDTO.

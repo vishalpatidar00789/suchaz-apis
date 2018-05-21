@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.OccassionDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.OccassionDTO;
 
 /**
  * Service Interface for managing Occassion.

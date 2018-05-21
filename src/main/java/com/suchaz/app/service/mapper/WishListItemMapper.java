@@ -1,9 +1,10 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.WishListItemDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.WishListItem;
+import com.suchaz.app.service.dto.WishListItemDTO;
 
 /**
  * Mapper for the entity WishListItem and its DTO WishListItemDTO.

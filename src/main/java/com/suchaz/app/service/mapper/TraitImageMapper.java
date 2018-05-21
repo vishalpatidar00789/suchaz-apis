@@ -1,9 +1,10 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.TraitImageDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.TraitImage;
+import com.suchaz.app.service.dto.TraitImageDTO;
 
 /**
  * Mapper for the entity TraitImage and its DTO TraitImageDTO.

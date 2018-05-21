@@ -1,13 +1,19 @@
 package com.suchaz.app.web.rest;
 
-import com.suchaz.app.SuchazapisApp;
+import static com.suchaz.app.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.suchaz.app.domain.ItemCommonAttribute;
-import com.suchaz.app.repository.ItemCommonAttributeRepository;
-import com.suchaz.app.service.ItemCommonAttributeService;
-import com.suchaz.app.service.dto.ItemCommonAttributeDTO;
-import com.suchaz.app.service.mapper.ItemCommonAttributeMapper;
-import com.suchaz.app.web.rest.errors.ExceptionTranslator;
+import java.util.List;
+
+import javax.persistence.EntityManager;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,14 +29,13 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import java.util.List;
-
-import static com.suchaz.app.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import com.suchaz.app.SuchazapisApp;
+import com.suchaz.app.domain.ItemCommonAttribute;
+import com.suchaz.app.repository.ItemCommonAttributeRepository;
+import com.suchaz.app.service.ItemCommonAttributeService;
+import com.suchaz.app.service.dto.ItemCommonAttributeDTO;
+import com.suchaz.app.service.mapper.ItemCommonAttributeMapper;
+import com.suchaz.app.web.rest.errors.ExceptionTranslator;
 
 /**
  * Test class for the ItemCommonAttributeResource REST controller.

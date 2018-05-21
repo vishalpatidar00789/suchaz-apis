@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.UserGiftWrapperDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.UserGiftWrapperDTO;
 
 /**
  * Service Interface for managing UserGiftWrapper.

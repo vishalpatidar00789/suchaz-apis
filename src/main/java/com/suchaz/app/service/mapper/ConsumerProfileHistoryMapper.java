@@ -1,9 +1,9 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.ConsumerProfileHistoryDTO;
+import org.mapstruct.Mapper;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.ConsumerProfileHistory;
+import com.suchaz.app.service.dto.ConsumerProfileHistoryDTO;
 
 /**
  * Mapper for the entity ConsumerProfileHistory and its DTO ConsumerProfileHistoryDTO.

@@ -1,11 +1,11 @@
 package com.suchaz.app.service.dto;
 
 
-import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+
+import javax.validation.constraints.NotNull;
+
 import com.suchaz.app.domain.enumeration.Status;
 
 /**

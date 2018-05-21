@@ -1,18 +1,19 @@
 package com.suchaz.app.service.impl;
 
-import com.suchaz.app.service.RelationshipImageService;
-import com.suchaz.app.domain.RelationshipImage;
-import com.suchaz.app.repository.RelationshipImageRepository;
-import com.suchaz.app.service.dto.RelationshipImageDTO;
-import com.suchaz.app.service.mapper.RelationshipImageMapper;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.suchaz.app.domain.RelationshipImage;
+import com.suchaz.app.repository.RelationshipImageRepository;
+import com.suchaz.app.service.RelationshipImageService;
+import com.suchaz.app.service.dto.RelationshipImageDTO;
+import com.suchaz.app.service.mapper.RelationshipImageMapper;
 
 /**
  * Service Implementation for managing RelationshipImage.

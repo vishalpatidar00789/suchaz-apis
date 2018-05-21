@@ -1,19 +1,20 @@
 package com.suchaz.app.service.impl;
 
-import com.suchaz.app.service.ItemService;
-import com.suchaz.app.domain.Item;
-import com.suchaz.app.repository.ItemRepository;
-import com.suchaz.app.service.dto.ItemDTO;
-import com.suchaz.app.service.mapper.ItemMapper;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.suchaz.app.domain.Item;
+import com.suchaz.app.repository.ItemRepository;
+import com.suchaz.app.service.ItemService;
+import com.suchaz.app.service.dto.ItemDTO;
+import com.suchaz.app.service.mapper.ItemMapper;
 
 /**
  * Service Implementation for managing Item.
@@ -94,4 +95,11 @@ public class ItemServiceImpl implements ItemService {
             .map(itemMapper::toDto)
             .collect(Collectors.toCollection(ArrayList::new));
 	}
+
+	@Override
+	public Long[] findAllItemsIdsWithKeyWord(String keyWord) {
+		log.debug("Request to get all search Items");
+        return itemRepository.findAllItemsIdsWithSearchedKeyWords(keyWord);
+	}
+
 }

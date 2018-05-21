@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.ItemImageDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.ItemImageDTO;
 
 /**
  * Service Interface for managing ItemImage.

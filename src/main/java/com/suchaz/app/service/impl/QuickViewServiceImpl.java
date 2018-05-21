@@ -1,7 +1,6 @@
 package com.suchaz.app.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -11,14 +10,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.suchaz.app.domain.Item;
-import com.suchaz.app.domain.ItemCommonAttribute;
 import com.suchaz.app.domain.ItemImage;
+import com.suchaz.app.domain.Offer;
 import com.suchaz.app.repository.ItemCommonAttributeRepository;
 import com.suchaz.app.repository.ItemRepository;
 import com.suchaz.app.service.QuickViewService;
 import com.suchaz.app.service.dto.QuickViewDTO;
-
-import com.suchaz.app.domain.Offer;
 
 /**
  * Service Implementation for managing Item.

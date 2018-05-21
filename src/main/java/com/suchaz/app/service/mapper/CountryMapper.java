@@ -1,9 +1,10 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.CountryDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.Country;
+import com.suchaz.app.service.dto.CountryDTO;
 
 /**
  * Mapper for the entity Country and its DTO CountryDTO.

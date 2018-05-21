@@ -1,20 +1,22 @@
 package com.suchaz.app.web.rest;
 
-import com.suchaz.app.config.Constants;
-import com.suchaz.app.SuchazapisApp;
-import com.suchaz.app.domain.Authority;
-import com.suchaz.app.domain.User;
-import com.suchaz.app.repository.AuthorityRepository;
-import com.suchaz.app.repository.UserRepository;
-import com.suchaz.app.security.AuthoritiesConstants;
-import com.suchaz.app.service.MailService;
-import com.suchaz.app.service.dto.UserDTO;
-import com.suchaz.app.web.rest.errors.ExceptionTranslator;
-import com.suchaz.app.web.rest.vm.KeyAndPasswordVM;
-import com.suchaz.app.web.rest.vm.ManagedUserVM;
-import com.suchaz.app.service.UserService;
-import org.apache.commons.lang3.RandomStringUtils;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Matchers.anyObject;
+import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.time.Instant;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,18 +32,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
-import java.time.Instant;
-import java.time.LocalDate;
 
-import java.util.*;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Matchers.anyObject;
-import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import com.suchaz.app.SuchazapisApp;
+import com.suchaz.app.config.Constants;
+import com.suchaz.app.domain.Authority;
+import com.suchaz.app.domain.User;
+import com.suchaz.app.repository.AuthorityRepository;
+import com.suchaz.app.repository.UserRepository;
+import com.suchaz.app.security.AuthoritiesConstants;
+import com.suchaz.app.service.MailService;
+import com.suchaz.app.service.UserService;
+import com.suchaz.app.service.dto.UserDTO;
+import com.suchaz.app.web.rest.errors.ExceptionTranslator;
+import com.suchaz.app.web.rest.vm.KeyAndPasswordVM;
+import com.suchaz.app.web.rest.vm.ManagedUserVM;
 
 /**
  * Test class for the AccountResource REST controller.

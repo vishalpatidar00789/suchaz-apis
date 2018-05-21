@@ -1,10 +1,14 @@
 package com.suchaz.app.web.rest;
 
-import com.suchaz.app.SuchazapisApp;
-import com.suchaz.app.config.audit.AuditEventConverter;
-import com.suchaz.app.domain.PersistentAuditEvent;
-import com.suchaz.app.repository.PersistenceAuditEventRepository;
-import com.suchaz.app.service.AuditEventService;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.time.Instant;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,12 +24,11 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
-import java.time.format.DateTimeFormatter;
-
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+import com.suchaz.app.SuchazapisApp;
+import com.suchaz.app.config.audit.AuditEventConverter;
+import com.suchaz.app.domain.PersistentAuditEvent;
+import com.suchaz.app.repository.PersistenceAuditEventRepository;
+import com.suchaz.app.service.AuditEventService;
 
 /**
  * Test class for the AuditResource REST controller.

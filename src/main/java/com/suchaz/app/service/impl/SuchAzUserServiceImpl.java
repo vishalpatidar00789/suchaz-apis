@@ -1,10 +1,10 @@
 package com.suchaz.app.service.impl;
 
-import com.suchaz.app.service.SuchAzUserService;
-import com.suchaz.app.domain.SuchAzUser;
-import com.suchaz.app.repository.SuchAzUserRepository;
-import com.suchaz.app.service.dto.SuchAzUserDTO;
-import com.suchaz.app.service.mapper.SuchAzUserMapper;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -12,10 +12,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
+import com.suchaz.app.domain.SuchAzUser;
+import com.suchaz.app.repository.SuchAzUserRepository;
+import com.suchaz.app.service.SuchAzUserService;
+import com.suchaz.app.service.dto.SuchAzUserDTO;
+import com.suchaz.app.service.mapper.SuchAzUserMapper;
 
 /**
  * Service Implementation for managing SuchAzUser.

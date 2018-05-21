@@ -1,18 +1,19 @@
 package com.suchaz.app.service.impl;
 
-import com.suchaz.app.service.GiftWrapperService;
-import com.suchaz.app.domain.GiftWrapper;
-import com.suchaz.app.repository.GiftWrapperRepository;
-import com.suchaz.app.service.dto.GiftWrapperDTO;
-import com.suchaz.app.service.mapper.GiftWrapperMapper;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.suchaz.app.domain.GiftWrapper;
+import com.suchaz.app.repository.GiftWrapperRepository;
+import com.suchaz.app.service.GiftWrapperService;
+import com.suchaz.app.service.dto.GiftWrapperDTO;
+import com.suchaz.app.service.mapper.GiftWrapperMapper;
 
 /**
  * Service Implementation for managing GiftWrapper.

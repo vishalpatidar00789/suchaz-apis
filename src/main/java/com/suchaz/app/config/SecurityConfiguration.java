@@ -1,7 +1,6 @@
 package com.suchaz.app.config;
 
-import com.suchaz.app.security.*;
-import com.suchaz.app.security.jwt.*;
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
@@ -22,7 +21,9 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.filter.CorsFilter;
 import org.zalando.problem.spring.web.advice.security.SecurityProblemSupport;
 
-import javax.annotation.PostConstruct;
+import com.suchaz.app.security.AuthoritiesConstants;
+import com.suchaz.app.security.jwt.JWTConfigurer;
+import com.suchaz.app.security.jwt.TokenProvider;
 
 @Configuration
 @Import(SecurityProblemSupport.class)

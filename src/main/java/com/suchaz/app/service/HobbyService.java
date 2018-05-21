@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.HobbyDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.HobbyDTO;
 
 /**
  * Service Interface for managing Hobby.

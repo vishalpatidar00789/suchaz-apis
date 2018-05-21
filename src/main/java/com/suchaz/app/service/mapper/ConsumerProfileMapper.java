@@ -1,9 +1,10 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.ConsumerProfileDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.ConsumerProfile;
+import com.suchaz.app.service.dto.ConsumerProfileDTO;
 
 /**
  * Mapper for the entity ConsumerProfile and its DTO ConsumerProfileDTO.

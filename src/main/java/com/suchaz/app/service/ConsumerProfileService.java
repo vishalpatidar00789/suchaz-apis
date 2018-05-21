@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.ConsumerProfileDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.ConsumerProfileDTO;
 
 /**
  * Service Interface for managing ConsumerProfile.

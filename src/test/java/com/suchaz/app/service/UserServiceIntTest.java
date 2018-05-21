@@ -1,11 +1,11 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.SuchazapisApp;
-import com.suchaz.app.config.Constants;
-import com.suchaz.app.domain.User;
-import com.suchaz.app.repository.UserRepository;
-import com.suchaz.app.service.dto.UserDTO;
-import com.suchaz.app.service.util.RandomUtil;
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
@@ -18,12 +18,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.List;
-import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
+import com.suchaz.app.SuchazapisApp;
+import com.suchaz.app.config.Constants;
+import com.suchaz.app.domain.User;
+import com.suchaz.app.repository.UserRepository;
+import com.suchaz.app.service.dto.UserDTO;
+import com.suchaz.app.service.util.RandomUtil;
 
 /**
  * Test class for the UserResource REST controller.

@@ -1,11 +1,13 @@
 package com.suchaz.app.repository;
 
-import com.suchaz.app.domain.Store;
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import org.springframework.data.jpa.repository.*;
-import org.springframework.data.repository.query.Param;
-import java.util.List;
+import com.suchaz.app.domain.Store;
 
 /**
  * Spring Data JPA repository for the Store entity.

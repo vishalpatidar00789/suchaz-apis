@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.ActivityListDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.ActivityListDTO;
 
 /**
  * Service Interface for managing ActivityList.

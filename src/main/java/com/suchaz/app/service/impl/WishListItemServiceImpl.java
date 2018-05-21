@@ -1,18 +1,19 @@
 package com.suchaz.app.service.impl;
 
-import com.suchaz.app.service.WishListItemService;
-import com.suchaz.app.domain.WishListItem;
-import com.suchaz.app.repository.WishListItemRepository;
-import com.suchaz.app.service.dto.WishListItemDTO;
-import com.suchaz.app.service.mapper.WishListItemMapper;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.suchaz.app.domain.WishListItem;
+import com.suchaz.app.repository.WishListItemRepository;
+import com.suchaz.app.service.WishListItemService;
+import com.suchaz.app.service.dto.WishListItemDTO;
+import com.suchaz.app.service.mapper.WishListItemMapper;
 
 /**
  * Service Implementation for managing WishListItem.

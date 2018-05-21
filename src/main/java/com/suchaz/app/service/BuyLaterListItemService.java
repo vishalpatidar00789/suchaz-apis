@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.BuyLaterListItemDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.BuyLaterListItemDTO;
 
 /**
  * Service Interface for managing BuyLaterListItem.

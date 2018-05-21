@@ -1,9 +1,10 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.VendorImageDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.VendorImage;
+import com.suchaz.app.service.dto.VendorImageDTO;
 
 /**
  * Mapper for the entity VendorImage and its DTO VendorImageDTO.

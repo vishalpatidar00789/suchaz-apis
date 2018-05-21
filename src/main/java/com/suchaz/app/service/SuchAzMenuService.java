@@ -1,7 +1,8 @@
 package com.suchaz.app.service;
 
-import com.suchaz.app.service.dto.SuchAzMenuDTO;
 import java.util.List;
+
+import com.suchaz.app.service.dto.SuchAzMenuDTO;
 
 /**
  * Service Interface for managing SuchAzMenu.

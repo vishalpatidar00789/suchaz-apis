@@ -1,14 +1,12 @@
 package com.suchaz.app.service.dto;
 
 
-import javax.persistence.Lob;
-import javax.validation.constraints.*;
 import java.io.Serializable;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
-import java.util.Objects;
-import com.suchaz.app.domain.enumeration.Status;
+
+import javax.persistence.Lob;
+import javax.validation.constraints.NotNull;
+
 import com.suchaz.app.domain.enumeration.Status;
 
 /**

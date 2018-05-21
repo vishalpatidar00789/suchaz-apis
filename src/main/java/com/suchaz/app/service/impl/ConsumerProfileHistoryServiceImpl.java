@@ -1,18 +1,19 @@
 package com.suchaz.app.service.impl;
 
-import com.suchaz.app.service.ConsumerProfileHistoryService;
-import com.suchaz.app.domain.ConsumerProfileHistory;
-import com.suchaz.app.repository.ConsumerProfileHistoryRepository;
-import com.suchaz.app.service.dto.ConsumerProfileHistoryDTO;
-import com.suchaz.app.service.mapper.ConsumerProfileHistoryMapper;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.suchaz.app.domain.ConsumerProfileHistory;
+import com.suchaz.app.repository.ConsumerProfileHistoryRepository;
+import com.suchaz.app.service.ConsumerProfileHistoryService;
+import com.suchaz.app.service.dto.ConsumerProfileHistoryDTO;
+import com.suchaz.app.service.mapper.ConsumerProfileHistoryMapper;
 
 /**
  * Service Implementation for managing ConsumerProfileHistory.

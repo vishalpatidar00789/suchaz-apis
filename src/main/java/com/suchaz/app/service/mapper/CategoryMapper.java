@@ -1,9 +1,10 @@
 package com.suchaz.app.service.mapper;
 
-import com.suchaz.app.domain.*;
-import com.suchaz.app.service.dto.CategoryDTO;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
-import org.mapstruct.*;
+import com.suchaz.app.domain.Category;
+import com.suchaz.app.service.dto.CategoryDTO;
 
 /**
  * Mapper for the entity Category and its DTO CategoryDTO.

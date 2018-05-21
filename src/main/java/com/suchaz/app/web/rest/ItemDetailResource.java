@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
 import com.suchaz.app.service.ItemDetailService;
-import com.suchaz.app.service.MetaDataOnLoadService;
 import com.suchaz.app.service.dto.ItemDetailsDTO;
-import com.suchaz.app.service.dto.MetaDataOnLoadDTO;
-import com.suchaz.app.service.dto.MyAccountDTO;
 
 import io.github.jhipster.web.util.ResponseUtil;
 
