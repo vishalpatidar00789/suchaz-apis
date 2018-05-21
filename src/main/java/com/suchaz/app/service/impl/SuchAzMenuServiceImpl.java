@@ -1,20 +1,18 @@
 package com.suchaz.app.service.impl;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
-
+import com.suchaz.app.service.SuchAzMenuService;
+import com.suchaz.app.domain.SuchAzMenu;
+import com.suchaz.app.repository.SuchAzMenuRepository;
+import com.suchaz.app.service.dto.SuchAzMenuDTO;
+import com.suchaz.app.service.mapper.SuchAzMenuMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.suchaz.app.domain.SuchAzMenu;
-import com.suchaz.app.repository.SuchAzMenuRepository;
-import com.suchaz.app.service.SuchAzMenuService;
-import com.suchaz.app.service.dto.SuchAzMenuDTO;
-import com.suchaz.app.service.mapper.SuchAzMenuMapper;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing SuchAzMenu.
@@ -58,8 +56,8 @@ public class SuchAzMenuServiceImpl implements SuchAzMenuService {
     public List<SuchAzMenuDTO> findAll() {
         log.debug("Request to get all SuchAzMenus");
         return suchAzMenuRepository.findAllWithEagerRelationships().stream()
-            .map(suchAzMenuMapper::toDto)
-            .collect(Collectors.toCollection(ArrayList::new));
+            .map(suchAzMenuMapper::toDtoWithoutItems)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
