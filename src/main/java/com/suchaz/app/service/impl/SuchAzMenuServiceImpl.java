@@ -55,9 +55,9 @@ public class SuchAzMenuServiceImpl implements SuchAzMenuService {
     @Transactional(readOnly = true)
     public List<SuchAzMenuDTO> findAll() {
         log.debug("Request to get all SuchAzMenus");
-        List<SuchAzMenu> suchAzMenus =  suchAzMenuRepository.findAllWithEagerRelationships();
-        return suchAzMenuMapper.toDto(suchAzMenus);
-            
+        return suchAzMenuRepository.findAllWithEagerRelationships().stream()
+            .map(suchAzMenuMapper::toDtoWithoutItems)
+            .collect(Collectors.toCollection(LinkedList::new));
     }
 
     /**
