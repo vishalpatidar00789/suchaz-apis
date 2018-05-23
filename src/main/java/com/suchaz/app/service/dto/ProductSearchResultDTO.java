@@ -17,6 +17,20 @@ public class ProductSearchResultDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private Long suchAzUserId;
 	private ArrayList<QuickViewDTO> listOfItems;
+	private String searchKeyWord;
+	private String errorMessage=null;
+	public String getErrorMessage() {
+		return errorMessage;
+	}
+	public void setErrorMessage(String errorMessage) {
+		this.errorMessage = errorMessage;
+	}
+	public String getSearchKeyWord() {
+		return searchKeyWord;
+	}
+	public void setSearchKeyWord(String searchKeyWord) {
+		this.searchKeyWord = searchKeyWord;
+	}
 	public Long getSuchAzUserId() {
 		return suchAzUserId;
 	}
