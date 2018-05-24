@@ -84,4 +84,11 @@ public class SuchAzMenuServiceImpl implements SuchAzMenuService {
         log.debug("Request to delete SuchAzMenu : {}", id);
         suchAzMenuRepository.delete(id);
     }
+
+	@Override
+	public SuchAzMenuDTO findOneWithMenuCodeAndItems(String menuCode) {
+		log.debug("Request to get SuchAzMenu with MenuCode: {}", menuCode);
+        SuchAzMenu suchAzMenu = suchAzMenuRepository.findOneWithMenuCodeAndItems(menuCode);
+        return suchAzMenuMapper.toDto(suchAzMenu);
+	}
 }

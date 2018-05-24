@@ -12,13 +12,15 @@ public interface ProductRecommendationService {
      *
      * @return the ProductSearchResultDTO
      */
-	ProductSearchResultDTO searchProductsForLoggedInUser(String ageGroup, String gender, String userInputCodes, String userIdentifier, String menuIdentifier);
+	//ProductSearchResultDTO searchProductsForLoggedInUser(String ageGroup, String gender, String userInputCodes, String userIdentifier, String menuIdentifier);
 
 	/**
      * Get all Recommended products for Non Logged In User
      *s
      * @return the ProductSearchResultDTO
      */
-	ProductSearchResultDTO searchProductsForNonLoggedInUser(String ageGroup, String gender, String userInputCodes, String userIdentifier, String menuIdentifier);
+	//ProductSearchResultDTO searchProductsForNonLoggedInUser(String ageGroup, String gender, String userInputCodes, String userIdentifier, String menuIdentifier);
+
+	ProductSearchResultDTO searchProductByMenuForBeta(String MenuCode);
 
 }

@@ -20,5 +20,8 @@ public interface SuchAzMenuRepository extends JpaRepository<SuchAzMenu, Long> {
 
     @Query("select such_az_menu from SuchAzMenu such_az_menu left join fetch such_az_menu.items where such_az_menu.id =:id")
     SuchAzMenu findOneWithEagerRelationships(@Param("id") Long id);
+    
+    @Query("select such_az_menu from SuchAzMenu such_az_menu left join fetch such_az_menu.items where such_az_menu.menuCode =:menuCode")
+    SuchAzMenu findOneWithMenuCodeAndItems(@Param("menuCode") String menuCode);
 
 }

@@ -38,4 +38,7 @@ public interface SuchAzMenuService {
      * @param id the id of the entity
      */
     void delete(Long id);
+    
+    
+    SuchAzMenuDTO findOneWithMenuCodeAndItems(String menuCode);
 }
