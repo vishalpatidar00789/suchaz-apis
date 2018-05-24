@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,7 +58,7 @@ public class SuchAzMenuServiceImpl implements SuchAzMenuService {
         log.debug("Request to get all SuchAzMenus");
         return suchAzMenuRepository.findAllWithEagerRelationships().stream()
             .map(suchAzMenuMapper::toDtoWithoutItems)
-            .collect(Collectors.toCollection(LinkedList::new));
+            .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
