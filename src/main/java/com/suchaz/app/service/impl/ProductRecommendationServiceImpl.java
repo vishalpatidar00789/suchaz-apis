@@ -3,6 +3,8 @@ package com.suchaz.app.service.impl;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.joda.time.DateTime;
 import org.slf4j.Logger;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.suchaz.app.domain.Category;
 import com.suchaz.app.domain.ConsumerProfile;
 import com.suchaz.app.domain.ConsumerProfileHistory;
+import com.suchaz.app.domain.SuchAzMenu;
 import com.suchaz.app.domain.SuchAzUser;
 import com.suchaz.app.domain.enumeration.AgeGroup;
 import com.suchaz.app.domain.enumeration.Gender;
@@ -24,8 +27,10 @@ import com.suchaz.app.repository.ItemRepository;
 import com.suchaz.app.repository.SuchAzUserRepository;
 import com.suchaz.app.service.ProductRecommendationService;
 import com.suchaz.app.service.QuickViewService;
+import com.suchaz.app.service.SuchAzMenuService;
 import com.suchaz.app.service.dto.ProductSearchResultDTO;
 import com.suchaz.app.service.dto.QuickViewDTO;
+import com.suchaz.app.service.dto.SuchAzMenuDTO;
 import com.suchaz.app.service.util.CustomUtil;
 
 /**
@@ -44,6 +49,9 @@ public class ProductRecommendationServiceImpl implements ProductRecommendationSe
 	@Autowired
 	private QuickViewService quickViewService;
 	
+	@Autowired
+	private SuchAzMenuService suchAzMenuService;
+	
 
 
 	
@@ -60,6 +68,7 @@ public class ProductRecommendationServiceImpl implements ProductRecommendationSe
 
 	private final Logger log = LoggerFactory.getLogger(ProductRecommendationServiceImpl.class);
 
+	/*
 	@Override
 	public ProductSearchResultDTO searchProductsForLoggedInUser(String ageGroup, String gender, String userInputCodes, String userIdentifier, String menuIdentifier) {
 		
@@ -98,9 +107,9 @@ public class ProductRecommendationServiceImpl implements ProductRecommendationSe
 					consumerProfileHistory.setIsLoggedInUser(consumerProfile.isIsLoggedInUser());
 					
 					consumerProfileHistoryRepository.saveAndFlush(consumerProfileHistory);
-					/*consumerProfileRepository.delete(consumerProfile);
-					consumerProfileRepository.flush();
-					consumerProfile = null;*/
+					//consumerProfileRepository.delete(consumerProfile);
+					//consumerProfileRepository.flush();
+					//consumerProfile = null;
 
 				}
 				// Creating Consumer Profile Domain for saving
@@ -274,9 +283,9 @@ public class ProductRecommendationServiceImpl implements ProductRecommendationSe
 					consumerProfileHistory.setIsLoggedInUser(consumerProfile.isIsLoggedInUser());
 					
 					consumerProfileHistoryRepository.saveAndFlush(consumerProfileHistory);
-					/*consumerProfileRepository.delete(consumerProfile);
-					consumerProfileRepository.flush();
-					consumerProfile = null;*/
+					//consumerProfileRepository.delete(consumerProfile);
+					//consumerProfileRepository.flush();
+					//consumerProfile = null;
 
 				}
 				// Creating Consumer Profile Domain for saving
@@ -455,6 +464,42 @@ public class ProductRecommendationServiceImpl implements ProductRecommendationSe
 	
 		return listOfAllItemsIdFound;
 
+	}*/
+
+	@Override
+	public ProductSearchResultDTO searchProductByMenuForBeta(String menuCode) {
+		
+		log.warn("Inside ProductRecommendationServiceImpl:: searchProductByMenuForBeta for MenuCode {} ",menuCode);
+		ProductSearchResultDTO productSearchResultDTO = new ProductSearchResultDTO();
+		
+		if(CustomUtil.isNotNull(menuCode))
+		{
+			SuchAzMenuDTO suchAzMenuDTO = suchAzMenuService.findOneWithMenuCodeAndItems(menuCode);
+			if(suchAzMenuDTO!=null && suchAzMenuDTO.getItems()!=null)
+			{
+				Long [] arrayOfItemListIds =  (Long[]) suchAzMenuDTO.getItems().stream().map(l->l.getId()).collect(Collectors.toList()).toArray();
+				
+				ArrayList<QuickViewDTO> listOfQuickViewDTOs = (ArrayList<QuickViewDTO>) quickViewService.findRangeOfItem(arrayOfItemListIds);
+				
+				if(listOfQuickViewDTOs!=null && listOfQuickViewDTOs.size()>0)
+				{
+					productSearchResultDTO.setListOfItems(listOfQuickViewDTOs);
+				}
+				
+				productSearchResultDTO.setSearchKeyWord(menuCode);
+			}
+			else
+			{
+				productSearchResultDTO.setErrorMessage("No Prodcuts Found. Please Wait for Updates and Try Again");
+			}
+		}
+		else
+		{
+			productSearchResultDTO.setErrorMessage("Please select Correct Menu");
+		}
+		
+		
+		return productSearchResultDTO;
 	}
 	
 }

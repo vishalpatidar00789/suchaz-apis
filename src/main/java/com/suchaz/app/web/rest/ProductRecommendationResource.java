@@ -49,7 +49,7 @@ public class ProductRecommendationResource {
         log.debug("REST request to get Search Product : ageGroup: {}, gender : {}, traitsCode : {}, isLoggedInUser : {}, userIdentifier: {}", ageGroup,gender,triatsCode,isLoggedInUser,userIdentifier);
         ProductSearchResultDTO productSearchResultDTO = null;
       
-        if(isLoggedInUser) {
+       /* if(isLoggedInUser) {
         	// Call Service for details where we have suchAzuser ID.
         	productSearchResultDTO = productRecommendationService.searchProductsForLoggedInUser(ageGroup, gender, triatsCode, userIdentifier, menuIdentifier);
         	
@@ -58,6 +58,27 @@ public class ProductRecommendationResource {
         	// Call service where we don't have user created in suchaz or not logged in user.
         	productSearchResultDTO = productRecommendationService.searchProductsForNonLoggedInUser(ageGroup, gender, triatsCode, userIdentifier, menuIdentifier);
         }
+        */
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(productSearchResultDTO));
+    }
+    
+    @GetMapping("/search-product-by-Menu-Code/{menuCode}")
+    @Timed
+    public ResponseEntity<ProductSearchResultDTO> searchProductsByMenuCode(@RequestParam String menuCode) {
+        log.debug("REST request to get SsearchProductsByMenuCode: menuCode: {}", menuCode);
+        ProductSearchResultDTO productSearchResultDTO = null;
+      
+       /* if(isLoggedInUser) {
+        	// Call Service for details where we have suchAzuser ID.
+        	productSearchResultDTO = productRecommendationService.searchProductsForLoggedInUser(ageGroup, gender, triatsCode, userIdentifier, menuIdentifier);
+        	
+        }else
+        {
+        	// Call service where we don't have user created in suchaz or not logged in user.
+        	productSearchResultDTO = productRecommendationService.searchProductsForNonLoggedInUser(ageGroup, gender, triatsCode, userIdentifier, menuIdentifier);
+        }
+        */
+        productSearchResultDTO = productRecommendationService.searchProductByMenuForBeta(menuCode);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(productSearchResultDTO));
     }
 
