@@ -5,7 +5,7 @@
     <groupId>com.suchaz.app</groupId>
     <artifactId>suchazapis</artifactId>
     <!-- <version>0.0.1-SNAPSHOT</version> -->
-    <version>1.15</version>
+    <version>1.16</version>
     <packaging>war</packaging>
     <name>Suchazapis</name>
 
