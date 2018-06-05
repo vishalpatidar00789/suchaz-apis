@@ -42,6 +42,9 @@ public class QuickViewDTO implements Serializable {
 
     private String vendorVendorName;
     
+    @Lob
+    private byte[] vendorImage;
+    
     private String customerAvgRating;
     
     //private HashMap<String,String> mapOfItemAttributeAndValues;
@@ -174,6 +177,14 @@ public class QuickViewDTO implements Serializable {
         this.vendorVendorName = vendorVendorName;
     }
     
+	public byte[] getVendorImage() {
+		return vendorImage;
+	}
+
+	public void setVendorImage(byte[] vendorImage) {
+		this.vendorImage = vendorImage;
+	}
+
 	public String getCustomerAvgRating() {
 		return customerAvgRating;
 	}

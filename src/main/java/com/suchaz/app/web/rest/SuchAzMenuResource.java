@@ -2,8 +2,11 @@ package com.suchaz.app.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -20,8 +23,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
+import com.suchaz.app.service.QuickViewService;
 import com.suchaz.app.service.SuchAzMenuService;
+import com.suchaz.app.service.dto.ItemDTO;
+import com.suchaz.app.service.dto.QuickViewDTO;
 import com.suchaz.app.service.dto.SuchAzMenuDTO;
+import com.suchaz.app.service.impl.QuickViewServiceImpl;
 import com.suchaz.app.web.rest.errors.BadRequestAlertException;
 import com.suchaz.app.web.rest.util.HeaderUtil;
 
@@ -39,10 +46,15 @@ public class SuchAzMenuResource {
     private static final String ENTITY_NAME = "suchAzMenu";
 
     private final SuchAzMenuService suchAzMenuService;
-
-    public SuchAzMenuResource(SuchAzMenuService suchAzMenuService) {
+    
+    private final QuickViewService quickViewService;
+    
+    
+    public SuchAzMenuResource(SuchAzMenuService suchAzMenuService, QuickViewService quickViewService) {
         this.suchAzMenuService = suchAzMenuService;
+        this.quickViewService = quickViewService;
     }
+    
 
     /**
      * POST  /such-az-menus : Create a new suchAzMenu.
@@ -109,6 +121,29 @@ public class SuchAzMenuResource {
     public ResponseEntity<SuchAzMenuDTO> getSuchAzMenu(@PathVariable Long id) {
         log.debug("REST request to get SuchAzMenu : {}", id);
         SuchAzMenuDTO suchAzMenuDTO = suchAzMenuService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(suchAzMenuDTO));
+    }
+    
+    /**
+     * GET  /such-az-menus/:id : get the "id" suchAzMenu.
+     *
+     * @param id the id of the suchAzMenuDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the suchAzMenuDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/such-az-menusWithQuickView/{id}")
+    @Timed
+    public ResponseEntity<SuchAzMenuDTO> getSuchAzMenuWithQuickView(@PathVariable Long id) {
+        log.debug("REST request to get SuchAzMenu : {}", id);
+        SuchAzMenuDTO suchAzMenuDTO = suchAzMenuService.findOne(id);
+        if(null != suchAzMenuDTO.getItems() && suchAzMenuDTO.getItems().size() > 0) {
+	        Long[] itemIds = new Long[suchAzMenuDTO.getItems().size()];
+	        Iterator<ItemDTO> itemIterator = suchAzMenuDTO.getItems().iterator();
+	        for(int i=0;i<suchAzMenuDTO.getItems().size() && itemIterator.hasNext();i++) {
+	        	itemIds[i] = itemIterator.next().getId();
+	        }
+	        suchAzMenuDTO.setQuickViewItems(new HashSet(quickViewService.findRangeOfItem(itemIds)));
+        }
+        suchAzMenuDTO.setItems(null);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(suchAzMenuDTO));
     }
 

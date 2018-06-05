@@ -27,7 +27,10 @@
         },
         {
             "fieldName": "menuCode",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "discription",

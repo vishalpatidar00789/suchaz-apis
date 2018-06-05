@@ -108,8 +108,15 @@ public class QuickViewServiceImpl implements QuickViewService {
 			quickViewDTO.setItemId(item.getItemId());
 			quickViewDTO.setLastFeaturedUPDDate(item.getLastFeaturedUPDDate());
 			quickViewDTO.setTitle(item.getTitle());
-			quickViewDTO.setVendorId(item.getVendor().getId());
-			quickViewDTO.setVendorVendorName(item.getVendor().getVendorName());
+			if(null != item.getVendor()) {
+				quickViewDTO.setVendorId(item.getVendor().getId());
+				quickViewDTO.setVendorImage(
+						(null != item.getVendor().getVendorImages() && item.getVendor().getVendorImages().size() > 0
+								&& item.getVendor().getVendorImages().iterator().hasNext())
+										? item.getVendor().getVendorImages().iterator().next().getVendorImage()
+										: null);
+				quickViewDTO.setVendorVendorName(item.getVendor().getVendorName());
+			}
 			quickViewDTO.setCustomerAvgRating(item.getCustomerAvgRating());
 			
 			//Adding Offers

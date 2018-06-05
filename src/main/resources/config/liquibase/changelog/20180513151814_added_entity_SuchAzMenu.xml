@@ -30,8 +30,8 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="menu_code" type="varchar(255)">
-                <constraints nullable="true" />
+            <column name="menu_code" type="varchar(50)">
+                <constraints nullable="false" />
             </column>
 
             <column name="discription" type="varchar(255)">

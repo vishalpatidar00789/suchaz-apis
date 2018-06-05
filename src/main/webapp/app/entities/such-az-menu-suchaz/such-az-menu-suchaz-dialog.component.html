@@ -37,7 +37,13 @@
         <div class="form-group">
             <label class="form-control-label" for="field_menuCode">Menu Code</label>
             <input type="text" class="form-control" name="menuCode" id="field_menuCode"
-                [(ngModel)]="suchAzMenu.menuCode" />
+                [(ngModel)]="suchAzMenu.menuCode" required/>
+            <div [hidden]="!(editForm.controls.menuCode?.dirty && editForm.controls.menuCode?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.menuCode?.errors?.required">
+                   This field is required.
+                </small>
+            </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" for="field_discription">Discription</label>

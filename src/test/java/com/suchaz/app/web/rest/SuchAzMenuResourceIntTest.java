@@ -1,19 +1,14 @@
 package com.suchaz.app.web.rest;
 
-import static com.suchaz.app.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.suchaz.app.SuchazapisApp;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
+import com.suchaz.app.domain.SuchAzMenu;
+import com.suchaz.app.repository.SuchAzMenuRepository;
+import com.suchaz.app.service.QuickViewService;
+import com.suchaz.app.service.SuchAzMenuService;
+import com.suchaz.app.service.dto.SuchAzMenuDTO;
+import com.suchaz.app.service.mapper.SuchAzMenuMapper;
+import com.suchaz.app.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,14 +25,17 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Base64Utils;
 
-import com.suchaz.app.SuchazapisApp;
-import com.suchaz.app.domain.SuchAzMenu;
+import javax.persistence.EntityManager;
+import java.util.List;
+
+import static com.suchaz.app.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 import com.suchaz.app.domain.enumeration.Status;
-import com.suchaz.app.repository.SuchAzMenuRepository;
-import com.suchaz.app.service.SuchAzMenuService;
-import com.suchaz.app.service.dto.SuchAzMenuDTO;
-import com.suchaz.app.service.mapper.SuchAzMenuMapper;
-import com.suchaz.app.web.rest.errors.ExceptionTranslator;
+import com.suchaz.app.domain.enumeration.Status;
 /**
  * Test class for the SuchAzMenuResource REST controller.
  *
@@ -92,6 +90,10 @@ public class SuchAzMenuResourceIntTest {
     private SuchAzMenuService suchAzMenuService;
 
     @Autowired
+    private QuickViewService quickViewService;
+
+    
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -110,7 +112,7 @@ public class SuchAzMenuResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final SuchAzMenuResource suchAzMenuResource = new SuchAzMenuResource(suchAzMenuService);
+        final SuchAzMenuResource suchAzMenuResource = new SuchAzMenuResource(suchAzMenuService,quickViewService);
         this.restSuchAzMenuMockMvc = MockMvcBuilders.standaloneSetup(suchAzMenuResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
@@ -221,6 +223,25 @@ public class SuchAzMenuResourceIntTest {
         int databaseSizeBeforeTest = suchAzMenuRepository.findAll().size();
         // set the field null
         suchAzMenu.setMenu(null);
+
+        // Create the SuchAzMenu, which fails.
+        SuchAzMenuDTO suchAzMenuDTO = suchAzMenuMapper.toDto(suchAzMenu);
+
+        restSuchAzMenuMockMvc.perform(post("/api/such-az-menus")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(suchAzMenuDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<SuchAzMenu> suchAzMenuList = suchAzMenuRepository.findAll();
+        assertThat(suchAzMenuList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
+    public void checkMenuCodeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = suchAzMenuRepository.findAll().size();
+        // set the field null
+        suchAzMenu.setMenuCode(null);
 
         // Create the SuchAzMenu, which fails.
         SuchAzMenuDTO suchAzMenuDTO = suchAzMenuMapper.toDto(suchAzMenu);

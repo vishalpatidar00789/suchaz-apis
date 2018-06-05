@@ -1,14 +1,13 @@
 package com.suchaz.app.service.dto;
 
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
-
+import java.util.Objects;
 import javax.persistence.Lob;
-import javax.validation.constraints.NotNull;
-
+import com.suchaz.app.domain.enumeration.Status;
 import com.suchaz.app.domain.enumeration.Status;
 
 /**
@@ -24,6 +23,7 @@ public class SuchAzMenuDTO implements Serializable {
     @NotNull
     private String menu;
 
+    @NotNull
     private String menuCode;
 
     private String discription;
@@ -49,6 +49,8 @@ public class SuchAzMenuDTO implements Serializable {
     private String lastUpdatedBy;
 
     private Set<ItemDTO> items = new HashSet<>();
+    
+    private Set<QuickViewDTO> QuickViewItems = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -162,7 +164,16 @@ public class SuchAzMenuDTO implements Serializable {
         this.items = items;
     }
 
-    @Override
+    
+    public Set<QuickViewDTO> getQuickViewItems() {
+		return QuickViewItems;
+	}
+
+	public void setQuickViewItems(Set<QuickViewDTO> quickViewItems) {
+		QuickViewItems = quickViewItems;
+	}
+
+	@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
