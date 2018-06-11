@@ -1,19 +1,13 @@
 package com.suchaz.app.web.rest;
 
-import static com.suchaz.app.web.rest.TestUtil.createFormattingConversionService;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.hamcrest.Matchers.hasItem;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import com.suchaz.app.SuchazapisApp;
 
-import java.util.List;
-
-import javax.persistence.EntityManager;
+import com.suchaz.app.domain.ItemImage;
+import com.suchaz.app.repository.ItemImageRepository;
+import com.suchaz.app.service.ItemImageService;
+import com.suchaz.app.service.dto.ItemImageDTO;
+import com.suchaz.app.service.mapper.ItemImageMapper;
+import com.suchaz.app.web.rest.errors.ExceptionTranslator;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -30,14 +24,18 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Base64Utils;
 
-import com.suchaz.app.SuchazapisApp;
-import com.suchaz.app.domain.ItemImage;
+import javax.persistence.EntityManager;
+import java.util.List;
+
+import static com.suchaz.app.web.rest.TestUtil.createFormattingConversionService;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.hamcrest.Matchers.hasItem;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
 import com.suchaz.app.domain.enumeration.Status;
-import com.suchaz.app.repository.ItemImageRepository;
-import com.suchaz.app.service.ItemImageService;
-import com.suchaz.app.service.dto.ItemImageDTO;
-import com.suchaz.app.service.mapper.ItemImageMapper;
-import com.suchaz.app.web.rest.errors.ExceptionTranslator;
+import com.suchaz.app.domain.enumeration.Status;
+import com.suchaz.app.domain.enumeration.Status;
 /**
  * Test class for the ItemImageResource REST controller.
  *
@@ -66,6 +64,12 @@ public class ItemImageResourceIntTest {
 
     private static final String DEFAULT_ITEM_TYPE = "AAAAAAAAAA";
     private static final String UPDATED_ITEM_TYPE = "BBBBBBBBBB";
+
+    private static final Status DEFAULT_IMAGE_ON_TOP = Status.ACTIVE;
+    private static final Status UPDATED_IMAGE_ON_TOP = Status.INACTIVE;
+
+    private static final Status DEFAULT_IMAGE_ON_HOVER = Status.ACTIVE;
+    private static final Status UPDATED_IMAGE_ON_HOVER = Status.INACTIVE;
 
     private static final Long DEFAULT_LAST_REFRESHED_DATE = 1L;
     private static final Long UPDATED_LAST_REFRESHED_DATE = 2L;
@@ -136,6 +140,8 @@ public class ItemImageResourceIntTest {
             .itemImage(DEFAULT_ITEM_IMAGE)
             .itemImageContentType(DEFAULT_ITEM_IMAGE_CONTENT_TYPE)
             .itemType(DEFAULT_ITEM_TYPE)
+            .imageOnTop(DEFAULT_IMAGE_ON_TOP)
+            .imageOnHover(DEFAULT_IMAGE_ON_HOVER)
             .lastRefreshedDate(DEFAULT_LAST_REFRESHED_DATE)
             .status(DEFAULT_STATUS)
             .createdDate(DEFAULT_CREATED_DATE)
@@ -173,6 +179,8 @@ public class ItemImageResourceIntTest {
         assertThat(testItemImage.getItemImage()).isEqualTo(DEFAULT_ITEM_IMAGE);
         assertThat(testItemImage.getItemImageContentType()).isEqualTo(DEFAULT_ITEM_IMAGE_CONTENT_TYPE);
         assertThat(testItemImage.getItemType()).isEqualTo(DEFAULT_ITEM_TYPE);
+        assertThat(testItemImage.getImageOnTop()).isEqualTo(DEFAULT_IMAGE_ON_TOP);
+        assertThat(testItemImage.getImageOnHover()).isEqualTo(DEFAULT_IMAGE_ON_HOVER);
         assertThat(testItemImage.getLastRefreshedDate()).isEqualTo(DEFAULT_LAST_REFRESHED_DATE);
         assertThat(testItemImage.getStatus()).isEqualTo(DEFAULT_STATUS);
         assertThat(testItemImage.getCreatedDate()).isEqualTo(DEFAULT_CREATED_DATE);
@@ -333,6 +341,8 @@ public class ItemImageResourceIntTest {
             .andExpect(jsonPath("$.[*].itemImageContentType").value(hasItem(DEFAULT_ITEM_IMAGE_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].itemImage").value(hasItem(Base64Utils.encodeToString(DEFAULT_ITEM_IMAGE))))
             .andExpect(jsonPath("$.[*].itemType").value(hasItem(DEFAULT_ITEM_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].imageOnTop").value(hasItem(DEFAULT_IMAGE_ON_TOP.toString())))
+            .andExpect(jsonPath("$.[*].imageOnHover").value(hasItem(DEFAULT_IMAGE_ON_HOVER.toString())))
             .andExpect(jsonPath("$.[*].lastRefreshedDate").value(hasItem(DEFAULT_LAST_REFRESHED_DATE.intValue())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
             .andExpect(jsonPath("$.[*].createdDate").value(hasItem(DEFAULT_CREATED_DATE.intValue())))
@@ -359,6 +369,8 @@ public class ItemImageResourceIntTest {
             .andExpect(jsonPath("$.itemImageContentType").value(DEFAULT_ITEM_IMAGE_CONTENT_TYPE))
             .andExpect(jsonPath("$.itemImage").value(Base64Utils.encodeToString(DEFAULT_ITEM_IMAGE)))
             .andExpect(jsonPath("$.itemType").value(DEFAULT_ITEM_TYPE.toString()))
+            .andExpect(jsonPath("$.imageOnTop").value(DEFAULT_IMAGE_ON_TOP.toString()))
+            .andExpect(jsonPath("$.imageOnHover").value(DEFAULT_IMAGE_ON_HOVER.toString()))
             .andExpect(jsonPath("$.lastRefreshedDate").value(DEFAULT_LAST_REFRESHED_DATE.intValue()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
             .andExpect(jsonPath("$.createdDate").value(DEFAULT_CREATED_DATE.intValue()))
@@ -394,6 +406,8 @@ public class ItemImageResourceIntTest {
             .itemImage(UPDATED_ITEM_IMAGE)
             .itemImageContentType(UPDATED_ITEM_IMAGE_CONTENT_TYPE)
             .itemType(UPDATED_ITEM_TYPE)
+            .imageOnTop(UPDATED_IMAGE_ON_TOP)
+            .imageOnHover(UPDATED_IMAGE_ON_HOVER)
             .lastRefreshedDate(UPDATED_LAST_REFRESHED_DATE)
             .status(UPDATED_STATUS)
             .createdDate(UPDATED_CREATED_DATE)
@@ -418,6 +432,8 @@ public class ItemImageResourceIntTest {
         assertThat(testItemImage.getItemImage()).isEqualTo(UPDATED_ITEM_IMAGE);
         assertThat(testItemImage.getItemImageContentType()).isEqualTo(UPDATED_ITEM_IMAGE_CONTENT_TYPE);
         assertThat(testItemImage.getItemType()).isEqualTo(UPDATED_ITEM_TYPE);
+        assertThat(testItemImage.getImageOnTop()).isEqualTo(UPDATED_IMAGE_ON_TOP);
+        assertThat(testItemImage.getImageOnHover()).isEqualTo(UPDATED_IMAGE_ON_HOVER);
         assertThat(testItemImage.getLastRefreshedDate()).isEqualTo(UPDATED_LAST_REFRESHED_DATE);
         assertThat(testItemImage.getStatus()).isEqualTo(UPDATED_STATUS);
         assertThat(testItemImage.getCreatedDate()).isEqualTo(UPDATED_CREATED_DATE);

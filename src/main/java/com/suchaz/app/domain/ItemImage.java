@@ -1,22 +1,13 @@
 package com.suchaz.app.domain;
 
-import java.io.Serializable;
-import java.util.Objects;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Lob;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
+import javax.validation.constraints.*;
+
+import java.io.Serializable;
+import java.util.Objects;
 
 import com.suchaz.app.domain.enumeration.Status;
 
@@ -57,6 +48,14 @@ public class ItemImage implements Serializable {
 
     @Column(name = "item_type")
     private String itemType;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "image_on_top")
+    private Status imageOnTop;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "image_on_hover")
+    private Status imageOnHover;
 
     @NotNull
     @Column(name = "last_refreshed_date", nullable = false)
@@ -184,6 +183,32 @@ public class ItemImage implements Serializable {
         this.itemType = itemType;
     }
 
+    public Status getImageOnTop() {
+        return imageOnTop;
+    }
+
+    public ItemImage imageOnTop(Status imageOnTop) {
+        this.imageOnTop = imageOnTop;
+        return this;
+    }
+
+    public void setImageOnTop(Status imageOnTop) {
+        this.imageOnTop = imageOnTop;
+    }
+
+    public Status getImageOnHover() {
+        return imageOnHover;
+    }
+
+    public ItemImage imageOnHover(Status imageOnHover) {
+        this.imageOnHover = imageOnHover;
+        return this;
+    }
+
+    public void setImageOnHover(Status imageOnHover) {
+        this.imageOnHover = imageOnHover;
+    }
+
     public Long getLastRefreshedDate() {
         return lastRefreshedDate;
     }
@@ -307,6 +332,8 @@ public class ItemImage implements Serializable {
             ", itemImage='" + getItemImage() + "'" +
             ", itemImageContentType='" + getItemImageContentType() + "'" +
             ", itemType='" + getItemType() + "'" +
+            ", imageOnTop='" + getImageOnTop() + "'" +
+            ", imageOnHover='" + getImageOnHover() + "'" +
             ", lastRefreshedDate=" + getLastRefreshedDate() +
             ", status='" + getStatus() + "'" +
             ", createdDate=" + getCreatedDate() +

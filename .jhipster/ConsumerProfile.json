@@ -80,11 +80,8 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "isLoggedInUser",
-            "fieldType": "Boolean",
-            "fieldValidateRules": [
-                "required"
-            ]
+            "fieldName": "isloggedinuser",
+            "fieldType": "Boolean"
         }
     ],
     "changelogDate": "20180207211038",

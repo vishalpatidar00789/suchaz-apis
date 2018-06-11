@@ -15,6 +15,8 @@ export class ItemImageSuchaz implements BaseEntity {
         public itemImageContentType?: string,
         public itemImage?: any,
         public itemType?: string,
+        public imageOnTop?: Status,
+        public imageOnHover?: Status,
         public lastRefreshedDate?: number,
         public status?: Status,
         public createdDate?: number,

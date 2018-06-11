@@ -5,7 +5,7 @@
     <groupId>com.suchaz.app</groupId>
     <artifactId>suchazapis</artifactId>
     <!-- <version>0.0.1-SNAPSHOT</version> -->
-    <version>1.20</version>
+    <version>1.21</version>
     <packaging>war</packaging>
     <name>Suchazapis</name>
 
@@ -532,10 +532,10 @@
                     <defaultSchemaName>suchazapis</defaultSchemaName>
                     <username>yH2TQYu9OtvL6QSO</username>
                     <password>vVuQkeKwJecrDxOomMfjDjjXWNxGPCJk1U8lUjU43</password>
-                    <!-- <url>jdbc:mysql://localhost:3306</url>
+                    <!--<url>jdbc:mysql://localhost:3306</url>
                     <defaultSchemaName>suchazapis</defaultSchemaName>
                     <username>root</username>
-                    <password>dowhatyoulove</password> -->
+                    <password>dowhatyoulove</password>-->
 					<!-- <url>jdbc:mysql://10.0.2.2:3307</url>
                     <defaultSchemaName>boxfuse-dev-db</defaultSchemaName>
                     <username>boxfuse-dev-db</username>

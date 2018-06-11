@@ -71,6 +71,20 @@
                 [(ngModel)]="itemImage.itemType" />
         </div>
         <div class="form-group">
+            <label class="form-control-label" for="field_imageOnTop">Image On Top</label>
+            <select class="form-control" name="imageOnTop" [(ngModel)]="itemImage.imageOnTop" id="field_imageOnTop" >
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" for="field_imageOnHover">Image On Hover</label>
+            <select class="form-control" name="imageOnHover" [(ngModel)]="itemImage.imageOnHover" id="field_imageOnHover" >
+                <option value="ACTIVE">ACTIVE</option>
+                <option value="INACTIVE">INACTIVE</option>
+            </select>
+        </div>
+        <div class="form-group">
             <label class="form-control-label" for="field_lastRefreshedDate">Last Refreshed Date</label>
             <input type="number" class="form-control" name="lastRefreshedDate" id="field_lastRefreshedDate"
                 [(ngModel)]="itemImage.lastRefreshedDate" required/>

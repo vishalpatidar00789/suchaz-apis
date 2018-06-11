@@ -1,10 +1,9 @@
 package com.suchaz.app.service.mapper;
 
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
-
-import com.suchaz.app.domain.ItemImage;
+import com.suchaz.app.domain.*;
 import com.suchaz.app.service.dto.ItemImageDTO;
+
+import org.mapstruct.*;
 
 /**
  * Mapper for the entity ItemImage and its DTO ItemImageDTO.

@@ -1,12 +1,14 @@
 package com.suchaz.app.service.dto;
 
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
-
 import javax.persistence.Lob;
-import javax.validation.constraints.NotNull;
-
+import com.suchaz.app.domain.enumeration.Status;
+import com.suchaz.app.domain.enumeration.Status;
 import com.suchaz.app.domain.enumeration.Status;
 
 /**
@@ -31,6 +33,10 @@ public class ItemImageDTO implements Serializable {
     private String itemImageContentType;
 
     private String itemType;
+
+    private Status imageOnTop;
+
+    private Status imageOnHover;
 
     @NotNull
     private Long lastRefreshedDate;
@@ -114,6 +120,22 @@ public class ItemImageDTO implements Serializable {
 
     public void setItemType(String itemType) {
         this.itemType = itemType;
+    }
+
+    public Status getImageOnTop() {
+        return imageOnTop;
+    }
+
+    public void setImageOnTop(Status imageOnTop) {
+        this.imageOnTop = imageOnTop;
+    }
+
+    public Status getImageOnHover() {
+        return imageOnHover;
+    }
+
+    public void setImageOnHover(Status imageOnHover) {
+        this.imageOnHover = imageOnHover;
     }
 
     public Long getLastRefreshedDate() {
@@ -211,6 +233,8 @@ public class ItemImageDTO implements Serializable {
             ", itemImageURL='" + getItemImageURL() + "'" +
             ", itemImage='" + getItemImage() + "'" +
             ", itemType='" + getItemType() + "'" +
+            ", imageOnTop='" + getImageOnTop() + "'" +
+            ", imageOnHover='" + getImageOnHover() + "'" +
             ", lastRefreshedDate=" + getLastRefreshedDate() +
             ", status='" + getStatus() + "'" +
             ", createdDate=" + getCreatedDate() +

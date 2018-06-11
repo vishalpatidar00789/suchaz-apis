@@ -23,6 +23,8 @@
             <th><span>Item Image URL</span></th>
             <th><span>Item Image</span></th>
             <th><span>Item Type</span></th>
+            <th><span>Image On Top</span></th>
+            <th><span>Image On Hover</span></th>
             <th><span>Last Refreshed Date</span></th>
             <th><span>Status</span></th>
             <th><span>Created Date</span></th>
@@ -47,6 +49,8 @@
                     <span *ngIf="itemImage.itemImage">{{itemImage.itemImageContentType}}, {{byteSize(itemImage.itemImage)}}</span>
                 </td>
                 <td>{{itemImage.itemType}}</td>
+                <td>{{itemImage.imageOnTop}}</td>
+                <td>{{itemImage.imageOnHover}}</td>
                 <td>{{itemImage.lastRefreshedDate}}</td>
                 <td>{{itemImage.status}}</td>
                 <td>{{itemImage.createdDate}}</td>

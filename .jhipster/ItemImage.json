@@ -41,6 +41,16 @@
             "fieldType": "String"
         },
         {
+            "fieldName": "imageOnTop",
+            "fieldType": "Status",
+            "fieldValues": "ACTIVE,INACTIVE"
+        },
+        {
+            "fieldName": "imageOnHover",
+            "fieldType": "Status",
+            "fieldValues": "ACTIVE,INACTIVE"
+        },
+        {
             "fieldName": "lastRefreshedDate",
             "fieldType": "Long",
             "fieldValidateRules": [

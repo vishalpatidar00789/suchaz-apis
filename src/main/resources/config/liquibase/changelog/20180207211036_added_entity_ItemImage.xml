@@ -49,6 +49,14 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="image_on_top" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="image_on_hover" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="last_refreshed_date" type="bigint">
                 <constraints nullable="false" />
             </column>
