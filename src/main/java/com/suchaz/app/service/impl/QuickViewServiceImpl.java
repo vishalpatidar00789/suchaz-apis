@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.suchaz.app.domain.Item;
 import com.suchaz.app.domain.ItemImage;
 import com.suchaz.app.domain.Offer;
+import com.suchaz.app.domain.enumeration.Status;
 import com.suchaz.app.repository.ItemCommonAttributeRepository;
 import com.suchaz.app.repository.ItemRepository;
 import com.suchaz.app.service.QuickViewService;
@@ -143,10 +144,16 @@ public class QuickViewServiceImpl implements QuickViewService {
 		
 		// Need to add Logic here for filtering images to top and hover
 		if(itemImageSet.iterator().hasNext()) {
-		quickViewDTO.setItemImageTop(itemImageSet.iterator().next().getItemImage());
+			if(itemImageSet.iterator().next().getImageOnTop().equals(Status.ACTIVE))
+			{
+				quickViewDTO.setItemImageTop(itemImageSet.iterator().next().getItemImage());
+			}
 		}
 		if(itemImageSet.iterator().hasNext()) {
+			if(itemImageSet.iterator().next().getImageOnHover().equals(Status.ACTIVE))
+			{
 			quickViewDTO.setItemImageHover(itemImageSet.iterator().next().getItemImage());
+			}
 		}
 		
 	}
